@@ -395,3 +395,28 @@ def main():
 # Ejecutar la función principal
 if __name__ == "__main__":
     main()
+
+# Explicación de Dificultades, Soluciones y Conclusiones
+
+# Dificultades:
+# Generación de datos de prueba:
+# Crear datos realistas para pruebas.
+# Solución: Uso de Faker y selección aleatoria de películas.
+
+# Implementación de algoritmos de recomendación:
+# Calcular similitudes de manera eficiente.
+# Solución: Uso de distancia de coseno y scipy.sparse.
+
+# Integración de filtrado basado en contenido:
+# Comparar géneros de películas no calificadas con preferencias de usuario.
+# Solución: Calcular vector promedio de géneros basado en calificaciones.
+
+# Interfaz gráfica intuitiva:
+# Uso de tkinter para desarrollar la interfaz.
+
+# Conclusiones:
+# Eficacia de sistemas de recomendación:
+# Ambos métodos (colaborativo y basado en contenido) son efectivos.
+
+# Eficiencia computacional:
+# Uso de matrices dispersas y algoritmos optimizados mejora la eficiencia.
