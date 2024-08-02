@@ -1,0 +1,248 @@
+<style>
+  body, h1, h2, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+main {
+    padding: 2rem 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 0.5rem 0;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+.movie-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.rating {
+    font-size: 1.25rem;
+    color: #ffcc00; /* Color dorado para las estrellas */
+}
+
+.btn-custom {
+  background-color: #007bff; /* Color de fondo azul */
+  color: #fff; /* Color del texto blanco */
+  border-radius: 25px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de fuente */
+  text-decoration: none; /* Quitar subrayado del enlace */
+  display: inline-block; /* Asegurar que el botón se muestre correctamente */
+}
+
+.btn-custom:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el mouse */
+  color: #fff; /* Color del texto al pasar el mouse */
+  transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+.recommendations-content {
+  padding: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recommendations-content h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.favorite-genres, .recommended-movies {
+  margin-bottom: 30px;
+}
+
+.favorite-genres h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.genres-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.genre-badge {
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.genre-badge:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.recommended-movies h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.recommended-movies ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recommended-movies .movie-item {
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.recommended-movies .movie-item:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-3px);
+}
+
+.movie-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+</style> 
+<main>
+<div class="container">
+  <section class="user-ratings">
+      <h2>Películas Calificadas</h2>
+      <ul>
+          {% for movie in rated_movies %}
+              <li>
+                  <span class="movie-title">{{ movie.title }}</span>
+                  <span class="stars">{{ movie.stars }}</span>
+              </li>
+          {% empty %}
+              <li>No has calificado ninguna película.</li>
+          {% endfor %}
+      </ul>
+  </section>
+
+  <section class="recommendations">
+      <h2>Películas Recomendadas (Colaborativas)</h2>
+      <ul>
+          {% for movie in recommended_movies %}
+              <li>
+                  <span class="movie-title">{{ movie.title }}</span>
+              </li>
+          {% empty %}
+              <li>No hay recomendaciones disponibles.</li>
+          {% endfor %}
+      </ul>
+  </section>
+
+  <section class="recommendations-content">
+      <h2>Películas Recomendadas (Basadas en Contenido)</h2>
+      <section class="favorite-genres">
+        <h3>Porque te gusta:</h3>
+        <div class="genres-container">
+            {% for genre in top_genres %}
+                <div class="genre-badge">{{ genre }}</div>
+            {% empty %}
+                <div class="genre-badge">No se han encontrado géneros favoritos.</div>
+            {% endfor %}
+        </div>
+    </section>
+      <ul>
+          {% for movie in recommended_content_movies %}
+              <li>
+                  <span class="movie-title">{{ movie.title }}</span>
+              </li>
+          {% empty %}
+              <li>No hay recomendaciones disponibles.</li>
+          {% endfor %}
+      </ul>
+  </section>
+</div>
+<!-- Botón de Volver al Inicio -->
+<div class="fixed-bottom">
+  <a href="{% url 'home' %}" class="btn btn-custom">⮌ Volver al Inicio</a>
+</div>
+</main>
