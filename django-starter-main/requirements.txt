@@ -3,3 +3,6 @@ pillow
 django-cleanup
 django-allauth
 django-htmx
+pandas
+numpy
+scipy

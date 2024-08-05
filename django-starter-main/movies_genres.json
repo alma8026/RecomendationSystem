@@ -1,44 +1,502 @@
-{
-    "The Shawshank Redemption": ["Drama"],
-    "The Godfather": ["Crime", "Drama"],
-    "The Dark Knight": ["Action", "Crime", "Drama"],
-    "Pulp Fiction": ["Crime", "Drama"],
-    "Forrest Gump": ["Drama", "Romance"],
-    "The Lord of the Rings: The Return of the King": ["Action", "Adventure", "Drama"],
-    "Inception": ["Action", "Adventure", "Sci-Fi"],
-    "Fight Club": ["Drama"],
-    "The Matrix": ["Action", "Sci-Fi"],
-    "The Empire Strikes Back": ["Action", "Adventure", "Sci-Fi"],
-    "Interstellar": ["Adventure", "Drama", "Sci-Fi"],
-    "The Green Mile": ["Drama", "Fantasy"],
-    "Gladiator": ["Action", "Adventure", "Drama"],
-    "The Departed": ["Crime", "Drama", "Thriller"],
-    "The Prestige": ["Drama", "Mystery", "Sci-Fi"],
-    "The Lion King": ["Animation", "Adventure", "Drama"],
-    "The Usual Suspects": ["Crime", "Drama", "Mystery"],
-    "Schindler's List": ["Biography", "Drama", "History"],
-    "The Silence of the Lambs": ["Crime", "Drama", "Thriller"],
-    "The Shining": ["Drama", "Horror"],
-    "Se7en": ["Crime", "Drama", "Thriller"],
-    "Saving Private Ryan": ["Drama", "War"],
-    "The Social Network": ["Biography", "Drama"],
-    "A Beautiful Mind": ["Biography", "Drama"],
-    "The Truman Show": ["Comedy", "Drama", "Sci-Fi"],
-    "Whiplash": ["Drama", "Music"],
-    "Joker": ["Crime", "Drama", "Thriller"],
-    "Parasite": ["Comedy", "Drama", "Thriller"],
-    "1917": ["Drama", "War"],
-    "Jojo Rabbit": ["Comedy", "Drama", "War"],
-    "Once Upon a Time in Hollywood": ["Comedy", "Drama"],
-    "Spider-Man: Into the Spider-Verse": ["Animation", "Action", "Adventure"],
-    "Mad Max: Fury Road": ["Action", "Adventure", "Sci-Fi"],
-    "Her": ["Drama", "Romance", "Sci-Fi"],
-    "La La Land": ["Comedy", "Drama", "Music"],
-    "Moonlight": ["Drama"],
-    "The Grand Budapest Hotel": ["Adventure", "Comedy", "Drama"],
-    "Django Unchained": ["Action", "Drama", "Western"],
-    "The Hateful Eight": ["Crime", "Drama", "Western"],
-    "The Big Lebowski": ["Comedy", "Crime"],
-    "The Revenant": ["Action", "Adventure", "Drama"],
-    "Knives Out": ["Comedy", "Crime", "Drama"]
-}
+[
+    {
+        "title": "The Shawshank Redemption",
+        "genres": ["Drama"],
+        "image_url": "https://i.pinimg.com/736x/56/c7/c1/56c7c1ec648c935d3f0384fd37622fca.jpg"
+    },
+    {
+        "title": "The Godfather",
+        "genres": ["Crime", "Drama"],
+        "image_url": "https://i.pinimg.com/736x/88/5b/24/885b24f3e0d62737069ca48906198f6b.jpg"
+    },
+    {
+        "title": "The Dark Knight",
+        "genres": ["Action", "Crime", "Drama"],
+        "image_url": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg"
+    },
+    {
+        "title": "Pulp Fiction",
+        "genres": ["Crime", "Drama"],
+        "image_url": "https://i.pinimg.com/474x/6f/68/97/6f68975ee44ba20b58577859566a94cb.jpg"
+    },
+    {
+        "title": "Forrest Gump",
+        "genres": ["Drama", "Romance"],
+        "image_url": "https://i.pinimg.com/originals/52/29/99/5229997934b5b5acfa512b32db0091fd.jpg"
+    },
+    {
+        "title": "The Lord of the Rings: The Return of the King",
+        "genres": ["Action", "Adventure", "Drama"],
+        "image_url": "https://i.pinimg.com/736x/dd/01/f7/dd01f70f3d354c4c63202927c3ed9777.jpg"
+    },
+    {
+        "title": "Inception",
+        "genres": ["Action", "Adventure", "Sci-Fi"],
+        "image_url": "https://i.pinimg.com/originals/a4/a3/d9/a4a3d901487cb61d972d534741f815f3.jpg"
+    },
+    {
+        "title": "Fight Club",
+        "genres": ["Drama"],
+        "image_url": "https://i.pinimg.com/736x/67/61/a4/6761a4c4037ad0be953a8705dd277782.jpg"
+    },
+    {
+        "title": "The Matrix",
+        "genres": ["Action", "Sci-Fi"],
+        "image_url": "https://es.web.img3.acsta.net/medias/nmedia/18/72/16/76/20065616.jpg"
+    },
+    {
+        "title": "The Empire Strikes Back",
+        "genres": ["Action", "Adventure", "Sci-Fi"],
+        "image_url": "https://cdn.domestika.org/c_limit,dpr_auto,f_auto,q_80,w_820/v1444814166/content-items/001/424/593/JER_Empire_regular_LOW_800px-original.jpg?1444814166"
+    },
+    {
+        "title": "Interstellar",
+        "genres": ["Adventure", "Drama", "Sci-Fi"],
+        "image_url": "https://es.web.img3.acsta.net/pictures/14/10/02/11/07/341344.jpg"
+    },
+    {
+        "title": "The Green Mile",
+        "genres": ["Drama", "Fantasy"],
+        "image_url": "https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+        "title": "Gladiator",
+        "genres": ["Action", "Adventure", "Drama"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ18BAXXp_CLzVj-fGcSdTZJOaT3HDsZSDCHw&s"
+    },
+    {
+        "title": "The Departed",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "https://pics.filmaffinity.com/The_Departed-749477966-large.jpg"
+    },
+    {
+        "title": "The Prestige",
+        "genres": ["Drama", "Mystery", "Sci-Fi"],
+        "image_url": "https://i.blogs.es/125dbb/prestigeredux/450_1000.jpg"
+    },
+    {
+        "title": "The Lion King",
+        "genres": ["Animation", "Adventure", "Drama"],
+        "image_url": "https://i.pinimg.com/originals/34/35/4e/34354e48bcf6fa47502f16034133fee7.jpg"
+    },
+    {
+        "title": "The Usual Suspects",
+        "genres": ["Crime", "Drama", "Mystery"],
+        "image_url": "https://www.originalfilmart.com/cdn/shop/products/usual_suspects_1995_original_film_art_ef9998dc-62be-47c0-92c5-d58632b646a4_5000x.jpg?v=1582620183"
+    },
+    {
+        "title": "Schindler's List",
+        "genres": ["Biography", "Drama", "History"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfEJMCpn9ymlnoT8JIM8JKOa0YB2me3d_eXg&s"
+    },
+    {
+        "title": "The Silence of the Lambs",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "https://play-lh.googleusercontent.com/NN4OtSReaguunuEfZftynIypKWaDBwA-AqmWdl8JKO0UrE3izMM9qoKH3q2ToIsn7Zw"
+    },
+    {
+        "title": "The Shining",
+        "genres": ["Drama", "Horror"],
+        "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEheXNpv0xoDZZ0TQ3W7wcSQM3MCB_ff479kWCbTaAmtWDKcjLyaMN4WXyqy7PMLxic-PgQAEqs1uficEQBXbqbMzQX02IFYoEBR9YmZQfsCEkr0EXYk-PjjxZKv4yAHaNN1IvoQeKAvLsg/w1200-h630-p-k-no-nu/untitled.bmp"
+    },
+    {
+        "title": "Se7en",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "https://pics.filmaffinity.com/seven_se7en-498520078-large.jpg"
+    },
+    {
+        "title": "Saving Private Ryan",
+        "genres": ["Drama", "War"],
+        "image_url": "https://pics.filmaffinity.com/Saving_Private_Ryan-442865234-large.jpg"
+    },
+    {
+        "title": "The Social Network",
+        "genres": ["Biography", "Drama"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_ATqkfHLwa67L3U4RPTTJhRXKb1jfsqFzag&s"
+    },
+    {
+        "title": "A Beautiful Mind",
+        "genres": ["Biography", "Drama"],
+        "image_url": "https://i.pinimg.com/474x/84/4c/1e/844c1e6c75c128ee9637d0dc3bb4781d.jpg"
+    },
+    {
+        "title": "The Truman Show",
+        "genres": ["Comedy", "Drama", "Sci-Fi"],
+        "image_url": "https://www.originalfilmart.com/cdn/shop/products/truman_show_1998_teaser_original_film_art_38f11f80-ccdb-461a-8d27-74ff095ddf60_5000x.jpg?v=1673637165"
+    },
+    {
+        "title": "Whiplash",
+        "genres": ["Drama", "Music"],
+        "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjE4HDN_9aP-7LUE6a23YqEyz7TaJaMC0G1bz73TNKHcX1Co1uOMrozekkuf1QCtkHdIphXVt8Em_rFqrXW6qaaiN9HMI0ahyphenhyphen88eMCma-p5qhUCi3qZ0ex0ZPsRkKqZIMsRB3ElLyDw727L/s1600/whiplash_poster_brazil.jpg"
+    },
+    {
+        "title": "Joker",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "https://hips.hearstapps.com/hmg-prod/images/joker-poster-1554245051.jpg"
+    },
+    {
+        "title": "Parasite",
+        "genres": ["Comedy", "Drama", "Thriller"],
+        "image_url": "https://cuatrocirculos.com/wp-content/uploads/2020/02/parasite-scaled.jpg"
+    },
+    {
+        "title": "1917",
+        "genres": ["Drama", "War"],
+        "image_url": "https://media.vogue.mx/photos/5e26e68b07b0840008ae2c13/2:3/w_2560%2Cc_limit/1917.jpg"
+    },
+    {
+        "title": "Jojo Rabbit",
+        "genres": ["Comedy", "Drama", "War"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnAHe8-FwgtctQoMa0nU8Diumcl0Saj_SDKw&s"
+    },
+    {
+        "title": "Once Upon a Time in Hollywood",
+        "genres": ["Comedy", "Drama"],
+        "image_url": "https://www.esdesignbarcelona.com/sites/default/files/img/6_10.jpg"
+    },
+    {
+        "title": "Spider-Man: Into the Spider-Verse",
+        "genres": ["Animation", "Action", "Adventure"],
+        "image_url": "https://i.pinimg.com/originals/7a/dc/4f/7adc4fb12c2b64ea4066d04e3d0769cc.jpg"
+    },
+    {
+        "title": "Mad Max: Fury Road",
+        "genres": ["Action", "Adventure", "Sci-Fi"],
+        "image_url": "https://es.web.img3.acsta.net/r_1280_720/img/75/fc/75fc90eee42e23be1857be88082dd3db.jpg"
+    },
+    {
+        "title": "Her",
+        "genres": ["Drama", "Romance", "Sci-Fi"],
+        "image_url": "https://pics.filmaffinity.com/Her-716403893-large.jpg"
+    },
+    {
+        "title": "La La Land",
+        "genres": ["Comedy", "Drama", "Music"],
+        "image_url": "https://play-lh.googleusercontent.com/9WLX4kpGokn73nXMUAElCj0byelBhVPSM5vbskzxZuMH8_guUJIbzSknr4wJ_8jRoZhVS9YRIWdunr9HMLLb"
+    },
+    {
+        "title": "Moonlight",
+        "genres": ["Drama"],
+        "image_url": "https://pics.filmaffinity.com/moonlight-232276883-large.jpg"
+    },
+    {
+        "title": "The Grand Budapest Hotel",
+        "genres": ["Adventure", "Comedy", "Drama"],
+        "image_url": "https://i.pinimg.com/originals/48/08/cd/4808cde63ff708572be687970f979cfe.jpg"
+    },
+    {
+        "title": "Django Unchained",
+        "genres": ["Action", "Drama", "Western"],
+        "image_url": "https://i.ebayimg.com/images/g/S8EAAOSw78Rgo7KR/s-l1600.jpg"
+    },
+    {
+        "title": "The Hateful Eight",
+        "genres": ["Crime", "Drama", "Western"],
+        "image_url": "https://img.ecartelera.com/noticias/fotos/25000/25073/1.jpg"
+    },
+    {
+        "title": "The Big Lebowski",
+        "genres": ["Comedy", "Crime"],
+        "image_url": "https://i.ebayimg.com/images/g/RIAAAOxyaURTjeap/s-l400.jpg"
+    },
+    {
+        "title": "The Revenant",
+        "genres": ["Action", "Adventure", "Drama"],
+        "image_url": "https://pics.filmaffinity.com/The_Revenant-498846647-large.jpg"
+    },
+    {
+        "title": "Titanic",
+        "genres": ["Drama", "Romance"],
+        "image_url": "https://i.pinimg.com/474x/39/d1/01/39d101063c4e217323df91b0551175af.jpg"
+    },
+    {
+        "title": "Inglourious Basterds",
+        "genres": ["Action", "Drama", "War"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTggnf2bt48qPrE9LfOI5RR4qIZmYAlRA7xrA&s"
+    },
+    {
+        "title": "The Witch",
+        "genres": ["Drama", "Horror", "Mystery"],
+        "image_url": "https://pics.filmaffinity.com/The_Witch-177407525-large.jpg"
+    },
+    {
+        "title": "Arrival",
+        "genres": ["Drama", "Sci-Fi", "Thriller"],
+        "image_url": "https://pics.filmaffinity.com/arrival-150207636-large.jpg"
+    },
+    {
+        "title": "Get Out",
+        "genres": ["Horror", "Mystery", "Thriller"],
+        "image_url": "https://i.pinimg.com/originals/5d/d5/a3/5dd5a3f07446bae04dda9cef5a88df37.jpg"
+    },
+    {
+        "title": "Hereditary",
+        "genres": ["Drama", "Horror", "Mystery"],
+        "image_url": "https://pics.filmaffinity.com/hereditary-659865612-large.jpg"
+    },
+    {
+        "title": "Blade Runner 2049",
+        "genres": ["Action", "Drama", "Sci-Fi"],
+        "image_url": "https://pics.filmaffinity.com/blade_runner_2049-283019627-large.jpg"
+    },
+    {
+        "title": "A Quiet Place",
+        "genres": ["Drama", "Horror", "Sci-Fi"],
+        "image_url": "https://m.media-amazon.com/images/M/MV5BMjI0MDMzNTQ0M15BMl5BanBnXkFtZTgwMTM5NzM3NDM@._V1_.jpg"
+    },
+    {
+        "title": "The Irishman",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "https://m.media-amazon.com/images/M/MV5BM2FkYzMwOWItZDU0NC00YzI3LWE0NDctODFlNWQ4MGEyM2M0XkEyXkFqcGdeQXVyNDIyNjA2MTk@._V1_.jpg"
+    },
+    {
+        "title": "Rocketman",
+        "genres": ["Biography", "Drama", "Music"],
+        "image_url": "https://es.web.img2.acsta.net/pictures/19/02/19/16/26/1562265.jpg"
+    },
+    {
+        "title": "Once Upon a Time in America",
+        "genres": ["Crime", "Drama"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNJWe71-IBGY23b9vxnog4_UTBf8ONhiH5oA&s"
+    },
+    {
+        "title": "The Wolf of Wall Street",
+        "genres": ["Biography", "Comedy", "Drama"],
+        "image_url": "https://es.web.img3.acsta.net/pictures/210/615/21061596_20131129121836144.jpg"
+    },
+    {
+        "title": "The Shape of Water",
+        "genres": ["Adventure", "Drama", "Fantasy"],
+        "image_url": "https://i.pinimg.com/474x/58/e0/fd/58e0fdbd618e0579bd2377473fcc4230.jpg"
+    },
+    {
+        "title": "The Martian",
+        "genres": ["Adventure", "Drama", "Sci-Fi"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjN1F-RtRx3fwVqEVqMl8JEDDhMhVtBPHFCg&s"
+    },
+    {
+        "title": "The Imitation Game",
+        "genres": ["Biography", "Drama", "Thriller"],
+        "image_url": "https://es.web.img2.acsta.net/r_1280_720/img/bd/1d/bd1d632841467d0eb88ca889ec6491f6.jpg"
+    },
+    {
+        "title": "The Favourite",
+        "genres": ["Biography", "Comedy", "Drama"],
+        "image_url": "https://pics.filmaffinity.com/The_Favourite-984520950-large.jpg"
+    },
+    {
+        "title": "Darkest Hour",
+        "genres": ["Biography", "Drama", "War"],
+        "image_url": "https://assets.scriptslug.com/live/img/imager/posters/4328/darkest-hour-2017_f5e9c84dee.jpg"
+    },
+    {
+        "title": "The Big Short",
+        "genres": ["Biography", "Comedy", "Drama"],
+        "image_url": "https://pics.filmaffinity.com/The_Big_Short-129125490-large.jpg"
+    },
+    {
+        "title": "Moonrise Kingdom",
+        "genres": ["Adventure", "Comedy", "Drama"],
+        "image_url": "https://es.web.img3.acsta.net/img/ba/f9/baf9b5498115ff27394561f5957c6007.jpg"
+    },
+    {
+        "title": "Spotlight",
+        "genres": ["Biography", "Drama", "Thriller"],
+        "image_url": "https://es.web.img2.acsta.net/pictures/15/11/13/16/27/316410.jpg"
+    },
+    {
+        "title": "Midsommar",
+        "genres": ["Drama", "Horror", "Mystery"],
+        "image_url": "https://es.web.img3.acsta.net/r_1280_720/img/38/56/385656e6b115a8bd74e5bcd6c6793c58.jpg"
+    },
+    {
+        "title": "The Lobster",
+        "genres": ["Comedy", "Drama", "Romance"],
+        "image_url": "https://graffica.info/wp-content/uploads/2016/01/colinfarrellinthelobster569_0.jpg"
+    },
+    {
+        "title": "Tinker Tailor Soldier Spy",
+        "genres": ["Drama", "Thriller"],
+        "image_url": "https://m.media-amazon.com/images/M/MV5BMTU2OTkwNzMyM15BMl5BanBnXkFtZTcwOTI4ODg2Ng@@._V1_.jpg"
+    },
+    {
+        "title": "A Ghost Story",
+        "genres": ["Drama", "Fantasy", "Mystery"],
+        "image_url": "https://play-lh.googleusercontent.com/lHFrQoGPYULBCdfwWNk8soL2t6X0RPuvL7u6RgMVkvVPLOcw9gMA1t4WlauqcxV292w"
+    },
+    {
+        "title": "The Florida Project",
+        "genres": ["Drama"],
+        "image_url": "https://es.web.img3.acsta.net/pictures/17/05/23/13/04/195721.jpg"
+    },
+    {
+        "title": "The Nice Guys",
+        "genres": ["Action", "Comedy", "Crime"],
+        "image_url": "https://m.media-amazon.com/images/M/MV5BODNlNmU4MGItMzQwZi00NGQyLWEyZWItYjFkNmI0NWI4NjBhXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg"
+    },
+    {
+        "title": "Annihilation",
+        "genres": ["Drama", "Horror", "Sci-Fi"],
+        "image_url": "https://i.pinimg.com/736x/2d/c7/2a/2dc72a92fec7d86940796c8624ca4187.jpg"
+    },
+    {
+        "title": "The Master",
+        "genres": ["Drama"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHY8C1GgOtgVhEzzHm1smP8u0YQ2eRGbb_Xg&s"
+    },
+    {
+        "title": "The Handmaiden",
+        "genres": ["Drama", "Romance", "Thriller"],
+        "image_url": "https://i.pinimg.com/564x/33/61/89/336189ae230e08d4782e5830ca5294ad.jpg"
+    },
+    {
+        "title": "Blade Runner",
+        "genres": ["Action", "Drama", "Sci-Fi"],
+        "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3SysBj9gD2NsvYn-lz_mMoC0Oo_Z0V0JW4GIYtp8ztUw6Et6vTIiRhHS3RLXXWxows_1hUQHtcxJ_vplKPQq5nV-ysNAjQSxA_s5m8ObQpsNC0tYYH0coH5ht1XoSMVc_yQ9qABftGtw/s1600/Blade+Runner+poster.png"
+    },
+    {
+        "title": "The Hunt",
+        "genres": ["Drama", "Thriller"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz9H0y6kBd1oAk2NwF95sLFNRbyFEL5HjmMA&s"
+    },
+    {
+        "title": "The Secret in Their Eyes",
+        "genres": ["Crime", "Drama", "Mystery"],
+        "image_url": "https://latidofilms.com/wp-content/uploads/2023/04/Secret-In-Their-eyes_South-Africa.jpg"
+    },
+    {
+        "title": "The Lives of Others",
+        "genres": ["Drama", "Thriller"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsxPrmsjHfexo8dbADcMam0-WlXQxGTtHUKw&s"
+    },
+    {
+        "title": "City of God",
+        "genres": ["Crime", "Drama"],
+        "image_url": "https://image.tmdb.org/t/p/original/yY8Fp644mPNX8HP8O7cu2ksMq3y.jpg"
+    },
+    {
+        "title": "Pan's Labyrinth",
+        "genres": ["Drama", "Fantasy", "War"],
+        "image_url": "https://m.media-amazon.com/images/I/91ygIN4voqL._AC_UF894,1000_QL80_.jpg"
+    },
+    {
+        "title": "Oldboy",
+        "genres": ["Action", "Drama", "Mystery"],
+        "image_url": "https://i.pinimg.com/736x/f4/97/12/f49712b9d5ec68bca37cd77d0e98691c.jpg"
+    },
+    {
+        "title": "A Separation",
+        "genres": ["Drama"],
+        "image_url": "https://assets.scriptslug.com/live/img/posters/a-separation-2011.jpg?utime=20240519142037"
+    },
+    {
+        "title": "The Intouchables",
+        "genres": ["Biography", "Comedy", "Drama"],
+        "image_url": "https://pics.filmaffinity.com/The_Intouchables-113587882-large.jpg"
+    },
+    {
+        "title": "The Grandmaster",
+        "genres": ["Action", "Biography", "Drama"],
+        "image_url": "https://es.web.img2.acsta.net/pictures/13/12/17/09/55/162303.jpg"
+    },
+    {
+        "title": "The Pianist",
+        "genres": ["Biography", "Drama", "Music"],
+        "image_url": "https://i.pinimg.com/originals/36/f3/f2/36f3f227e37e81c57d1df99f9e4c3a5b.jpg"
+    },
+    {
+        "title": "Roma",
+        "genres": ["Drama"],
+        "image_url": "https://s3.amazonaws.com/criterion-production/films/bc349204816d212fabd9b71524763b75/BMnwff4YpeT4kAkBsBwD6PGbdffoL3_large.jpg"
+    },
+    {
+        "title": "The Tale of the Princess Kaguya",
+        "genres": ["Animation", "Drama", "Fantasy"],
+        "image_url": "https://cdn.posteritati.com/posters/000/000/068/453/the-tale-of-the-princess-kaguya-md-web.jpg"
+    },
+    {
+        "title": "Let the Right One In",
+        "genres": ["Drama", "Horror", "Romance"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgne3PESqxZaJpdS8-IDeIpEn9PgbNLKLVtw&s"
+    },
+    {
+        "title": "Amélie",
+        "genres": ["Comedy", "Romance"],
+        "image_url": "https://es.web.img2.acsta.net/pictures/21/06/18/12/28/5014869.jpg"
+    },
+    {
+        "title": "La Haine",
+        "genres": ["Crime", "Drama"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStmetjzYQLyv1Aw2HabqrzoXwXPbW6CLHWvA&s"
+    },
+    {
+        "title": "Loving Vincent",
+        "genres": ["Animation", "Biography", "Drama"],
+        "image_url": "https://es.web.img3.acsta.net/r_1280_720/img/ac/a6/aca6c2eaea6f9759e1c4852e81540e47.jpg"
+    },
+    {
+        "title": "The Secret Life of Walter Mitty",
+        "genres": ["Adventure", "Comedy", "Drama"],
+        "image_url": "https://es.web.img3.acsta.net/pictures/210/591/21059131_20131119154913018.jpg"
+    },
+    {
+        "title": "Children of Men",
+        "genres": ["Action", "Drama", "Sci-Fi"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz9H0y6kBd1oAk2NwF95sLFNRbyFEL5HjmMA&s"
+    },
+    {
+        "title": "Ex Machina",
+        "genres": ["Drama", "Sci-Fi", "Thriller"],
+        "image_url": "https://musicart.xboxlive.com/7/a47d1700-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080"
+    },
+    {
+        "title": "The Babadook",
+        "genres": ["Drama", "Horror", "Thriller"],
+        "image_url": "https://pics.filmaffinity.com/the_babadook-131562437-large.jpg"
+    },
+    {
+        "title": "The Invisible Man",
+        "genres": ["Drama", "Horror", "Thriller"],
+        "image_url": "https://i.pinimg.com/474x/b2/8b/1d/b28b1dcbec955ec3872ade1c17b26d20.jpg"
+    },
+    {
+        "title": "The Killing of a Sacred Deer",
+        "genres": ["Drama", "Horror", "Thriller"],
+        "image_url": "https://m.media-amazon.com/images/M/MV5BMjU4NDcwOTA2NF5BMl5BanBnXkFtZTgwMjE2OTg4MzI@._V1_QL75_UX820_.jpg"
+    },
+    {
+        "title": "Whisper of the Heart",
+        "genres": ["Animation", "Adventure", "Drama"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooko6-p0EWebuyYpUIPHBZ4tt-mG51gDQhQ&s"
+    },
+    {
+        "title": "Willy Wonka & the Chocolate Factory",
+        "genres": ["Adventure", "Comedy", "Family"],
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXqNErTm8pXPakqxkNxQGEeAtra_CxO999Zw&s"
+    },
+    {
+        "title": "The Bridge on the River Kwai",
+        "genres": ["Adventure", "Drama", "War"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/The_Bridge_on_the_River_Kwai_%281958_US_poster_-_Style_A%29.jpg"
+    },
+    {
+        "title": "Moulin Rouge!",
+        "genres": ["Drama", "Musical", "Romance"],
+        "image_url": "https://es.web.img3.acsta.net/img/66/34/6634dfd361bbd8765fc9210c1515630f.jpg"
+    },
+    {
+        "title": "The Artist",
+        "genres": ["Comedy", "Drama", "Romance"],
+        "image_url": "https://pics.filmaffinity.com/The_Artist-539391340-large.jpg"
+    },
+    {
+        "title": "The Great Dictator",
+        "genres": ["Comedy", "Drama"],
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/The_Great_Dictator_%281940%29_poster.jpg/681px-The_Great_Dictator_%281940%29_poster.jpg"
+    },
+    {
+        "title": "A Clockwork Orange",
+        "genres": ["Crime", "Drama", "Sci-Fi"],
+        "image_url": "https://i.pinimg.com/736x/bf/27/53/bf2753ef636c007195abcb6e327bb22e.jpg"
+    }
+]

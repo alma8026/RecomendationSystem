@@ -1,177 +1,214 @@
 {% load get_item %} <!-- Asegúrate de cargar el filtro get_item si es necesario -->
 
 <style>
-  body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
-      color: #333;
-  }
-
-  .container {
-      width: 80%;
-      margin: auto;
-      padding: 20px;
-  }
-
-  h1 {
-      text-align: center;
-      color: #2c3e50;
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      font-weight: 700;
-  }
-
-  .movie-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-  }
-
-  .movie-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: calc(33% - 20px);
-      padding: 20px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .movie-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .movie-title {
-      font-size: 1.5em;
-      margin-bottom: 15px;
-      color: #2c3e50;
-      font-weight: 600;
-  }
-
-  .rating-stars {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 15px;
-  }
-
-  .rating-stars input {
-      display: none;
-  }
-
-  .rating-stars label {
-      font-size: 2em;
-      color: #ddd;
-      cursor: pointer;
-      transition: color 0.2s;
-  }
-
-  .rating-stars label:hover,
-  .rating-stars input:checked ~ label {
-      color: #f39c12;
-  }
-
-  form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
-
-  button {
-      background-color: #007bff;
-      border: none;
-      color: white;
-      padding: 12px 24px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-  }
-
-  button:hover {
-      background-color: #0056b3;
-      transform: translateY(-2px);
-  }
-
-  .rated-button {
-      background-color: #6c757d;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: not-allowed;
-      transition: background-color 0.3s;
-  }
-
-  .rated-button:hover {
-      background-color: #5a6268;
-  }
-
-  .stars-display {
-      font-size: 1.5em;
-      margin-bottom: 15px;
-      color: #f39c12;
-  }
-  .btn-custom {
-    background-color: #007bff; /* Color de fondo azul */
-    color: #fff; /* Color del texto blanco */
-    border-radius: 25px; /* Bordes redondeados */
-    padding: 10px 20px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño de fuente */
-    text-decoration: none; /* Quitar subrayado del enlace */
-    display: inline-block; /* Asegurar que el botón se muestre correctamente */
-  }
-  
-  .btn-custom:hover {
-    background-color: #0056b3; /* Color de fondo al pasar el mouse */
-    color: #fff; /* Color del texto al pasar el mouse */
-    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
-  }
-  
-  .fixed-bottom {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-  }
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 1200px; /* Limita el ancho máximo */
+        margin: auto;
+        padding: 20px;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+    
+    /* Movie List Styles */
+    .movie-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    /* Movie Card Styles */
+    .movie-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: calc(100% / 2 - 20px);
+        max-width: 300px;
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .movie-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .movie-card img {
+        width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+        height: 370px; /* Establece una altura fija para todas las imágenes */
+        object-fit: cover; /* Mantiene la proporción de la imagen y recorta el exceso */
+        border-radius: 8px; /* Bordes redondeados opcionales */
+        margin-bottom: 10px;
+    }
+    
+    /* Movie Title */
+    .movie-title {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    
+    /* Rating Stars */
+    .rating-stars {
+        display: flex;
+        justify-content: center;
+        direction: rtl; /* Para que las estrellas se alineen de izquierda a derecha */
+        font-size: 2.5em;
+    }
+    
+    .rating-stars input {
+        display: none;
+    }
+    
+    .rating-stars label {
+        color: #ddd; /* Color de las estrellas no seleccionadas */
+        cursor: pointer;
+        transition: color 0.2s;
+        text-align: center; /* Asegura que las estrellas se alineen al centro */
+    }
+    
+    .rating-stars input:checked ~ label,
+    .rating-stars label:hover,
+    .rating-stars label:hover ~ label {
+        color: #f39c12; /* Color de las estrellas al pasar el ratón o al seleccionar */
+    }
+    
+    /* Buttons */
+    button {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+    
+    .rated-button {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: not-allowed;
+        transition: background-color 0.3s;
+    }
+    
+    .rated-button:hover {
+        background-color: #5a6268;
+    }
+    
+    .stars-display {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        color: #f39c12;
+    }
+    
+    .btn-custom {
+        background-color: #007bff; /* Color de fondo azul */
+        color: #fff; /* Color del texto blanco */
+        border-radius: 25px; /* Bordes redondeados */
+        padding: 10px 20px; /* Espaciado interno */
+        font-size: 16px; /* Tamaño de fuente */
+        text-decoration: none; /* Quitar subrayado del enlace */
+        display: inline-block; /* Asegurar que el botón se muestre correctamente */
+    }
+    
+    .btn-custom:hover {
+        background-color: #0056b3; /* Color de fondo al pasar el mouse */
+        color: #fff; /* Color del texto al pasar el mouse */
+        transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+    }
+    
+    .fixed-bottom {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    /* Media Queries */
+    @media (max-width: 768px) {
+        .movie-card {
+            width: calc(100% - 20px);
+        }
+        
+        .rating-stars {
+            font-size: 2em;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 2em;
+        }
+        
+        .rating-stars {
+            font-size: 2em;
+        }
+    }
+    
 </style>
 
 <div class="container">
-  <h1>Movie List</h1>
-  <div class="movie-list">
-      {% for movie in movies %}
-          <div class="movie-card">
-              <div class="movie-title">{{ movie.title }}</div>
-              {% if movie.stars_display %}
-                  <div class="stars-display">{{ movie.stars_display }}</div>
-                  <button class="rated-button" disabled>Rated</button>
-              {% else %}
-                  <form method="post" action="{% url 'rate_movie' movie.id %}">
-                      {% csrf_token %}
-                      <div class="rating-stars">
-                          {% for i in "54321" %}
-                              <input type="radio" id="star{{ i }}-{{ movie.id }}" name="rating" value="{{ i }}">
-                              <label for="star{{ i }}-{{ movie.id }}">★</label>
-                          {% endfor %}
-                      </div>
-                      <button type="submit">Rate</button>
-                  </form>
-              {% endif %}
-          </div>
-      {% endfor %}
-  </div>
-  <!-- Botón de Volver al Inicio -->
-<div class="fixed-bottom">
-  <a href="{% url 'home' %}" class="btn btn-custom">⮌ Volver al Inicio</a>
-</div>
+    <h1>Movie List</h1>
+    <div class="movie-list">
+        {% for movie in movies %}
+            <div class="movie-card">
+                <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+                <div class="movie-title">{{ movie.title }}</div>
+                {% if movie.stars_display %}
+                    <div class="stars-display">{{ movie.stars_display }}</div>
+                    <button class="rated-button" disabled>Rated</button>
+                {% else %}
+                    <form method="post" action="{% url 'rate_movie' movie.id %}">
+                        {% csrf_token %}
+                        <div class="rating-stars">
+                            {% for i in "12345" %}
+                                <input type="radio" id="star{{ i }}-{{ movie.id }}" name="rating" value="{{ i }}">
+                                <label for="star{{ i }}-{{ movie.id }}">★</label>
+                            {% endfor %}
+                        </div>
+                        <button type="submit">Rate</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <!-- Botón de Volver al Inicio -->
+    <div class="fixed-bottom">
+      <a href="{% url 'home' %}" class="btn btn-custom">⮌ Volver al Inicio</a>
+    </div>
 </div>

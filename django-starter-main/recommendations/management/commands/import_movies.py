@@ -14,7 +14,11 @@ class Command(BaseCommand):
             with open(json_file, 'r') as file:
                 data = json.load(file)
                 
-                for title, genres in data.items():
+                for movie_data in data:
+                    title = movie_data.get('title')
+                    genres = movie_data.get('genres', [])
+                    image_url = movie_data.get('image_url', '')
+
                     # Ensure genres exist in the database
                     genre_objects = []
                     for genre_name in genres:
@@ -26,6 +30,7 @@ class Command(BaseCommand):
                     
                     # Assign the genres to the movie
                     movie.genres.set(genre_objects)
+                    movie.image_url = image_url  # Set the image URL
                     movie.save()
 
                 self.stdout.write(self.style.SUCCESS('Successfully imported movies from JSON file'))
