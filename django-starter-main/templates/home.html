@@ -2,6 +2,317 @@
 
 {% block content %} 
 
+<style>
+    /* Estilos globales */
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+    }
 
+    header {
+        background-color: #343a40;
+        color: #f8f9fa;
+        padding: 1.5rem 0;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+        transition: color 0.3s ease;
+    }
+
+    header:hover h1 {
+        color: #007bff;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, #007bff, #6610f2);
+        color: #fff;
+        padding: 120px 20px;
+        text-align: center;
+        border-radius: 20px;
+        margin: 120px auto 40px; /* Ajuste del margen superior para el header fijo */
+        max-width: 1200px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: pulse 8s infinite;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+        padding: 0 20px;
+    }
+
+    main {
+        padding: 2rem 20px;
+        margin-top: 120px; /* Ajuste para el header fijo */
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section {
+        margin-bottom: 4rem;
+    }
+
+    .section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #343a40;
+        border-bottom: 4px solid #007bff;
+        padding-bottom: 0.5rem;
+        position: relative;
+        font-weight: 700;
+        transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .section h2::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 5px;
+        background: #007bff;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+    }
+
+    .section h2:hover {
+        color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .movie-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .movie-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: calc(100% / 4 - 20px);
+        max-width: 280px; /* Tamaño ajustado para las tarjetas de películas */
+        padding: 15px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        will-change: transform, box-shadow;
+    }
+
+    .movie-card img {
+        width: 100%;
+        height: 300px; /* Tamaño ajustado para carteles de películas */
+        object-fit: cover;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        transition: transform 0.2s ease;
+        will-change: transform;
+    }
+
+    .movie-card img:hover {
+        transform: scale(1.05);
+    }
+
+    .movie-title {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #343a40;
+        font-weight: 700;
+    }
+
+    .movie-card.highlight {
+        border: 2px solid #ffd700;
+        background: #fff5e1;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transform: scale(1.03);
+    }
+
+    .movie-card:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .no-recommendations {
+        text-align: center;
+        font-size: 1.3rem;
+        color: #555;
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .no-recommendations:hover {
+        background-color: #f1f1f1;
+        color: #333;
+    }
+
+    .fixed-bottom {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    .btn-custom {
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 25px;
+        padding: 12px 24px;
+        font-size: 16px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-custom:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 0.3;
+        }
+        50% {
+            transform: scale(1.3);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0.3;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .movie-card {
+            width: calc(100% / 3 - 20px);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .movie-card {
+            width: calc(100% / 2 - 20px);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .movie-card {
+            width: calc(100% - 20px);
+        }
+    }
+</style>
+
+<header>
+    <h1>Bienvenido a Tu Página de Películas</h1>
+</header>
+
+<main>
+    <div class="container">
+        {% if common_movies %}
+            <section class="section common-movies">
+                <h2>Películas Comunes Destacadas</h2>
+                <div class="movie-list">
+                    {% for movie in common_movies %}
+                        <div class="movie-card highlight">
+                            <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+                            <div class="movie-title">{{ movie.title }}</div>
+                            <p>{{ movie.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+
+        <section class="section recommended-movies">
+            <h2>Recomendaciones Colaborativas</h2>
+            <div class="movie-list">
+                {% for movie in recommended_movies_objects %}
+                    <div class="movie-card">
+                        <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+                        <div class="movie-title">{{ movie.title }}</div>
+                        <p>{{ movie.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="section recommended-content-movies">
+            <h2>Recomendaciones Basadas en Contenido</h2>
+            <div class="movie-list">
+                {% for movie in recommended_content_movies_objects %}
+                    <div class="movie-card">
+                        <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+                        <div class="movie-title">{{ movie.title }}</div>
+                        <p>{{ movie.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        {% if not common_movies and not recommended_movies_objects and not recommended_content_movies_objects %}
+            <section class="no-recommendations">
+                <h2>Sin Recomendaciones Disponibles</h2>
+                <p>No tenemos recomendaciones para ti en este momento. Vuelve más tarde o actualiza tus preferencias.</p>
+            </section>
+        {% endif %}
+    </div>
+</main>
+
+<div class="fixed-bottom">
+    <a href="{% url 'home' %}" class="btn-custom">⮌ Volver al Inicio</a>
+</div>
 
 {% endblock %}

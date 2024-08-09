@@ -2,7 +2,7 @@
     <div>
         <a class="flex items-center gap-2" href="/">
             <img class="h-6" src="/static/images/logo.svg" alt="Logo"/>
-            <span class="text-lg font-bold">Project Title</span>
+            <span class="text-lg font-bold">Movie Recomender</span>
         </a>
     </div>
     <nav class="block relative">
@@ -10,7 +10,7 @@
             {% if request.user.is_authenticated %}
             <li><a href="/">Home</a></li>
             <li><a href="{% url 'movie_list' %}">Lista de Películas</a></li>
-            <li><a href="{% url 'recommendations' %}">Tus Recomendaciones</a></li>
+            <li><a href="{% url 'recommendations' %}">Info calificaciones y recomendaciones</a></li>
             <li x-data="{ dropdownOpen: false }" class="relative">
                 <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
                     <img class="h-8 w-8 rounded-full object-cover" src="{{ user.profile.avatar }}"/>

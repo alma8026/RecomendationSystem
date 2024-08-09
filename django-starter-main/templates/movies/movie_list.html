@@ -196,7 +196,7 @@
                     <form method="post" action="{% url 'rate_movie' movie.id %}">
                         {% csrf_token %}
                         <div class="rating-stars">
-                            {% for i in "12345" %}
+                            {% for i in "54321" %}
                                 <input type="radio" id="star{{ i }}-{{ movie.id }}" name="rating" value="{{ i }}">
                                 <label for="star{{ i }}-{{ movie.id }}">★</label>
                             {% endfor %}
