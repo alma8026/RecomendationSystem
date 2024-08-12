@@ -4,7 +4,6 @@ from recommendations.models import Movie, Rating
 from recommendations.content_based_utils import recommend_items_content, get_top_genres  # Importa la función para recomendaciones basadas en contenido
 from recommendations.recommendation_utils import get_recommendations, get_data, csr_matrix, calculate_similarity
 
-@login_required
 def home_view(request):
     user = request.user
     
@@ -12,7 +11,7 @@ def home_view(request):
     ratings_matrix, movie_titles, user_ids = get_data()
 
     if user.id not in user_ids:
-        return redirect('some_error_page')  # Redirigir si el usuario no está en la base de datos
+        return render(request, 'home.html')  # Redirigir si el usuario no está en la base de datos
 
     user_index = user_ids.index(user.id)
     user_item_matrix = ratings_matrix
@@ -46,6 +45,7 @@ def home_view(request):
         'common_movies': common_movies,
         'recommended_movies_objects': recommended_movies_objects,
         'recommended_content_movies_objects': recommended_content_movies_objects,
+        'top_genres': top_genres,
     }
     
     return render(request, 'home.html', context)

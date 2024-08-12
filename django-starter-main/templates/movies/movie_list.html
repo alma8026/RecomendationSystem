@@ -138,25 +138,29 @@
     }
     
     .btn-custom {
-        background-color: #007bff; /* Color de fondo azul */
+        background-color: #e74c3c; /* Color de fondo rojo */
         color: #fff; /* Color del texto blanco */
-        border-radius: 25px; /* Bordes redondeados */
-        padding: 10px 20px; /* Espaciado interno */
-        font-size: 16px; /* Tamaño de fuente */
+        border-radius: 30px; /* Bordes más redondeados */
+        padding: 12px 30px; /* Espaciado interno */
+        font-size: 18px; /* Tamaño de fuente */
+        font-weight: 700;
         text-decoration: none; /* Quitar subrayado del enlace */
         display: inline-block; /* Asegurar que el botón se muestre correctamente */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
     
     .btn-custom:hover {
-        background-color: #0056b3; /* Color de fondo al pasar el mouse */
-        color: #fff; /* Color del texto al pasar el mouse */
-        transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+        background-color: #c0392b; /* Color de fondo al pasar el mouse */
+        transform: translateY(-5px); /* Ligeramente más alto al pasar el mouse */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
     }
     
     .fixed-bottom {
         position: fixed;
-        bottom: 20px;
-        left: 20px;
+        bottom: 30px;
+        left: 30px;
+        z-index: 1000;
     }
     
     /* Media Queries */
@@ -208,7 +212,7 @@
         {% endfor %}
     </div>
     <!-- Botón de Volver al Inicio -->
-    <div class="fixed-bottom">
-      <a href="{% url 'home' %}" class="btn btn-custom">⮌ Volver al Inicio</a>
-    </div>
+<div class="fixed-bottom">
+    <a href="{% url 'home' %}" class="btn btn-custom">⮌ Volver al Inicio</a>
+  </div>
 </div>
