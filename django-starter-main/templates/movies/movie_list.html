@@ -190,14 +190,14 @@
     <h1>Movie List</h1>
     <div class="movie-list">
         {% for movie in movies %}
-            <div class="movie-card">
+            <div id="movie-card-{{ movie.id }}" class="movie-card">
                 <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
                 <div class="movie-title">{{ movie.title }}</div>
                 {% if movie.stars_display %}
                     <div class="stars-display">{{ movie.stars_display }}</div>
                     <button class="rated-button" disabled>Rated</button>
                 {% else %}
-                    <form method="post" action="{% url 'rate_movie' movie.id %}">
+                    <form class="rating-form" method="post" action="{% url 'rate_movie' movie.id %}">
                         {% csrf_token %}
                         <div class="rating-stars">
                             {% for i in "54321" %}
@@ -212,7 +212,57 @@
         {% endfor %}
     </div>
     <!-- Botón de Volver al Inicio -->
-<div class="fixed-bottom">
-    <a href="{% url 'home' %}" class="btn btn-custom">⮌ Volver al Inicio</a>
-  </div>
+    <div class="fixed-bottom">
+        <a href="{% url 'home' %}" class="btn btn-custom">⮌ Volver al Inicio</a>
+    </div>
 </div>
+
+<!-- Aquí agregas el script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const forms = document.querySelectorAll(".rating-form");
+
+    forms.forEach(form => {
+        form.addEventListener("submit", function(e) {
+            e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+            
+            const url = form.action;
+            const formData = new FormData(form);
+            const movieCard = form.closest(".movie-card");
+
+            fetch(url, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",  // Para asegurarnos de que Django reconoce la solicitud AJAX
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Actualizar la UI con la nueva calificación
+                    const starsDisplay = movieCard.querySelector(".stars-display");
+                    if (starsDisplay) {
+                        starsDisplay.innerHTML = data.stars_display;
+                    } else {
+                        const newStarsDisplay = document.createElement("div");
+                        newStarsDisplay.className = "stars-display";
+                        newStarsDisplay.innerHTML = data.stars_display;
+                        movieCard.querySelector(".rating-stars").remove();  // Eliminar estrellas no calificadas
+                        movieCard.querySelector("form").remove();  // Eliminar el formulario
+                        movieCard.appendChild(newStarsDisplay);
+                        
+                        // Crear y agregar un botón de "Rated" deshabilitado
+                        const ratedButton = document.createElement("button");
+                        ratedButton.className = "rated-button";
+                        ratedButton.disabled = true;
+                        ratedButton.innerHTML = "Rated";
+                        movieCard.appendChild(ratedButton);
+                    }
+                }
+            })
+            .catch(error => console.error("Error al enviar la calificación:", error));
+        });
+    });
+});
+</script>
