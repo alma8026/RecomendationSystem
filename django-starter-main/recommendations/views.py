@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie, Rating
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from .recommendation_utils import get_data, calculate_similarity, get_recommendations, csr_matrix
 from .content_based_utils import recommend_items_content, get_top_genres
@@ -46,8 +46,16 @@ def rate_movie(request, movie_id):
             if not created:
                 rating.value = value
                 rating.save()
-            
+
+        # Create the stars display HTML
+        stars_display = ''.join(['⭐' for _ in range(value)]) + ''.join(['☆' for _ in range(5 - value)])
+        
+        # Return the updated stars_display
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': True, 'stars_display': stars_display})
+        
     return redirect('movie_list')
+
 
 @login_required
 def recommendations_view(request):

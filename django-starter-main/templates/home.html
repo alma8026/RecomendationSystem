@@ -1,7 +1,91 @@
 {% extends 'layouts/blank.html' %}
 
-{% block content %} 
+{% block content %}
 
+<main class="bg-gray-100 text-gray-800 py-12">
+    <!-- Hero Section -->
+    <div class="relative bg-blue-600 text-white py-20 px-6 text-center rounded-lg shadow-lg mx-4 md:mx-8 lg:mx-12 xl:mx-16">
+        <div class="absolute inset-0 bg-blue-700 opacity-60 rounded-lg -z-10"></div>
+        <div class="relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Encuentra tus Películas Favoritas</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-6">Descubre nuevas recomendaciones personalizadas basadas en tus gustos y preferencias. ¡Explora y encuentra tus nuevas películas favoritas con facilidad!</p>
+            <a href="#" class="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">Empieza a Explorar</a>
+        </div>
+    </div>
 
+    <!-- Common Movies Section -->
+    {% if common_movies %}
+        <section class="my-16 mx-4 md:mx-8 lg:mx-12 xl:mx-16">
+            <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-blue-600 pb-2 mb-6">Muy alta probabilidad de que te guste:</h2>
+            <div class="flex flex-wrap gap-6 justify-center">
+                {% for movie in common_movies %}
+                    <div class="bg-yellow-100 border-2 border-yellow-500 rounded-lg shadow-lg w-full sm:w-1/2 md:w-1/3 lg:w-1/4 max-w-xs overflow-hidden transition-transform duration-300 hover:scale-105 flex flex-col">
+                        <div class="relative w-full" style="padding-top: 150%;">
+                            <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="absolute inset-0 w-full h-full object-cover rounded-t-lg">
+                        </div>
+                        <div class="p-4 text-center flex-grow">
+                            <div class="text-lg font-semibold text-gray-800 mb-2">{{ movie.title }}</div>
+                            <p class="text-gray-600">{{ movie.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- Recommended Movies Section -->
+    {% if recommended_movies_objects %}
+        <section class="my-16 mx-4 md:mx-8 lg:mx-12 xl:mx-16">
+            <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-blue-600 pb-2 mb-6">A usuarios similares también les ha gustado...</h2>
+            <div class="flex flex-wrap gap-6 justify-center">
+                {% for movie in recommended_movies_objects %}
+                    <div class="bg-white border border-gray-300 rounded-lg shadow-md w-full sm:w-1/2 md:w-1/3 lg:w-1/4 max-w-xs overflow-hidden transition-transform duration-300 hover:scale-105 flex flex-col">
+                        <div class="relative w-full" style="padding-top: 150%;">
+                            <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="absolute inset-0 w-full h-full object-cover rounded-t-lg">
+                        </div>
+                        <div class="p-4 text-center flex-grow">
+                            <div class="text-lg font-semibold text-gray-800 mb-2">{{ movie.title }}</div>
+                            <p class="text-gray-600">{{ movie.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- Recommended Content Movies Section -->
+    <section class="mx-4 md:mx-8 lg:mx-12 xl:mx-16">
+        {% if top_genres %}
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                Porque te gusta: 
+                {% for genre in top_genres %}
+                    {{ genre }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+                ...
+            </h2>  
+        {% endif %}
+        <div class="flex flex-wrap gap-6 justify-center">
+            {% for movie in recommended_content_movies_objects %}
+                <div class="bg-white border border-gray-300 rounded-lg shadow-md w-full sm:w-1/2 md:w-1/3 lg:w-1/4 max-w-xs overflow-hidden transition-transform duration-300 hover:scale-105 flex flex-col">
+                    <div class="relative w-full" style="padding-top: 150%;">
+                        <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="absolute inset-0 w-full h-full object-cover rounded-t-lg">
+                    </div>
+                    <div class="p-4 text-center flex-grow">
+                        <div class="text-lg font-semibold text-gray-800 mb-2">{{ movie.title }}</div>
+                        <p class="text-gray-600">{{ movie.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- No Recommendations Section -->
+    {% if not common_movies and not recommended_movies_objects and not recommended_content_movies_objects %}
+        <section class="bg-white border border-gray-300 rounded-lg shadow-md p-6 mt-6 text-center mx-4 md:mx-8 lg:mx-12 xl:mx-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Sin Recomendaciones Disponibles</h2>
+            <p class="text-lg text-gray-600">No tenemos recomendaciones para ti en este momento. Vuelve más tarde o actualiza tus calificaciones.</p>
+        </section>
+    {% endif %}
+</main>
 
 {% endblock %}

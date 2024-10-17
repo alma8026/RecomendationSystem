@@ -1,39 +1,118 @@
-<header class="flex items-center justify-between bg-gray-800 h-20 px-8 text-white sticky top-0 z-40">
-    <div>
-        <a class="flex items-center gap-2" href="/">
-            <img class="h-6" src="/static/images/logo.svg" alt="Logo"/>
-            <span class="text-lg font-bold">Project Title</span>
+<header class="flex items-center justify-between bg-gray-900 h-20 px-6 md:px-12 text-white sticky top-0 z-50 shadow-lg">
+    <div class="flex items-center gap-4">
+        <a class="flex items-center gap-2 hover:text-gray-300 transition-colors duration-300" href="/">
+            <img class="h-8 md:h-10" src="/static/images/logo.svg" alt="Logo"/>
+            <span class="text-xl md:text-2xl font-bold tracking-wide">Movie Recomender</span>
         </a>
     </div>
-    <nav class="block relative">
-        <ul class="navitems flex items-center justify-center h-full">
+
+    <!-- Menú desplegable para dispositivos pequeños -->
+    <div x-data="{ menuOpen: false }" class="md:hidden relative">
+        <button @click="menuOpen = !menuOpen" class="text-white focus:outline-none">
+            <img class="w-5 h-5" src="https://img.icons8.com/material-outlined/24/ffffff/menu.png" alt="Menu"/>
+        </button>
+        <div x-show="menuOpen" @click.away="menuOpen = false" x-cloak
+             class="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 flex flex-col items-center pt-24 pb-12 px-6 transition-transform duration-300 ease-in-out"
+             x-transition:enter="transform transition-transform ease-out duration-300"
+             x-transition:enter-start="opacity-0 scale-90"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transform transition-transform ease-in duration-300"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-90">
+            <button @click="menuOpen = false" class="absolute top-4 right-4 text-white text-3xl hover:text-gray-300 focus:outline-none">
+                &times;
+            </button>
+            <ul class="space-y-4 text-center text-lg w-full max-w-xs">
+                {% if request.user.is_authenticated %}
+                <li><a href="/" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Home</a></li>
+                <li><a href="{% url 'movie_list' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Lista de Películas</a></li>
+                <li><a href="{% url 'recommendations' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Calificaciones y recomendaciones</a></li>
+                <li x-data="{ dropdownOpen: false }" class="relative">
+                    <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none flex items-center justify-center text-white hover:bg-gray-700 rounded-lg px-4 py-3 transition-colors duration-300">
+                        <img class="h-10 w-10 rounded-full object-cover border-2 border-gray-600" src="{{ user.profile.avatar }}"/>
+                        <span class="ml-2">{{ user.profile.name }}</span>
+                        <img x-bind:class="dropdownOpen && 'rotate-180'" class="w-5 ml-2 transition-transform duration-300" src="https://img.icons8.com/small/32/ffffff/expand-arrow.png"/>
+                    </a>
+                    <div x-show="dropdownOpen" x-cloak class="absolute right-0 top-full mt-2 bg-gray-800 text-white shadow-lg rounded-lg w-full max-w-xs py-2 max-h-80 overflow-auto"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="transform scale-95 opacity-0"
+                         x-transition:enter-end="transform scale-100 opacity-100"
+                         x-transition:leave="transition ease-in duration-200"
+                         x-transition:leave-start="transform scale-100 opacity-100"
+                         x-transition:leave-end="transform scale-95 opacity-0">
+                        <ul>
+                            <li><a href="{% url 'profile' %}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors duration-300">My Profile</a></li>
+                            <li><a href="{% url 'profile-edit' %}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors duration-300">Edit Profile</a></li>
+                            <li><a href="{% url 'profile-settings' %}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors duration-300">Settings</a></li>
+                            <li><a href="{% url 'account_logout' %}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors duration-300">Log Out</a></li>
+                        </ul>
+                    </div>
+                </li>
+                {% else %}
+                <li><a href="{% url 'account_login' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Login</a></li>
+                <li><a href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Signup</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Menú para dispositivos grandes -->
+    <nav class="hidden md:flex flex-grow items-center">
+        <ul class="flex space-x-8 text-lg mx-auto">
             {% if request.user.is_authenticated %}
-            <li><a href="/">Home</a></li>
-            <li><a href="{% url 'movie_list' %}">Lista de Películas</a></li>
-            <li><a href="{% url 'recommendations' %}">Tus Recomendaciones</a></li>
-            <li x-data="{ dropdownOpen: false }" class="relative">
-                <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
-                    <img class="h-8 w-8 rounded-full object-cover" src="{{ user.profile.avatar }}"/>
-                    {{ user.profile.name }}
-                    <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/ffffff/expand-arrow.png"/>
+            <li class="flex items-center">
+                <a href="/" class="relative group hover:text-gray-300 transition-colors duration-300 px-4 py-2 rounded-lg">
+                    Home
+                    <span class="absolute inset-x-0 bottom-0 h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                 </a>
-                <div x-show="dropdownOpen" x-cloak class="absolute right-0 bg-white text-black shadow rounded-lg w-40 p-2 z-20"
-                x-transition:enter="duration-300 ease-out"
-                x-transition:enter-start="opacity-0 -translate-y-5 scale-90"
-                x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-                >
-                    <ul class="hoverlist [&>li>a]:justify-end">
-                        <li><a href="{% url 'profile' %}">My Profile</a></li>
-                        <li><a href="{% url 'profile-edit' %}">Edit Profile</a></li>
-                        <li><a href="{% url 'profile-settings' %}">Settings</a></li>
-                        <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+            </li>
+            <li class="flex items-center">
+                <a href="{% url 'movie_list' %}" class="relative group hover:text-gray-300 transition-colors duration-300 px-4 py-2 rounded-lg">
+                    Lista de Películas
+                    <span class="absolute inset-x-0 bottom-0 h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </a>
+            </li>
+            <li class="flex items-center">
+                <a href="{% url 'recommendations' %}" class="relative group hover:text-gray-300 transition-colors duration-300 px-4 py-2 rounded-lg">
+                    Calificaciones y recomendaciones
+                    <span class="absolute inset-x-0 bottom-0 h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </a>
+            </li>
+            <li x-data="{ dropdownOpen: false }" class="relative flex items-center">
+                <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="relative flex items-center cursor-pointer group hover:bg-gray-700 rounded-lg px-4 py-2 transition-colors duration-300">
+                    <img class="h-10 w-10 rounded-full object-cover border-2 border-gray-600" src="{{ user.profile.avatar }}"/>
+                    <span class="ml-2">{{ user.profile.name }}</span>
+                    <img x-bind:class="dropdownOpen && 'rotate-180'" class="w-5 ml-2 transition-transform duration-300" src="https://img.icons8.com/small/32/ffffff/expand-arrow.png"/>
+                    <span class="absolute inset-x-0 bottom-0 h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </a>
+                <div x-show="dropdownOpen" x-cloak class="absolute right-0 top-full mt-2 bg-gray-800 text-white shadow-lg rounded-lg w-full max-w-xs py-2 max-h-80 overflow-auto"
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="transform scale-95 opacity-0"
+                     x-transition:enter-end="transform scale-100 opacity-100"
+                     x-transition:leave="transition ease-in duration-200"
+                     x-transition:leave-start="transform scale-100 opacity-100"
+                     x-transition:leave-end="transform scale-95 opacity-0">
+                    <ul>
+                        <li><a href="{% url 'profile' %}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors duration-300">My Profile</a></li>
+                        <li><a href="{% url 'profile-edit' %}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors duration-300">Edit Profile</a></li>
+                        <li><a href="{% url 'profile-settings' %}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors duration-300">Settings</a></li>
+                        <li><a href="{% url 'account_logout' %}" class="block px-4 py-3 hover:bg-gray-700 rounded-lg transition-colors duration-300">Log Out</a></li>
                     </ul>
                 </div>
             </li>
-            
             {% else %}
-            <li><a href="{% url 'account_login' %}">Login</a></li>
-            <li><a href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}">Signup</a></li>
+            <li class="flex items-center">
+                <a href="{% url 'account_login' %}" class="relative group hover:text-gray-300 transition-colors duration-300 px-4 py-2 rounded-lg">
+                    Login
+                    <span class="absolute inset-x-0 bottom-0 h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </a>
+            </li>
+            <li class="flex items-center">
+                <a href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}" class="relative group hover:text-gray-300 transition-colors duration-300 px-4 py-2 rounded-lg">
+                    Signup
+                    <span class="absolute inset-x-0 bottom-0 h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </a>
+            </li>
             {% endif %}
         </ul>
     </nav>
