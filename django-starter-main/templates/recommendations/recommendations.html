@@ -247,6 +247,7 @@ li:hover {
   <section class="recommendations-content">
       <h2>Películas Recomendadas (Basadas en Contenido)</h2>
       <section class="favorite-genres">
+        {% if top_genres %}
         <h3>Porque te gusta:</h3>
         <div class="genres-container">
             {% for genre in top_genres %}
@@ -255,6 +256,7 @@ li:hover {
                 <div class="genre-badge">No se han encontrado géneros favoritos.</div>
             {% endfor %}
         </div>
+        {% endif %}
     </section>
       <ul>
           {% for movie in recommended_content_movies %}
