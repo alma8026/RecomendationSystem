@@ -21,11 +21,9 @@ def movie_list(request):
         movie_id = movie.id
         if movie_id in user_rated_movies:
             rating = user_rated_movies[movie_id]
-            filled_stars = '⭐' * rating
-            empty_stars = '☆' * (5 - rating)
-            movie.stars_display = filled_stars + empty_stars
+            movie.stars_display = rating  # Solo necesitamos el número de estrellas llenas
         else:
-            movie.stars_display = None
+            movie.stars_display = 0  # No ha sido calificada
 
     context = {
         'movies': movies,

@@ -1,5 +1,5 @@
 {% load get_item %} 
-
+{% load static %}
 <style>
     /* General Styles */
     body {
@@ -162,6 +162,56 @@
         left: 30px;
         z-index: 1000;
     }
+
+    /* Ajusta el tamaño de las imágenes de las estrellas */
+    .star-img {
+        width: 32px;  /* Cambia a tu tamaño preferido */
+        height: 32px; /* Asegúrate de mantener proporciones */
+        object-fit: contain; /* Asegura que la imagen no se deforme */
+        transition: transform 0.6s ease-in-out; /* Animación suave al hacer hover */
+    }
+    
+    /* Escalar ligeramente al hacer hover en las estrellas */
+    .star-img:hover {
+        transform: scale(1.20);
+    }
+    
+    /* Oculta los inputs de tipo radio */
+    .rating-stars input {
+        display: none;
+    }
+    
+    /* Forzar el tamaño de las imágenes de las estrellas para el formulario de puntuación */
+    .rating-stars label img.star-img {
+        width: 32px !important;  /* Asegura el mismo tamaño que el establecido */
+        height: 32px !important; /* Asegura que mantengan proporciones */
+        object-fit: contain;
+        transition: transform 0.2s ease-in-out;
+    }
+    
+    /* Cambia las imágenes al pasar el ratón (hover) */
+    .rating-stars label:hover img,
+    .rating-stars label:hover ~ label img {
+        content: url('{% static "/images/star-filled.PNG" %}'); /* Cambia a estrella llena */
+    }
+    
+    /* Estrellas seleccionadas */
+    .rating-stars input:checked ~ label img {
+        content: url('{% static "/images/star-filled.PNG" %}'); /* Estrella llena si está seleccionada */
+    }
+    
+    /* Estrellas no seleccionadas */
+    .rating-stars label img {
+        content: url('{% static "/images/star-empty.PNG" %}'); /* Estrella vacía por defecto */
+    }
+    
+    /* Estilo para las estrellas ya puntuadas */
+    .stars-display img {
+        width: 32px !important;  /* Mismo tamaño que las interactivas */
+        height: 32px !important;
+        object-fit: contain;
+        transition: transform 0.6s ease-in-out; /* También puede escalar si se desea */
+    }
     
     /* Media Queries */
     @media (max-width: 768px) {
@@ -193,8 +243,17 @@
             <div id="movie-card-{{ movie.id }}" class="movie-card">
                 <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
                 <div class="movie-title">{{ movie.title }}</div>
+                
                 {% if movie.stars_display %}
-                    <div class="stars-display">{{ movie.stars_display }}</div>
+                    <div class="stars-display">
+                        {% for i in "12345" %}  <!-- Cambiado a "12345" para iterar de 1 a 5 -->
+                            {% if i|add:0 <= movie.stars_display|add:0 %}
+                                <img src="{% static '/images/star-filled.PNG' %}" alt="Star Filled" class="star-img">
+                            {% else %}
+                                <img src="{% static '/images/star-empty.PNG' %}" alt="Star Empty" class="star-img">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                     <button class="rated-button" disabled>Rated</button>
                 {% else %}
                     <form class="rating-form" method="post" action="{% url 'rate_movie' movie.id %}">
@@ -202,7 +261,9 @@
                         <div class="rating-stars">
                             {% for i in "54321" %}
                                 <input type="radio" id="star{{ i }}-{{ movie.id }}" name="rating" value="{{ i }}">
-                                <label for="star{{ i }}-{{ movie.id }}">★</label>
+                                <label for="star{{ i }}-{{ movie.id }}">
+                                    <img src="{% static '/images/star-empty.PNG' %}" alt="Star Empty" class="star-img">
+                                </label>
                             {% endfor %}
                         </div>
                         <button type="submit">Rate</button>
