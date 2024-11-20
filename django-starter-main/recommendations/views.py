@@ -125,3 +125,11 @@ def recommendations_view(request):
     }
 
     return render(request, 'recommendations/recommendations.html', context)
+
+@login_required
+def movie_detail(request, movie_id):
+    movie = Movie.objects.get(id=movie_id)
+    context = {
+        'movie': movie
+    }
+    return render(request, 'movies/movie_detail.html', context)

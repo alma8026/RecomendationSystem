@@ -362,7 +362,7 @@
                   <li class="li-sections">
                       <span class="movie-title px-3">{{ movie.title }}</span>
                       <div class="px-3">
-                        <button class="ver-btn">Ver ahora</button>
+                        <a href="{% url 'movie_detail' movie.id %}"><button class="ver-btn">Ver ahora</button></a>
                       </div>
                   </li>
                   <hr class="mt-1">
@@ -391,7 +391,7 @@
                   <li class="li-sections">
                       <span class="movie-title px-3">{{ movie.title }}</span>
                       <div class="px-3">
-                        <button class="ver-btn">Ver ahora</button>
+                        <a href="{% url 'movie_detail' movie.id %}"><button class="ver-btn">Ver ahora</button></a>
                       </div>
                   </li>
                   <hr class="mt-1">

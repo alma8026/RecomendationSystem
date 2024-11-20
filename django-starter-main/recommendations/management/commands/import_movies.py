@@ -11,13 +11,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         json_file = options['json_file']
         try:
-            with open(json_file, 'r') as file:
+            # Abre el archivo especificando la codificación UTF-8
+            with open(json_file, 'r', encoding='utf-8') as file:
                 data = json.load(file)
                 
                 for movie_data in data:
                     title = movie_data.get('title')
                     genres = movie_data.get('genres', [])
                     image_url = movie_data.get('image_url', '')
+                    description = movie_data.get('description', '')  # Get description
 
                     # Ensure genres exist in the database
                     genre_objects = []
@@ -31,6 +33,7 @@ class Command(BaseCommand):
                     # Assign the genres to the movie
                     movie.genres.set(genre_objects)
                     movie.image_url = image_url  # Set the image URL
+                    movie.description = description  # Set the description
                     movie.save()
 
                 self.stdout.write(self.style.SUCCESS('Successfully imported movies from JSON file'))

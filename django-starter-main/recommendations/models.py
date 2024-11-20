@@ -5,6 +5,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=255)
     genres = models.ManyToManyField('Genre')
     image_url = models.URLField(max_length=200, blank=True, null=True)  # Nuevo campo para la imagen
+    description = models.TextField(blank=True, null=True)  # Campo para la descripción de la película
 
     def __str__(self):
         return self.title
