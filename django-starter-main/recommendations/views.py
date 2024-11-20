@@ -128,8 +128,30 @@ def recommendations_view(request):
 
 @login_required
 def movie_detail(request, movie_id):
-    movie = Movie.objects.get(id=movie_id)
+    # Obtener la película
+    movie = get_object_or_404(Movie, id=movie_id)
+    
+    # Intentamos obtener la calificación de la película para el usuario actual
+    rating = Rating.objects.filter(user=request.user, movie=movie).first()
+    
+    # Si existe una calificación, la tomamos, si no, la ponemos a 0
+    user_rating_value = rating.value if rating else 0
+    if(user_rating_value>0):
+        # Generamos el HTML para mostrar las estrellas, similar a lo que haces en rate_movie
+        stars_display = ''.join(
+            f'<span class="star-container"><img class="rate-stars" src="/static/images/star-filled.PNG" alt="Star Filled" class="star-img"></span>' for _ in range(user_rating_value)
+        ) + ''.join(
+            f'<span class="star-container"><img class="rate-stars" src="/static/images/star-empty.PNG" alt="Star Empty" class="star-img"></span>' for _ in range(5 - user_rating_value)
+        )
+    else:
+        stars_display = ''.join(
+            f'<span class="star-container">No calificada</span>'
+        )
+
+    # Pasar la película y las estrellas generadas al contexto
     context = {
-        'movie': movie
+        'movie': movie,
+        'stars_display': stars_display,
     }
+
     return render(request, 'movies/movie_detail.html', context)

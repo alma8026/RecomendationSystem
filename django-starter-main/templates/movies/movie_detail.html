@@ -158,6 +158,24 @@
         background-color: white !important;
         box-shadow: 6px 4px 38px -8px rgba(220,38,38,1) !important;
     }
+
+    /* Estilos para las estrellas de calificación */
+    .star-container {
+        display: inline-block;
+        margin-right: 10px; /* Más espacio entre las estrellas */
+    }
+
+    .rate-stars {
+        width: 40px;  /* Aumentamos el tamaño de las estrellas */
+        height: 40px; /* Aumentamos el tamaño de las estrellas */
+        object-fit: contain;  /* Asegura que las estrellas no se recorten */
+        transition: transform 0.3s ease-in-out; /* Añadimos una transición para animar el tamaño */
+    }
+
+    /* Efecto al pasar el mouse por encima (opcional, para animación) */
+    .rate-stars:hover {
+        transform: scale(1.1);  /* Aumenta ligeramente el tamaño de las estrellas al hacer hover */
+    }
 </style>
 {% endblock %}
 
@@ -186,6 +204,15 @@
             {% for genre in movie.genres.all %}
             <a href="{% url 'movie_list' %}?search=&genre={{ genre.id }}" class="genre-badge">{{ genre.name }}</a>
             {% endfor %}
+        </div>
+
+        <!-- Mostrar estrellas de calificación -->
+        <div class="movie-rating">
+            <strong>Your Rating: </strong>
+            <div class="stars-display">
+                <!-- Las estrellas generadas por la vista -->
+                {{ stars_display|safe }}
+            </div>
         </div>
     </div>
 </div>
