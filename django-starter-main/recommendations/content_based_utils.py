@@ -35,8 +35,14 @@ def get_top_genres(user_ratings, top_n=5):
     for genre in preferred_genres:
         genre_count[genre] = sum(1 for rating in user_ratings if genre in Movie.objects.get(id=rating.movie_id).genres.values_list('name', flat=True))
 
+    # Obtener los géneros más populares (top_n géneros más frecuentes)
     top_genres = sorted(genre_count.items(), key=lambda x: x[1], reverse=True)[:top_n]
-    return [genre for genre, count in top_genres]
+
+    # Ahora devolvemos objetos de tipo Genre, no solo los nombres
+    # Creamos un queryset con los géneros más frecuentes
+    genre_names = [genre for genre, count in top_genres]
+    genres = Genre.objects.filter(name__in=genre_names)  # Filtrar por los nombres de los géneros más frecuentes
+    return genres
 
 def recommend_items_content(user_ratings, top_n=5):
     movie_genre_matrix = get_movie_genre_matrix()

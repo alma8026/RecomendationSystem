@@ -25,8 +25,8 @@
             <ul class="space-y-4 text-center text-lg w-full max-w-xs">
                 {% if request.user.is_authenticated %}
                 <li><a href="/" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Home</a></li>
-                <li><a href="{% url 'movie_list' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Lista de Películas</a></li>
-                <li><a href="{% url 'recommendations' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Calificaciones y recomendaciones</a></li>
+                <li><a href="{% url 'movie_list' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Películas</a></li>
+                <li><a href="{% url 'recommendations' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Tus Calificaciones</a></li>
                 <li x-data="{ dropdownOpen: false }" class="relative">
                     <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none flex items-center justify-center text-white hover:bg-gray-700 rounded-lg px-4 py-3 transition-colors duration-300">
                         <img class="h-10 w-10 rounded-full object-cover border-2 border-gray-600" src="{{ user.profile.avatar }}"/>

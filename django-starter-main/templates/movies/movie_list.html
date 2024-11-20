@@ -1,14 +1,10 @@
+{% extends 'layouts/blank.html' %}
+{% block styles %}
 {% load get_item %} 
 {% load static %}
 <style>
     /* General Styles */
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f4f4f9;
-        margin: 0;
-        padding: 0;
-        color: #333;
-    }
+    
     
     .container {
         width: 90%;
@@ -35,7 +31,7 @@
     
     /* Movie Card Styles */
     .movie-card {
-        background: #fff;
+        background: linear-gradient(146deg, rgba(210,215,223,1) 4%, rgba(226,232,240,1) 19%, rgba(240,243,245,1) 39%, rgba(248,250,252,1) 56%, rgba(226,232,240,1) 94%);
         border: 1px solid #ddd;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -48,6 +44,9 @@
         align-items: center;
         text-align: center;
         transition: transform 0.3s, box-shadow 0.3s;
+        -webkit-box-shadow: 8px 10px 10px -3px rgba(0,0,0,0.75);
+-moz-box-shadow: 8px 10px 10px -3px rgba(0,0,0,0.75);
+box-shadow: 8px 10px 10px -3px rgba(0,0,0,0.75);
     }
     
     .movie-card:hover {
@@ -65,13 +64,28 @@
     
     /* Movie Title */
     .movie-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Número máximo de líneas */
+        -webkit-box-orient: vertical;
+        font-weight: bold;
         font-size: 1.2em;
-        margin-bottom: 15px;
-        color: #2c3e50;
-        font-weight: 600;
+        overflow: hidden;
+        text-align: center;
+        height: 3em; /* Ajusta según el número de líneas */
+        margin-bottom: 15px;        
+    }
+
+    .movie-img {
+        -webkit-box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
     }
     
     /* Rating Stars */
+    .star-container {
+        display: inline-block; /* Mantén el diseño en línea */
+    }
+
     .rating-stars {
         display: flex;
         justify-content: center;
@@ -114,6 +128,15 @@
     button:hover {
         background-color: #0056b3;
         transform: translateY(-2px);
+    }
+
+    .rate-btn {
+        margin-top: 20px;
+        background-color: #22d3ee !important;
+    }
+
+    .rate-btn:hover {
+        background-color: #3b82f6 !important;
     }
     
     .rated-button {
@@ -212,9 +235,186 @@
         object-fit: contain;
         transition: transform 0.6s ease-in-out; /* También puede escalar si se desea */
     }
+
+    .rate-stars {
+        margin: 2px;
+    }
+
+    .movie-list-title {
+        margin: 30px;
+        font-size: 2.5em;
+        color: #e5e7eb;
+    }
+
+    .btn-go-home {
+        background-color: white !important;
+        -webkit-box-shadow: 6px 4px 38px -8px rgba(220,38,38,1) !important;
+        -moz-box-shadow: 6px 4px 38px -8px rgba(220,38,38,1) !important;
+        box-shadow: 6px 4px 38px -8px rgba(220,38,38,1) !important;
+    }
+
+    /* Contenedor del formulario de búsqueda */
+    .search-filter-container {
+        display: flex;
+        flex-direction: column; /* Cambiado a columna para distribuir mejor los elementos */
+        align-items: center;
+        justify-content: center;
+        gap: 1rem; /* Espaciado entre elementos */
+        width: 80%; /* Contenedor más pequeño */
+        max-width: 600px; /* Limitar el tamaño máximo */
+        margin: 2rem auto; /* Centrado horizontal y margen vertical */
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #1e293b, #334155);
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        animation: fadeInContainer 0.8s ease-in-out;
+    }
+
+    .search-filter-container form button,
+    .reset-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 10px;  /* Espacio entre los botones */
+        align-items: center;  /* Alinear los botones verticalmente al centro */
+    }
+
+    /* Entrada de búsqueda */
+    .search-input {
+        width: 100%; /* Ocupar todo el ancho disponible */
+        padding: 0.9rem 1rem;
+        border: 2px solid #64748b;
+        border-radius: 10px;
+        background-color: #0f172a;
+        color: #f1f5f9;
+        font-size: 1rem;
+        font-family: 'Arial', sans-serif;
+        outline: none;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .search-input:focus {
+        border-color: #38bdf8;
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+    }
+
+    /* Selector de filtro */
+    .filter-select {
+        text-align: center;
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border: 2px solid #64748b;
+        border-radius: 10px;
+        background-color: #0f172a;
+        color: #f1f5f9;
+        font-size: 1rem;
+        outline: none;
+        appearance: none; /* Oculta el estilo nativo del navegador */
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg ... />');
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .filter-select:hover {
+        border-color: #3b82f6;
+        cursor: pointer;
+    }
+
+    .filter-select:focus {
+        border-color: #38bdf8;
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+    }
+
+    /* Botón de búsqueda */
+    .search-btn {
+        width: 100%; /* Botón del mismo ancho que los campos */
+        padding: 0.9rem 1.5rem;
+        background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        animation: fadeInButton 1s ease-in-out;
+    }
+
+    .search-btn:hover {
+        background: linear-gradient(90deg, #0ea5e9, #3b82f6);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(14, 165, 233, 0.6);
+    }
+
+    .search-btn:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    .reset-btn {
+        background-color: #f0f0f0;
+        color: #333;
+        border: 1px solid #ccc;
+        text-decoration: none;  /* Remover el subrayado del enlace */
+    }
+    
+    .reset-btn:hover {
+        background-color: #e0e0e0;
+    }
+
+    /* Espaciado entre los elementos */
+    .search-filter-form > *:not(:last-child) {
+        margin-bottom: 0.8rem; /* Espacio entre campos */
+    }
+
+    /* Transiciones de entrada */
+    @keyframes fadeInContainer {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInButton {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
     
     /* Media Queries */
     @media (max-width: 768px) {
+        .search-filter-container {
+            padding: 1rem;
+            width: 90%; /* Ajuste del ancho en pantallas pequeñas */
+        }
+
+        .search-btn {
+            font-size: 0.9rem; /* Botón más pequeño en pantallas pequeñas */
+        }
+
+        .search-input,
+        .filter-select {
+            font-size: 0.9rem;
+        }
+
         .movie-card {
             width: calc(100% - 20px);
         }
@@ -235,23 +435,53 @@
     }
     
 </style>
+{% endblock %}
 
+{% block content %}
 <div class="container">
-    <h1>Movie List</h1>
+    <h1 class="movie-list-title font-mono">Movie List</h1>
+    <p class="text-white text-center font-mono mb-12">¡Puntúa tus películas favoritas para empezar a recomendarte!</p>
+    <div class="search-filter-container">
+        <form method="get" action="{% url 'movie_list' %}" class="search-filter-form">
+            <!-- Input de búsqueda -->
+            <input type="text" name="search" placeholder="Search movies..." class="search-input" value="{{ request.GET.search|default:'' }}">
+            
+            <!-- Selector de género -->
+            <select name="genre" class="filter-select">
+                <option value="">All Genres</option>
+                {% for genre in genres %}
+                    <option value="{{ genre.id }}" {% if request.GET.genre == genre.id|stringformat:"s" %}selected{% endif %}>
+                        {{ genre.name }}
+                    </option>
+                {% endfor %}
+            </select>
+            
+            <!-- Contenedor de los botones alineados -->
+            <div class="button-container">
+                <!-- Botón de búsqueda -->
+                <button type="submit" class="search-btn">Search</button>
+    
+                <!-- Botón de reset -->
+                <a href="{% url 'movie_list' %}" class="reset-btn">Reset</a>
+            </div>
+        </form>
+    </div>
     <div class="movie-list">
         {% for movie in movies %}
             <div id="movie-card-{{ movie.id }}" class="movie-card">
-                <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+                <img class="movie-img" src="{{ movie.image_url }}" alt="{{ movie.title }}">
                 <div class="movie-title">{{ movie.title }}</div>
                 
                 {% if movie.stars_display %}
                     <div class="stars-display">
                         {% for i in "12345" %}  <!-- Cambiado a "12345" para iterar de 1 a 5 -->
-                            {% if i|add:0 <= movie.stars_display|add:0 %}
-                                <img src="{% static '/images/star-filled.PNG' %}" alt="Star Filled" class="star-img">
-                            {% else %}
-                                <img src="{% static '/images/star-empty.PNG' %}" alt="Star Empty" class="star-img">
-                            {% endif %}
+                            <span class="star-container">
+                                {% if i|add:0 <= movie.stars_display|add:0 %}
+                                    <img src="{% static '/images/star-filled.PNG' %}" alt="Star Filled" class="star-img">
+                                {% else %}
+                                    <img src="{% static '/images/star-empty.PNG' %}" alt="Star Empty" class="star-img">
+                                {% endif %}
+                            </span>
                         {% endfor %}
                     </div>
                     <button class="rated-button" disabled>Rated</button>
@@ -261,12 +491,12 @@
                         <div class="rating-stars">
                             {% for i in "54321" %}
                                 <input type="radio" id="star{{ i }}-{{ movie.id }}" name="rating" value="{{ i }}">
-                                <label for="star{{ i }}-{{ movie.id }}">
+                                <label class="rate-stars" for="star{{ i }}-{{ movie.id }}">
                                     <img src="{% static '/images/star-empty.PNG' %}" alt="Star Empty" class="star-img">
                                 </label>
                             {% endfor %}
                         </div>
-                        <button type="submit">Rate</button>
+                        <button class="rate-btn" type="submit">Rate</button>
                     </form>
                 {% endif %}
             </div>
@@ -274,56 +504,78 @@
     </div>
     <!-- Botón de Volver al Inicio -->
     <div class="fixed-bottom">
-        <a href="{% url 'home' %}" class="btn btn-custom">⮌ Volver al Inicio</a>
+        <button class="btn-go-home relative bg-white text-center w-48 rounded-2xl h-14 text-white text-xl font-semibold overflow-hidden group flex items-center justify-start px-4" type="button">
+            <!-- Fondo animado del botón -->
+            <div class="bg-red-700 rounded-xl h-10 w-10 flex items-center justify-center absolute left-1 top-[50%] transform -translate-y-1/2 group-hover:w-[184px] group-hover:h-12 z-10 transition-all duration-500 ease-in-out">
+                <!-- Ícono SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="24px" width="24px" class="z-20">
+                    <path
+                        d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+                        fill="#ffffff"
+                    ></path>
+                    <path
+                        d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+                        fill="#ffffff"
+                    ></path>
+                </svg>
+            </div>
+            <!-- Enlace funcional -->
+            <a href="{% url 'home' %}" class="relative z-20 text-red-700 group-hover:text-transparent transition-colors duration-500 ease-in-out ml-12">
+                Go Home
+            </a>
+        </button>
     </div>
 </div>
+{% endblock %}
 
+{% block javascript %}
 <!-- Aquí agregas el script -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const forms = document.querySelectorAll(".rating-form");
-
-    forms.forEach(form => {
-        form.addEventListener("submit", function(e) {
-            e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
-            
-            const url = form.action;
-            const formData = new FormData(form);
-            const movieCard = form.closest(".movie-card");
-
-            fetch(url, {
-                method: "POST",
-                body: formData,
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",  // Para asegurarnos de que Django reconoce la solicitud AJAX
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Actualizar la UI con la nueva calificación
-                    const starsDisplay = movieCard.querySelector(".stars-display");
-                    if (starsDisplay) {
-                        starsDisplay.innerHTML = data.stars_display;
-                    } else {
-                        const newStarsDisplay = document.createElement("div");
-                        newStarsDisplay.className = "stars-display";
-                        newStarsDisplay.innerHTML = data.stars_display;
-                        movieCard.querySelector(".rating-stars").remove();  // Eliminar estrellas no calificadas
-                        movieCard.querySelector("form").remove();  // Eliminar el formulario
-                        movieCard.appendChild(newStarsDisplay);
-                        
-                        // Crear y agregar un botón de "Rated" deshabilitado
-                        const ratedButton = document.createElement("button");
-                        ratedButton.className = "rated-button";
-                        ratedButton.disabled = true;
-                        ratedButton.innerHTML = "Rated";
-                        movieCard.appendChild(ratedButton);
+    document.addEventListener("DOMContentLoaded", function() {
+        const forms = document.querySelectorAll(".rating-form");
+    
+        forms.forEach(form => {
+            form.addEventListener("submit", function(e) {
+                e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+                
+                const url = form.action;
+                const formData = new FormData(form);
+                const movieCard = form.closest(".movie-card");
+    
+                fetch(url, {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",  // Para asegurarnos de que Django reconoce la solicitud AJAX
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Actualizar la UI con la nueva calificación
+                        const starsDisplay = movieCard.querySelector(".stars-display");
+                        if (starsDisplay) {
+                            starsDisplay.innerHTML = data.stars_display; // Actualizar con el nuevo HTML
+                        } else {
+                            const newStarsDisplay = document.createElement("div");
+                            newStarsDisplay.className = "stars-display";
+                            newStarsDisplay.innerHTML = data.stars_display;
+                            movieCard.querySelector(".rating-stars").remove();  // Eliminar estrellas no calificadas
+                            movieCard.querySelector("form").remove();  // Eliminar el formulario
+                            movieCard.appendChild(newStarsDisplay);
+    
+                            // Crear y agregar un botón de "Rated" deshabilitado
+                            const ratedButton = document.createElement("button");
+                            ratedButton.className = "rated-button";
+                            ratedButton.disabled = true;
+                            ratedButton.innerHTML = "Rated";
+                            movieCard.appendChild(ratedButton);
+                        }
                     }
-                }
-            })
-            .catch(error => console.error("Error al enviar la calificación:", error));
+                })
+                .catch(error => console.error("Error al enviar la calificación:", error));
+            });
         });
     });
-});
 </script>
+{% endblock %}

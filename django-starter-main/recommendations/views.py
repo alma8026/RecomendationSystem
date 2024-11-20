@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Movie, Rating
+from .models import Movie, Rating, Genre
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse
@@ -11,8 +11,19 @@ from .content_based_utils import recommend_items_content, get_top_genres
 def movie_list(request):
     user = request.user
     movies = Movie.objects.all()
+    genres = Genre.objects.all()  # Obtenemos todos los géneros disponibles
     
-    # Obtén las puntuaciones del usuario para las películas
+    # Obtener parámetros de búsqueda y filtro
+    search_query = request.GET.get('search', '').strip()
+    genre_id = request.GET.get('genre', '').strip()
+    
+    # Filtrar películas
+    if search_query:
+        movies = movies.filter(title__icontains=search_query)  # Filtrar por título que contenga el término
+    if genre_id:
+        movies = movies.filter(genres__id=genre_id)  # Usa 'genres__id' porque el campo es 'genres'
+    
+    # Obtener puntuaciones del usuario para las películas
     user_ratings = Rating.objects.filter(user=user).values_list('movie_id', 'value')
     user_rated_movies = {movie_id: rating for movie_id, rating in user_ratings}
     
@@ -28,6 +39,7 @@ def movie_list(request):
     context = {
         'movies': movies,
         'user_rated_movies': user_rated_movies,
+        'genres': genres,  # Para el filtro por género
     }
     return render(request, 'movies/movie_list.html', context)
 
@@ -36,22 +48,26 @@ def rate_movie(request, movie_id):
     if request.method == 'POST':
         movie = get_object_or_404(Movie, id=movie_id)
         value = request.POST.get('rating')  # Get the rating from the form
-        
+
         if value is not None:
             value = int(value)  # Convert to integer
-            
+
             rating, created = Rating.objects.get_or_create(user=request.user, movie=movie, defaults={'value': value})
             if not created:
                 rating.value = value
                 rating.save()
 
-        # Create the stars display HTML
-        stars_display = ''.join(['⭐' for _ in range(value)]) + ''.join(['☆' for _ in range(5 - value)])
-        
+        # Create the stars display HTML with images
+        stars_display = ''.join(
+            f'<span class="star-container"><img class="rate-stars" src="/static/images/star-filled.PNG" alt="Star Filled" class="star-img"></span>' for _ in range(value)
+        ) + ''.join(
+            f'<span class="star-container"><img class="rate-stars" src="/static/images/star-empty.PNG" alt="Star Empty" class="star-img"></span>' for _ in range(5 - value)
+        )
+
         # Return the updated stars_display
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             return JsonResponse({'success': True, 'stars_display': stars_display})
-        
+
     return redirect('movie_list')
 
 
@@ -75,6 +91,7 @@ def recommendations_view(request):
     user_ratings = Rating.objects.filter(user=user)
     if user_ratings.exists():
         recommended_content_movies = recommend_items_content(user_ratings)
+        # Aquí necesitamos que top_genres devuelva una lista de objetos Genre, no solo nombres.
         top_genres = get_top_genres(user_ratings)
     else:
         recommended_content_movies = []
@@ -89,9 +106,11 @@ def recommendations_view(request):
 
     for movie in user_rated_movies:
         rating = user_ratings.get(movie_id=movie.id).value
-        filled_stars = '⭐' * rating
-        empty_stars = '☆' * (5 - rating)
-        stars_display = filled_stars + empty_stars
+        # Usar imágenes para las estrellas
+        filled_star_image = '/static/images/star-filled.PNG'  # Ruta de la estrella llena
+        empty_star_image = '/static/images/star-empty.PNG'    # Ruta de la estrella vacía
+        stars_display = [filled_star_image] * rating + [empty_star_image] * (5 - rating)
+        
         rated_movies.append({
             'title': movie.title,
             'stars': stars_display
@@ -102,7 +121,7 @@ def recommendations_view(request):
         'recommended_content_movies': recommended_content_movies_objects,
         'user_rated_movies': user_ratings,
         'rated_movies': rated_movies,
-        'top_genres': top_genres,
+        'top_genres': top_genres,  # Ahora 'top_genres' es una lista de objetos de tipo Genre
     }
 
     return render(request, 'recommendations/recommendations.html', context)
