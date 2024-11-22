@@ -43,8 +43,8 @@
         text-align: center;
         transition: transform 0.3s, box-shadow 0.3s;
         -webkit-box-shadow: 8px 10px 10px -3px rgba(0,0,0,0.75);
--moz-box-shadow: 8px 10px 10px -3px rgba(0,0,0,0.75);
-box-shadow: 8px 10px 10px -3px rgba(0,0,0,0.75);
+        -moz-box-shadow: 8px 10px 10px -3px rgba(0,0,0,0.75);
+        box-shadow: 8px 10px 10px -3px rgba(0,0,0,0.75);
     }
     
     .movie-card:hover {
@@ -512,7 +512,7 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
         {% for movie in movies %}
             <div id="movie-card-{{ movie.id }}" class="movie-card">
                 <a href="{% url 'movie_detail' movie.id %}">
-                    <img class="movie-img" src="{{ movie.image_url }}" alt="{{ movie.title }}">
+                    <img class="movie-img" src="{% static movie.image_url %}" alt="{{ movie.title }}">
                 </a>
                 <div class="movie-title">{{ movie.title }}</div>
     

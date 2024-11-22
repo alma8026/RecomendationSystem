@@ -1,11 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Platform(models.Model):
+    name = models.CharField(max_length=100)  # Nombre de la plataforma (por ejemplo, "Netflix", "Amazon Prime Video", etc.)
+
+    def __str__(self):
+        return self.name
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=255)
-    genres = models.ManyToManyField('Genre')
-    image_url = models.URLField(max_length=200, blank=True, null=True)  # Nuevo campo para la imagen
+    genres = models.ManyToManyField('Genre')  # Relación con el modelo 'Genre'
+    image_url = models.URLField(max_length=200, blank=True, null=True)  # Campo para la imagen
     description = models.TextField(blank=True, null=True)  # Campo para la descripción de la película
+    platforms = models.ManyToManyField(Platform, blank=True)  # Relación con el modelo 'Platform'
+    trailer_url = models.URLField(max_length=200, blank=True, null=True)  # URL del tráiler
+    duration_minutes = models.PositiveIntegerField(blank=True, null=True)  # Duración de la película en minutos
 
     def __str__(self):
         return self.title

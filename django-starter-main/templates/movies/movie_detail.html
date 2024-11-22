@@ -1,6 +1,7 @@
 {% extends 'layouts/blank.html' %}
 
 {% block styles %}
+{% load static %}
 <style>
     /* Contenedor principal de detalles de la película */
     .movie-detail-container {
@@ -180,10 +181,11 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="movie-detail-container">
     <!-- Imagen de la película a la izquierda -->
     {% if movie.image_url %}
-        <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="movie-image">
+        <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="movie-image">
     {% else %}
         <p>No image available</p>
     {% endif %}
@@ -205,6 +207,32 @@
             <a href="{% url 'movie_list' %}?search=&genre={{ genre.id }}" class="genre-badge">{{ genre.name }}</a>
             {% endfor %}
         </div>
+
+        <!-- Mostrar las plataformas -->
+        <div class="movie-platforms">
+            <strong>Available on: </strong>
+            {% for platform in platforms %}
+                <span class="platform-badge">{{ platform.name }}</span>
+            {% empty %}
+                <p>No platforms available.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Mostrar la duración -->
+        <div class="movie-duration">
+            <strong>Duration: </strong>
+            <p>{{ duration_str }}</p>
+        </div>
+
+        <!-- Mostrar el tráiler -->
+        {% if trailer_url %}
+        <div class="movie-trailer">
+            <strong>Trailer: </strong>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ movie.trailer_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        {% else %}
+            <p>No trailer available.</p>
+        {% endif %}
 
         <!-- Mostrar estrellas de calificación -->
         <div class="movie-rating">

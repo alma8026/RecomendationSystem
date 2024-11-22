@@ -1,7 +1,7 @@
 {% extends 'layouts/blank.html' %}
 
 {% block content %}
-
+{% load static %}
 <main class="container mx-auto px-6 py-8 bg-gray-900 text-white min-h-screen">
     <!-- Hero Section -->
     <section class="mb-16" aria-label="Introducción">
@@ -43,7 +43,7 @@
                 <div class="group relative flex flex-col rounded-xl overflow-hidden bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 transform hover:scale-105 transition-all duration-600 ease-out card">
                     
                     <!-- Imagen con bordes suaves, zoom y brillo -->
-                    <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="w-full h-[400px] object-cover rounded-t-xl group-hover:scale-105 group-hover:opacity-90 transition-all duration-700 ease-in-out">
+                    <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="w-full h-[400px] object-cover rounded-t-xl group-hover:scale-105 group-hover:opacity-90 transition-all duration-700 ease-in-out">
                     
                     <!-- Contenedor de información con fondo oscuro transparente y bordes redondeados -->
                     <div class="flex flex-col p-6 bg-black bg-opacity-50 flex-grow rounded-b-xl">
@@ -72,7 +72,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {% for movie in recommended_movies_objects %}
                 <div class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-gray-800 hover:transform hover:scale-105 transition-transform duration-500 h-[550px] hover:border-2 hover:border-cyan-300 rounded-full">
-                    <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="w-full h-[400px] object-cover">
+                    <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="w-full h-[400px] object-cover">
                     <div class="flex flex-col p-4 flex-grow">
                         <h4 class="text-lg font-bold mb-2 text-gray-100">{{ movie.title }}</h4>
                         <a href="{% url 'movie_detail' movie.id %}" class="relative block mt-auto">
@@ -98,7 +98,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {% for movie in recommended_content_movies_objects %}
                 <div class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-gray-800 hover:transform hover:scale-105 transition-transform duration-500 h-[550px] hover:border-2 hover:border-cyan-300 rounded-full">
-                    <img src="{{ movie.image_url }}" alt="{{ movie.title }}" class="w-full h-[400px] object-cover">
+                    <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="w-full h-[400px] object-cover">
                     <div class="flex flex-col p-4 flex-grow">
                         <h4 class="text-lg font-bold mb-2 text-gray-100">{{ movie.title }}</h4>
                         <a href="{% url 'movie_detail' movie.id %}" class="relative block mt-auto">

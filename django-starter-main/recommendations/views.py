@@ -136,7 +136,7 @@ def movie_detail(request, movie_id):
     
     # Si existe una calificación, la tomamos, si no, la ponemos a 0
     user_rating_value = rating.value if rating else 0
-    if(user_rating_value>0):
+    if(user_rating_value > 0):
         # Generamos el HTML para mostrar las estrellas, similar a lo que haces en rate_movie
         stars_display = ''.join(
             f'<span class="star-container"><img class="rate-stars" src="/static/images/star-filled.PNG" alt="Star Filled" class="star-img"></span>' for _ in range(user_rating_value)
@@ -148,10 +148,25 @@ def movie_detail(request, movie_id):
             f'<span class="star-container">No calificada</span>'
         )
 
-    # Pasar la película y las estrellas generadas al contexto
+    # Convertir la duración a horas y minutos
+    duration_minutes = movie.duration_minutes or 0
+    hours = duration_minutes // 60
+    minutes = duration_minutes % 60
+    duration_str = f"{hours}h {minutes}m" if hours else f"{minutes}m"
+    
+    # Obtener las plataformas en las que está disponible la película
+    platforms = movie.platforms.all()
+
+    # Obtener el trailer URL
+    trailer_url = movie.trailer_url
+
+    # Pasar la película, las estrellas generadas, la duración, plataformas y tráiler al contexto
     context = {
         'movie': movie,
         'stars_display': stars_display,
+        'duration_str': duration_str,
+        'platforms': platforms,
+        'trailer_url': trailer_url,
     }
 
     return render(request, 'movies/movie_detail.html', context)

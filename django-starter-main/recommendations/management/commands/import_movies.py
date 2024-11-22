@@ -1,6 +1,6 @@
 import json
 from django.core.management.base import BaseCommand
-from recommendations.models import Movie, Genre
+from recommendations.models import Movie, Genre, Platform
 
 class Command(BaseCommand):
     help = 'Load movies from a JSON file into the database'
@@ -20,12 +20,21 @@ class Command(BaseCommand):
                     genres = movie_data.get('genres', [])
                     image_url = movie_data.get('image_url', '')
                     description = movie_data.get('description', '')  # Get description
+                    platforms = movie_data.get('platforms', [])  # Get platforms
+                    trailer_url = movie_data.get('trailer_url', '')  # Get trailer URL
+                    duration_minutes = movie_data.get('duration_minutes', None)  # Get duration in minutes
 
                     # Ensure genres exist in the database
                     genre_objects = []
                     for genre_name in genres:
                         genre, created = Genre.objects.get_or_create(name=genre_name)
                         genre_objects.append(genre)
+
+                    # Ensure platforms exist in the database
+                    platform_objects = []
+                    for platform_name in platforms:
+                        platform, created = Platform.objects.get_or_create(name=platform_name)
+                        platform_objects.append(platform)
 
                     # Create or get the movie
                     movie, created = Movie.objects.get_or_create(title=title)
@@ -34,6 +43,9 @@ class Command(BaseCommand):
                     movie.genres.set(genre_objects)
                     movie.image_url = image_url  # Set the image URL
                     movie.description = description  # Set the description
+                    movie.platforms.set(platform_objects)  # Set the platforms
+                    movie.trailer_url = trailer_url  # Set the trailer URL
+                    movie.duration_minutes = duration_minutes  # Set the duration in minutes
                     movie.save()
 
                 self.stdout.write(self.style.SUCCESS('Successfully imported movies from JSON file'))
