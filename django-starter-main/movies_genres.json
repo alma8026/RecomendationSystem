@@ -1,104 +1,908 @@
 [
-    {"title": "The Shawshank Redemption","genres": ["Drama"],"image_url": "images/covers/The_Shawshank_Redemption.webp","description": "Dos hombres encarcelados forjan un vínculo durante varios años, encontrando consuelo y eventual redención a través de actos de decencia común.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "6hB3S9bIaco","duration_minutes": 142},
-    {"title": "The Godfather","genres": ["Crime","Drama"],"image_url": "images/covers/The_Godfather.webp","description": "El patriarca envejecido de una dinastía del crimen organizado transfiere el control de su imperio clandestino a su reacio hijo.","platforms": ["HBO Max","Paramount+"],"trailer_url": "UaVTIH8mujA","duration_minutes": 175},
-    {"title": "The Dark Knight","genres": ["Action","Crime","Drama"],"image_url": "images/covers/The_Dark_Knight.webp","description": "Cuando la amenaza conocida como El Joker emerge de su pasado misterioso, desata el caos y la destrucción sobre la gente de Gotham.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "EXeTwQWrcwY","duration_minutes": 152},
-    {"title": "Pulp Fiction","genres": ["Crime","Drama"],"image_url": "images/covers/Pulp_Fiction.webp","description": "Las vidas de dos asesinos a sueldo, un boxeador, la esposa de un gánster y una pareja de ladrones se entrelazan en cuatro relatos de violencia y redención.","platforms": ["Amazon Prime Video","Apple TV"],"trailer_url": "s7EdQ4FqbhY","duration_minutes": 154},
-    {"title": "Forrest Gump","genres": ["Drama","Romance"],"image_url": "images/covers/Forrest_Gump.webp","description": "Las presidencias de Kennedy y Johnson, la guerra de Vietnam, el escándalo de Watergate y otros eventos históricos se desarrollan desde la perspectiva de un hombre de Alabama con una extraordinaria historia de vida.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "bLvqoHBptjg","duration_minutes": 142},
-    {"title": "The Lord of the Rings: The Return of the King","genres": ["Action","Adventure","Drama"],"image_url": "images/covers/The_Lord_of_the_Rings_The_Return_of_the_King.webp","description": "Los destinos de los habitantes de la Tierra Media están en juego cuando la lucha final contra las fuerzas de Sauron se lleva a cabo. La última batalla por la supervivencia comienza.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "r5X-hFf6Bwo","duration_minutes": 201},
-    {"title": "Inception","genres": ["Action","Adventure","Sci-Fi"],"image_url": "images/covers/Inception.webp","description": "Un ladrón especializado en el robo de secretos corporativos a través del uso de la tecnología para acceder a los sueños de las personas es contratado para realizar un último trabajo: implantar una idea en la mente de un objetivo.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "YoHD9XEInc0","duration_minutes": 148},
-    {"title": "Fight Club","genres": ["Drama"],"image_url": "images/covers/Fight_Club.webp","description": "Un hombre insomne y frustrado forma un club secreto con un vendedor de jabón carismático, lo que se convierte en algo mucho más grande y peligroso de lo que imaginaba.","platforms": ["HBO Max","Apple TV"],"trailer_url": "SUXWAEX2jlg","duration_minutes": 139},
-    {"title": "The Matrix","genres": ["Action","Sci-Fi"],"image_url": "images/covers/The_Matrix.webp","description": "Un hacker descubre que la realidad que conoce es una simulación creada por máquinas inteligentes para someter a la humanidad, y se une a un grupo de rebeldes para luchar por la libertad.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "vKQi3bBA1y8","duration_minutes": 136},
-    {"title": "The Empire Strikes Back","genres": ["Action","Adventure","Sci-Fi"],"image_url": "images/covers/The_Empire_Strikes_Back.webp","description": "La Rebelión enfrenta su mayor desafío cuando el Imperio Galáctico lanza un ataque total en su base secreta. Luke Skywalker se embarca en un viaje para entrenar con el Maestro Jedi Yoda, mientras Darth Vader persigue a los héroes.","platforms": ["Disney+"],"trailer_url": "JNwNXF9Y6kY","duration_minutes": 124},
-    {"title": "Interstellar","genres": ["Adventure","Drama","Sci-Fi"],"image_url": "images/covers/Interstellar.webp","description": "Un grupo de astronautas viaja a través de un agujero de gusano cerca de Saturno en busca de un nuevo hogar para la humanidad, mientras el tiempo en la Tierra avanza rápidamente debido a un cataclismo global.","platforms": ["Netflix","Paramount+"],"trailer_url": "zSWdZVtXT7E","duration_minutes": 169},
-    {"title": "The Green Mile","genres": ["Drama","Fantasy"],"image_url": "images/covers/The_Green_Mile.webp","description": "Un oficial de prisión descubre que uno de los reclusos, condenado a muerte, tiene poderes curativos extraordinarios. A medida que la historia se desarrolla, surgen profundas lecciones sobre la vida, la muerte y la redención.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "ctRK-4Vt7dA","duration_minutes": 189},
-    {"title": "Gladiator","genres": ["Action","Adventure","Drama"],"image_url": "images/covers/Gladiator.webp","description": "Un general romano es traicionado y condenado a la esclavitud. En busca de venganza, se convierte en un gladiador y lucha en la arena, buscando derrocar al emperador corrupto que destruyó su vida.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "P5ieIbInFpg","duration_minutes": 155},
-    {"title": "The Departed","genres": ["Crime","Drama","Thriller"],"image_url": "images/covers/The_Departed.webp","description": "En la ciudad de Boston, la policía y la mafia están involucradas en un juego peligroso de espionaje y traición. Dos hombres infiltrados deben mantenerse un paso adelante mientras sus identidades se ponen en riesgo.","platforms": ["HBO Max","Netflix"],"trailer_url": "auYbpnEwBBg","duration_minutes": 151},
-    {"title": "The Prestige","genres": ["Drama","Mystery","Sci-Fi"],"image_url": "images/covers/The_Prestige.webp","description": "Dos magos rivales se embarcan en una competencia obsesiva para crear el truco de magia perfecto, mientras su envidia y rivalidad los lleva por un camino peligroso que involucra secretos, engaños y sacrificios.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "o4gHCmTQDVI","duration_minutes": 130},
-    {"title": "The Lion King","genres": ["Animation","Adventure","Drama"],"image_url": "images/covers/The_Lion_King.webp","description": "Un joven león, destinado a ser rey, huye tras la muerte de su padre. Años después, regresa para reclamar su lugar como líder del reino, enfrentándose a su malvado tío Scar en un enfrentamiento épico.","platforms": ["Disney+"],"trailer_url": "4sj1MT05lAA","duration_minutes": 88},
-    {"title": "The Usual Suspects","genres": ["Crime","Drama","Mystery"],"image_url": "images/covers/The_Usual_Suspects.webp","description": "Cinco criminales son interrogados por la policía sobre un robo fallido, pero lo que se desarrolla es una historia llena de engaños, giros inesperados y un misterioso villano conocido como Keyser Söze.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "oiXdPolca5w","duration_minutes": 106},
-    {"title": "Schindler's List","genres": ["Biography","Drama","History"],"image_url": "images/covers/Schindler's_List.webp","description": "La historia real de Oskar Schindler, un empresario alemán que salvó a más de mil judíos durante el Holocausto al emplearlos en su fábrica, a pesar de las condiciones extremas y el riesgo que corría.","platforms": ["Amazon Prime Video"],"trailer_url": "gG22XNhtnoY","duration_minutes": 195},
-    {"title": "The Silence of the Lambs","genres": ["Crime","Drama","Thriller"],"image_url": "images/covers/The_Silence_of_the_Lambs.webp","description": "Una joven agente del FBI recurre a la ayuda de un asesino en serie encarcelado, Hannibal Lecter, para capturar a otro asesino en serie que está en libertad. Una tensa interacción mental da lugar a un juego psicológico mortal.","platforms": ["HBO Max","Netflix"],"trailer_url": "RuX2MQeb8UM","duration_minutes": 118},
-    {"title": "The Shining","genres": ["Drama","Horror"],"image_url": "images/covers/The_Shining.webp","description": "Un escritor y su familia se mudan a un hotel aislado en las montañas, donde él busca inspiración para su próximo libro. Pronto, la soledad y los misteriosos sucesos del hotel desatan una fuerza sobrenatural que pone en peligro sus vidas.","platforms": ["HBO Max"],"trailer_url": "S014oGZiSdI","duration_minutes": 146},
-    {"title": "Se7en","genres": ["Crime","Drama","Thriller"],"image_url": "images/covers/Se7en.webp","description": "Dos detectives investigan una serie de asesinatos macabros, donde cada crimen representa uno de los siete pecados capitales. A medida que se acercan al culpable, descubren un giro escalofriante.","platforms": ["Amazon Prime Video","Netflix"],"trailer_url": "znmZoVkCjpI","duration_minutes": 127},
-    {"title": "Saving Private Ryan","genres": ["Drama","War"],"image_url": "images/covers/Saving_Private_Ryan.webp","description": "Durante la Segunda Guerra Mundial, un grupo de soldados se embarca en una misión peligrosa para salvar a un paracaidista cuya familia ha perdido a tres de sus hijos en combate.","platforms": ["Paramount+","Amazon Prime Video"],"trailer_url": "RYExstiQlLc","duration_minutes": 169},
-    {"title": "The Social Network","genres": ["Biography","Drama"],"image_url": "images/covers/The_Social_Network.webp","description": "La historia de la creación de Facebook, desde su inicio como una red universitaria hasta convertirse en el gigante tecnológico que es hoy. A medida que Mark Zuckerberg se convierte en un icono, se enfrenta a disputas legales.","platforms": ["Netflix"],"trailer_url": "lB95KLmpLR4","duration_minutes": 120},
-    {"title": "A Beautiful Mind","genres": ["Biography","Drama"],"image_url": "images/covers/A_Beautiful_Mind.webp","description": "Basada en la vida de John Nash, un brillante matemático que lucha contra la esquizofrenia mientras lucha por alcanzar el éxito profesional y mantener una familia.","platforms": ["Amazon Prime Video","Peacock"],"trailer_url": "WFJgUm7iOKw","duration_minutes": 135},
-    {"title": "The Truman Show","genres": ["Comedy","Drama","Sci-Fi"],"image_url": "images/covers/The_Truman_Show.webp","description": "Truman Burbank, un hombre común, descubre que toda su vida ha sido filmada y transmitida en vivo como un programa de televisión sin su conocimiento. A medida que se da cuenta de la verdad, lucha por escapar de su controlado mundo.","platforms": ["HBO Max","Paramount+"],"trailer_url": "dlnmQbPGuls","duration_minutes": 103},
-    {"title": "Whiplash","genres": ["Drama","Music"],"image_url": "images/covers/Whiplash.webp","description": "Un joven baterista busca impresionar a un despiadado instructor de música en una escuela de música de élite. La relación entre ambos se convierte en una batalla psicológica por la perfección artística.","platforms": ["Amazon Prime Video","Netflix"],"trailer_url": "7d_jQycdQGo","duration_minutes": 107},
-    {"title": "Joker","genres": ["Crime","Drama","Thriller"],"image_url": "images/covers/Joker.webp","description": "Arthur Fleck, un hombre marginalizado y desdichado, lucha por encontrar su lugar en una sociedad que lo rechaza. Su descenso hacia la locura lo convierte en el villano conocido como el Joker.","platforms": ["HBO Max"],"trailer_url": "t433PEQGErc","duration_minutes": 122},
-    {"title": "Parasite","genres": ["Comedy","Drama","Thriller"],"image_url": "images/covers/Parasite.webp","description": "Una familia pobre se infiltra en la vida de una familia rica, trabajando en su casa como empleados. A medida que se desarrollan las tensiones, la situación se convierte en una explosiva confrontación entre clases sociales.","platforms": ["Amazon Prime Video","Hulu"],"trailer_url": "5xH0HfJHsaY","duration_minutes": 132},
-    {"title": "1917","genres": ["Drama","War"],"image_url": "images/covers/1917.webp","description": "Durante la Primera Guerra Mundial, dos soldados británicos deben entregar un mensaje crucial para evitar un ataque mortal. A lo largo de su misión, deben sortear múltiples peligros mientras luchan por sobrevivir.","platforms": ["Amazon Prime Video","Peacock"],"trailer_url": "YqNYrYUiMfg","duration_minutes": 119},
-    {"title": "Jojo Rabbit","genres": ["Comedy","Drama","War"],"image_url": "images/covers/Jojo_Rabbit.webp","description": "Un niño en la Alemania nazi tiene como amigo imaginario a Adolf Hitler. Su vida cambia cuando descubre que su madre esconde a una niña judía en su casa, lo que lo lleva a cuestionar sus creencias y el mundo que lo rodea.","platforms": ["Disney+"],"trailer_url": "tL4McUzXfFI","duration_minutes": 108},
-    {"title": "Once Upon a Time in Hollywood","genres": ["Comedy","Drama"],"image_url": "images/covers/Once_Upon_a_Time_in_Hollywood.webp","description": "En Los Ángeles de 1969, un actor en declive y su doble de riesgo se encuentran luchando por mantenerse relevantes en la industria del cine, mientras la cultura y el Hollywood cambian rápidamente a su alrededor.","platforms": ["HBO Max"],"trailer_url": "ELeMaP8EPAA","duration_minutes": 161},
-    {"title": "Spider-Man: Into the Spider-Verse","genres": ["Animation","Action","Adventure"],"image_url": "images/covers/Spider-Man_Into_the_Spider-Verse.webp","description": "Miles Morales, un adolescente de Nueva York, se convierte en el Spider-Man de su universo. Junto a otras versiones del héroe, lucha por detener una amenaza que pone en peligro todo el multiverso.","platforms": ["Netflix","Disney+"],"trailer_url": "g4Hbz2jLxvQ","duration_minutes": 117},
-    {"title": "Mad Max: Fury Road","genres": ["Action","Adventure","Sci-Fi"],"image_url": "images/covers/Mad_Max_Fury_Road.webp","description": "En un futuro post-apocalíptico, Max se une a Furiosa, una mujer rebelde que huye de un tiránico señor de la guerra, en una persecución salvaje por el desierto, mientras intentan escapar de la opresión de un mundo devastado.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "hEJnMQG9ev8","duration_minutes": 120},
-    {"title": "Her","genres": ["Drama","Romance","Sci-Fi"],"image_url": "images/covers/Her.webp","description": "En un futuro cercano, Theodore, un hombre solitario, desarrolla una relación con un sistema operativo altamente avanzado y emocionalmente inteligente, lo que desafía las convenciones de las relaciones humanas.","platforms": ["Amazon Prime Video","HBO Max"],"trailer_url": "dJTU48_yghs","duration_minutes": 126},
-    {"title": "La La Land","genres": ["Comedy","Drama","Music"],"image_url": "images/covers/La_La_Land.webp","description": "Mia, una aspirante a actriz, y Sebastian, un pianista de jazz, luchan por encontrar el éxito y mantener su relación en medio de la dura vida en Los Ángeles. Una historia de amor llena de música y sueños.","platforms": ["Amazon Prime Video","Netflix"],"trailer_url": "0pdqf4P9MB8","duration_minutes": 128},
-    {"title": "Moonlight","genres": ["Drama"],"image_url": "images/covers/Moonlight.webp","description": "La historia de un joven llamado Chiron mientras crece en un barrio de Miami. La película explora su identidad, su sexualidad y su lucha por encontrar su lugar en el mundo a lo largo de tres etapas de su vida.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "9NJj12tJzqc","duration_minutes": 111},
-    {"title": "The Grand Budapest Hotel","genres": ["Adventure","Comedy","Drama"],"image_url": "images/covers/The_Grand_Budapest_Hotel.webp","description": "En un hotel de lujo en Europa, el conserje Gustave y su joven protegido Zero se ven envueltos en un misterio que incluye un robo de arte, una herencia y una persecución. Una historia llena de comedia y aventuras excéntricas.","platforms": ["Amazon Prime Video"],"trailer_url": "1Fg5iWmQjwk","duration_minutes": 99},
-    {"title": "Django Unchained","genres": ["Action","Drama","Western"],"image_url": "images/covers/Django_Unchained.webp","description": "Un esclavo liberado, Django, se asocia con un cazador de recompensas alemán para rescatar a su esposa de un terrateniente cruel en el sur de los Estados Unidos. Una historia violenta y llena de acción ambientada en el Viejo Oeste.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "0fUCuvNlOCg","duration_minutes": 165},
-    {"title": "The Hateful Eight","genres": ["Crime","Drama","Western"],"image_url": "images/covers/The_Hateful_Eight.webp","description": "Un grupo de forajidos se encuentra atrapado en una cabaña en la nieve durante una tormenta. A medida que surgen tensiones y secretos, la desconfianza se convierte en violencia en este thriller del Oeste.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "nIOmotayDMY","duration_minutes": 168},
-    {"title": "The Big Lebowski","genres": ["Comedy","Crime"],"image_url": "images/covers/The_Big_Lebowski.webp","description": "El 'Dude', un hombre despreocupado, se ve envuelto en un extraño caso de secuestro después de ser confundido con un millonario de Los Ángeles. Una comedia de culto llena de personajes excéntricos.","platforms": ["Peacock","Amazon Prime Video"],"trailer_url": "cd-go0oBF4Y","duration_minutes": 117},
-    {"title": "The Revenant","genres": ["Action","Adventure","Drama"],"image_url": "images/covers/The_Revenant.webp","description": "Después de ser abandonado a su suerte tras ser gravemente herido, un cazador de pieles busca venganza contra aquellos que lo traicionaron mientras lucha por sobrevivir en el salvaje y gélido paisaje.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "LoebZZ8K5N0","duration_minutes": 156},
-    {"title": "Knives Out","genres": ["Crime","Drama","Mystery"],"image_url": "images/covers/Knives_Out.webp","description": "Cuando el famoso novelista de misterio Harlan Thrombey es encontrado muerto en su mansión después de su 85 cumpleaños, el detective Benoit Blanc es llamado para investigar. A medida que se profundiza en el enigma, Blanc descubre secretos familiares y mentiras, mientras intenta desentrañar quién fue el responsable de la muerte.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "qGqiHJTsRkQ","duration_minutes": 131},
-    {"title": "Titanic","genres": ["Drama","Romance"],"image_url": "images/covers/Titanic.webp","description": "En el fatídico viaje inaugural del RMS Titanic, un joven artista de clase baja se enamora de una aristócrata. Su amor se ve marcado por la tragedia cuando el barco se hunde en el océano Atlántico.","platforms": ["Disney+","Amazon Prime Video"],"trailer_url": "2e-eXJ6HgkQ","duration_minutes": 195},
-    {"title": "Inglourious Basterds","genres": ["Action","Drama","War"],"image_url": "images/covers/Inglourious_Basterds.webp","description": "Durante la Segunda Guerra Mundial, un grupo de soldados judíos estadounidenses conocidos como los 'Basterds' se embarca en una misión para asesinar a oficiales nazis en territorio ocupado. Una historia de venganza y resistencia.","platforms": ["Netflix","HBO Max"],"trailer_url": "KnrRy6kSFF0","duration_minutes": 153},
-    {"title": "The Witch","genres": ["Drama","Horror","Mystery"],"image_url": "images/covers/The_Witch.webp","description": "En el siglo XVII, una familia puritana en Nueva Inglaterra es acosada por fuerzas oscuras que amenazan su unidad familiar. Una historia de horror psicológico que explora el miedo y la paranoia.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "iQXmlf3Sefg","duration_minutes": 92},
-    {"title": "Arrival","genres": ["Drama","Sci-Fi","Thriller"],"image_url": "images/covers/Arrival.webp","description": "Cuando una nave alienígena llega a la Tierra, una lingüista es reclutada para descifrar el lenguaje de los extraterrestres. A medida que el tiempo avanza, descubre que su comprensión de la realidad y el tiempo está a punto de cambiar.","platforms": ["Amazon Prime Video","Paramount+"],"trailer_url": "tFMo3UJ4B4g","duration_minutes": 116},
-    {"title": "Get Out","genres": ["Horror","Mystery","Thriller"],"image_url": "images/covers/Get_Out.webp","description": "Un joven afroamericano visita la familia de su novia blanca y comienza a descubrir inquietantes secretos sobre ellos. Lo que parecía ser una visita inocente se convierte en una pesadilla de terror psicológico.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "DzfpyUB60YY","duration_minutes": 104},
-    {"title": "Hereditary","genres": ["Drama","Horror","Mystery"],"image_url": "images/covers/Hereditary.webp","description": "Después de la muerte de su madre, una familia comienza a desvelar secretos oscuros que los atormentan. A medida que las fuerzas sobrenaturales toman control, los miembros de la familia deben enfrentar una terrible verdad.","platforms": ["Amazon Prime Video","HBO Max"],"trailer_url": "V6wWKNij_1M","duration_minutes": 127},
-    {"title": "Blade Runner 2049","genres": ["Action","Drama","Sci-Fi"],"image_url": "images/covers/Blade_Runner_2049.webp","description": "En un futuro distópico, un nuevo Blade Runner, K, descubre un secreto que podría sumergir el mundo en el caos. Su investigación lo lleva a encontrar a Rick Deckard, un antiguo Blade Runner desaparecido hace décadas.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "gCcx85zbxz4","duration_minutes": 164},
-    {"title": "A Quiet Place","genres": ["Drama","Horror","Sci-Fi"],"image_url": "images/covers/A_Quiet_Place.webp","description": "En un mundo post-apocalíptico, una familia debe vivir en completo silencio para evitar a unas criaturas que cazan por el sonido. La tensión y el miedo crecen mientras luchan por sobrevivir en un entorno implacable.","platforms": ["Amazon Prime Video","Paramount+"],"trailer_url": "WR7cc5t7tv8","duration_minutes": 90},
-    {"title": "The Irishman","genres": ["Crime","Drama","Thriller"],"image_url": "images/covers/The_Irishman.webp","description": "Un veterano sindicalista repasa su vida y su participación en la desaparición de Jimmy Hoffa, mientras se enfrenta a la muerte y las traiciones en su última etapa. Un retrato épico de la mafia y el poder en América.","platforms": ["Netflix"],"trailer_url": "WHXxVmeGQUc","duration_minutes": 209},
-    {"title": "Rocketman","genres": ["Biography","Drama","Music"],"image_url": "images/covers/Rocketman.webp","description": "La biografía musical de Elton John, que narra su ascenso a la fama, sus luchas personales y su lucha por encontrar su verdadera identidad. Un viaje lleno de música, emociones y reinvención.","platforms": ["Amazon Prime Video","Paramount+"],"trailer_url": "S3vO8E2e6G0","duration_minutes": 121},
-    {"title": "Once Upon a Time in America","genres": ["Crime","Drama"],"image_url": "images/covers/Once_Upon_a_Time_in_America.webp","description": "Un épico relato sobre la vida de un grupo de inmigrantes judíos en Nueva York durante varias décadas, desde su juventud hasta la madurez, en el mundo del crimen organizado.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "LcpCRyNo8T8","duration_minutes": 229},
-    {"title": "The Wolf of Wall Street","genres": ["Biography","Comedy","Drama"],"image_url": "images/covers/The_Wolf_of_Wall_Street.webp","description": "La historia real de Jordan Belfort, un joven corredor de bolsa que alcanza una gran riqueza gracias a la corrupción y la manipulación financiera, pero que finalmente enfrenta las consecuencias de su vida de excesos.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "iszwuX1AK6A","duration_minutes": 180},
-    {"title": "The Shape of Water","genres": ["Adventure","Drama","Fantasy"],"image_url": "images/covers/The_Shape_of_Water.webp","description": "Una muda mujer que trabaja en un laboratorio secreto del gobierno entabla una relación con una criatura acuática cautiva, mientras enfrenta la intolerancia y el miedo en una historia de amor atípica y mágica.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "XFYWazblaUA","duration_minutes": 123},
-    {"title": "The Martian","genres": ["Adventure","Drama","Sci-Fi"],"image_url": "images/covers/The_Martian.webp","description": "Un astronauta es accidentalmente dejado atrás en Marte y debe usar toda su astucia e ingenio para sobrevivir mientras lucha contra el tiempo y las adversidades para poder regresar a casa.","platforms": ["Disney+","Amazon Prime Video"],"trailer_url": "ej3ioOneTy8","duration_minutes": 144},
-    {"title": "The Imitation Game","genres": ["Biography","Drama","Thriller"],"image_url": "images/covers/The_Imitation_Game.webp","description": "Basada en la vida de Alan Turing, un brillante matemático que ayudó a descifrar los códigos secretos de los nazis durante la Segunda Guerra Mundial, enfrentando su propia lucha contra la persecución debido a su homosexualidad.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "j2jRs4EAvWM","duration_minutes": 114},
-    {"title": "The Favourite","genres": ["Biography","Comedy","Drama"],"image_url": "images/covers/The_Favourite.webp","description": "En la corte de la reina Ana de Gran Bretaña, dos primas luchan por ganar su favor, mientras se desarrollan intrigas políticas y personales. Una historia de poder, traición y humor negro.","platforms": ["HBO Max"],"trailer_url": "SYb-wkehT1g","duration_minutes": 119},
-    {"title": "Darkest Hour","genres": ["Biography","Drama","War"],"image_url": "images/covers/Darkest_Hour.webp","description": "Durante los primeros días de la Segunda Guerra Mundial, Winston Churchill lucha por mantener a Gran Bretaña unida mientras enfrenta la amenaza de una invasión nazi. Una historia sobre la resistencia en tiempos de crisis.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "LtJ60u7SUSw","duration_minutes": 125},
-    {"title": "The Big Short","genres": ["Biography","Comedy","Drama"],"image_url": "images/covers/The_Big_Short.webp","description": "En la antesala de la crisis financiera global de 2008, un grupo de inversionistas descubre la burbuja de los bienes raíces y se arriesga a apostar contra el sistema financiero. Una crítica mordaz a la avaricia y la corrupción.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "vgqG3ITMv1Q","duration_minutes": 130},
-    {"title": "Moonrise Kingdom","genres": ["Adventure","Comedy","Drama"],"image_url": "images/covers/Moonrise_Kingdom.webp","description": "Dos jóvenes escapados de casa en una isla de Nueva Inglaterra inician una aventura de verano, mientras los adultos tratan de encontrarles. Una fábula nostálgica y visualmente única sobre el primer amor.","platforms": ["HBO Max","Disney+"],"trailer_url": "_eOI3AamSm8","duration_minutes": 94},
-    {"title": "Spotlight","genres": ["Biography","Drama","Thriller"],"image_url": "images/covers/Spotlight.webp","description": "Un equipo de periodistas de investigación destapa un escándalo de abuso sexual en la Iglesia Católica de Boston. La película sigue su arduo trabajo para exponer la verdad y las consecuencias del encubrimiento institucional.","platforms": ["Amazon Prime Video","Hulu"],"trailer_url": "EwdCIpbTN5g","duration_minutes": 128},
-    {"title": "Midsommar","genres": ["Drama","Horror","Mystery"],"image_url": "images/covers/Midsommar.webp","description": "Un grupo de amigos viaja a Suecia para asistir a un festival rural que se celebra una vez cada 90 años. A medida que avanza la celebración, descubren que la comunidad esconde oscuros secretos y rituales macabros.","platforms": ["Amazon Prime Video","Netflix"],"trailer_url": "1Vnghdsjmd0","duration_minutes": 148},
-    {"title": "The Lobster","genres": ["Comedy","Drama","Romance"],"image_url": "images/covers/The_Lobster.webp","description": "En una sociedad distópica, las personas solteras deben encontrar pareja en un plazo de 45 días o serán transformadas en animales. Una comedia surrealista sobre el amor, la presión social y las normas impuestas.","platforms": ["Hulu","Netflix"],"trailer_url": "vU29VfayDMw","duration_minutes": 118},
-    {"title": "Tinker Tailor Soldier Spy","genres": ["Drama","Thriller"],"image_url": "images/covers/Tinker_Tailor_Soldier_Spy.webp","description": "En la Guerra Fría, un ex espía británico es llamado de nuevo para descubrir al traidor dentro de la inteligencia del MI6. Una historia llena de engaños, sospechas y giros inesperados.","platforms": ["Amazon Prime Video","Netflix"],"trailer_url": "VW-F1H-Nonk","duration_minutes": 127},
-    {"title": "A Ghost Story","genres": ["Drama","Fantasy","Mystery"],"image_url": "images/covers/A_Ghost_Story.webp","description": "Tras su muerte, un hombre se convierte en un espíritu que regresa a su casa, donde su esposa vive su dolor y el paso del tiempo. Una reflexión sobre la vida, la muerte y el tiempo.","platforms": ["Amazon Prime Video","Hulu"],"trailer_url": "c_3NMtxeyfk","duration_minutes": 92},
-    {"title": "The Florida Project","genres": ["Drama"],"image_url": "images/covers/The_Florida_Project.webp","description": "Una niña de seis años vive con su madre en un motel cerca de Disney World, mientras se enfrentan a las dificultades de la vida. Una mirada conmovedora a la pobreza y la infancia.","platforms": ["Disney+","Netflix"],"trailer_url": "WwQ-NH1rRT4","duration_minutes": 115},
-    {"title": "The Nice Guys","genres": ["Action","Comedy","Crime"],"image_url": "images/covers/The_Nice_Guys.webp","description": "Un detective privado y un matón se unen para investigar la desaparición de una joven en Los Ángeles en los años 70. Una mezcla de acción, comedia y crimen con grandes dosis de humor.","platforms": ["Amazon Prime Video","Netflix"],"trailer_url": "GQR5zsLHbYw","duration_minutes": 116},
-    {"title": "Annihilation","genres": ["Drama","Horror","Sci-Fi"],"image_url": "images/covers/Annihilation.webp","description": "Una expedición militar explora una zona misteriosa donde las leyes de la naturaleza parecen alterarse. Un thriller de ciencia ficción que explora el miedo y lo desconocido.","platforms": ["Netflix"],"trailer_url": "89OP78l9oF0","duration_minutes": 115},
-    {"title": "The Master","genres": ["Drama"],"image_url": "images/covers/The_Master.webp","description": "Un hombre recién regresado de la Segunda Guerra Mundial se une a una secta dirigida por un carismático líder, explorando temas de poder, control y la búsqueda de la identidad.","platforms": ["Amazon Prime Video"],"trailer_url": "-EGSWpBDbho","duration_minutes": 144},
-    {"title": "The Handmaiden","genres": ["Drama","Romance","Thriller"],"image_url": "images/covers/The_Handmaiden.webp","description": "En la Corea ocupada por Japón, una joven es contratada como sirvienta de una heredera, pero las intenciones de ambas son mucho más complicadas de lo que parecen. Un thriller lleno de giros.","platforms": ["Amazon Prime Video"],"trailer_url": "whldChqCsYk","duration_minutes": 145},
-    {"title": "Blade Runner","genres": ["Action","Drama","Sci-Fi"],"image_url": "images/covers/Blade_Runner.webp","description": "En un futuro distópico, un policía especializado en 'retirar' replicantes, seres artificiales, debe enfrentar dilemas éticos y existenciales al perseguir a un grupo de estos seres que han comenzado a rebelarse.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "eogpIG53Cis","duration_minutes": 117},
-    {"title": "The Hunt","genres": ["Drama","Thriller"],"image_url": "images/covers/The_Hunt.webp","description": "Tras un divorcio difícil, Lucas ha rehecho su vida y con ello también quiere reconstruir la relación con su hijo adolescente, pero algo se tuerce. Un comentario o una mentira fortuita hacen que Lucas se vea envuelto en una constante caza de brujas.","platforms": ["Amazon Prime Video"],"trailer_url": "ieLIOBkMgAQ","duration_minutes": 118},
-    {"title": "The Secret in Their Eyes","genres": ["Crime","Drama","Mystery"],"image_url": "images/covers/The_Secret_in_Their_Eyes.webp","description": "Un ex fiscal argentino, mientras escribe un libro sobre su experiencia, revive un caso no resuelto de violación y asesinato que lo marcó profundamente, entrelazando el pasado con el presente.","platforms": ["Netflix"],"trailer_url": "OB1JrYCVJTg","duration_minutes": 129},
-    {"title": "The Lives of Others","genres": ["Drama","Thriller"],"image_url": "images/covers/The_Lives_of_Others.webp","description": "En la Alemania del Este, un oficial de la Stasi es asignado para espiar a una pareja de artistas, pero a medida que se adentra en sus vidas, comienza a cuestionar su propia lealtad al régimen.","platforms": ["Hulu"],"trailer_url": "n3_iLOp6IhM","duration_minutes": 137},
-    {"title": "City of God","genres": ["Crime","Drama"],"image_url": "images/covers/City_of_God.webp","description": "En las favelas de Río de Janeiro, dos jóvenes siguen caminos opuestos: uno busca escapar de la violencia, mientras que el otro se sumerge en el mundo del crimen organizado. Una historia de lucha por la supervivencia.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "dcUOO4Itgmw","duration_minutes": 130},
-    {"title": "Pan's Labyrinth","genres": ["Drama","Fantasy","War"],"image_url": "images/covers/Pan's_Labyrinth.webp","description": "Durante la posguerra en España, una joven encuentra un mundo subterráneo de fantasía en el que debe cumplir tres tareas para salvar su alma. Un relato sobre la fantasía como escape de la brutalidad de la realidad.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "jVZRnnVSQ8k","duration_minutes": 118},
-    {"title": "Oldboy","genres": ["Action","Drama","Mystery"],"image_url": "images/covers/Oldboy.webp","description": "Un hombre es secuestrado y mantenido en cautiverio durante 15 años sin saber el motivo, solo para ser liberado y perseguir venganza. Un thriller con giros inesperados y una atmósfera de tensión constante.","platforms": ["Amazon Prime Video"],"trailer_url": "tAaBkFChaRg","duration_minutes": 120},
-    {"title": "A Separation","genres": ["Drama"],"image_url": "images/covers/A_Separation.webp","description": "Una pareja iraní se ve obligada a enfrentarse a sus diferencias mientras luchan por la custodia de su hija, mientras que el país y su entorno social también juegan un papel crucial en su separación.","platforms": ["Netflix"],"trailer_url": "58Onuy5USTc","duration_minutes": 123},
-    {"title": "The Intouchables","genres": ["Biography","Comedy","Drama"],"image_url": "images/covers/The_Intouchables.webp","description": "Un hombre rico y tetrapléjico forma una inesperada amistad con su cuidador, un joven de clase baja. Juntos, desafían las convenciones sociales y se embarcan en una aventura emocionalmente transformadora.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "34WIbmXkewU","duration_minutes": 112},
-    {"title": "The Grandmaster","genres": ["Action","Biography","Drama"],"image_url": "images/covers/The_Grandmaster.webp","description": "Basada en la vida de Ip Man, el legendario maestro de Wing Chun y mentor de Bruce Lee, esta película narra su historia de lucha, amor y honor en un contexto de guerra y cambios sociales en China.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "uC5amKLgnFU","duration_minutes": 108},
-    {"title": "The Pianist","genres": ["Biography","Drama","Music"],"image_url": "images/covers/The_Pianist.webp","description": "La historia de un pianista polaco de origen judío que lucha por sobrevivir durante la ocupación nazi en Varsovia. Un relato desgarrador sobre la supervivencia, el arte y la resistencia humana.","platforms": ["Netflix","Amazon Prime Video"],"trailer_url": "BFwGqLa_oAo","duration_minutes": 150},
-    {"title": "Roma","genres": ["Drama"],"image_url": "images/covers/Roma.webp","description": "Un retrato visualmente impresionante de la vida de una empleada doméstica en la Ciudad de México durante la década de 1970, mientras navega por los desafíos personales y sociales en medio de la agitación política.","platforms": ["Netflix"],"trailer_url": "6BS27ngZtxg","duration_minutes": 135},
-    {"title": "The Tale of the Princess Kaguya","genres": ["Animation","Adventure","Drama"],"image_url": "images/covers/The_Tale_of_the_Princess_Kaguya.webp","description": "Basada en un antiguo cuento popular japonés, la historia narra la vida de una princesa mágica que crece rápidamente y debe enfrentarse a las demandas de su estatus real, mientras busca su destino.","platforms": ["Amazon Prime Video"],"trailer_url": "W71mtorCZDw","duration_minutes": 137},
-    {"title": "Let the Right One In","genres": ["Drama","Horror","Romance"],"image_url": "images/covers/Let_the_Right_One_In.webp","description": "Un niño solitario forma una amistad con su misteriosa vecina, quien resulta ser una vampira. Juntos enfrentan la violencia y el aislamiento en una historia única de amor y amistad en medio del terror.","platforms": ["Amazon Prime Video","Hulu"],"trailer_url": "ICp4g9p_rgo","duration_minutes": 115},
-    {"title": "La Haine","genres": ["Crime","Drama"],"image_url": "images/covers/La_Haine.webp","description": "Tras tres días de disturbios en las banlieues de París, tres jóvenes deben enfrentarse a las consecuencias de sus acciones y las tensiones sociales, mientras luchan con la violencia y la desigualdad.","platforms": ["Amazon Prime Video"],"trailer_url": "OfE0o9B3dhI","duration_minutes": 98},
-    {"title": "Loving Vincent","genres": ["Animation","Biography","Drama"],"image_url": "images/covers/Loving_Vincent.webp","description": "Una película animada que narra la vida y la misteriosa muerte de Vincent van Gogh, utilizando una innovadora técnica de pintura al óleo, con las pinturas del propio van Gogh como base.","platforms": ["Amazon Prime Video"],"trailer_url": "Gy0RVDM1sNA","duration_minutes": 94},
-    {"title": "The Secret Life of Walter Mitty","genres": ["Adventure","Comedy","Drama"],"image_url": "images/covers/The_Secret_Life_of_Walter_Mitty.webp","description": "Walter Mitty, un hombre común y corriente, se embarca en una aventura inesperada para encontrar una foto perdida que cambiará su vida para siempre. Un relato de autodescubrimiento y valentía.","platforms": ["Amazon Prime Video"],"trailer_url": "QD6cy4PBQPI","duration_minutes": 114},
-    {"title": "Children of Men","genres": ["Action","Drama","Sci-Fi"],"image_url": "images/covers/Children_of_Men.webp","description": "En un futuro distópico donde la humanidad es incapaz de procrear, un hombre se ve encargado de proteger a una mujer embarazada, cuya existencia podría salvar a la humanidad.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "2VT2apoX90o","duration_minutes": 109},
-    {"title": "Ex Machina","genres": ["Drama","Sci-Fi","Thriller"],"image_url": "images/covers/Ex_Machina.webp","description": "Un joven programador es seleccionado para evaluar a una inteligencia artificial avanzada en un remoto laboratorio. Un thriller psicológico que explora la ética de la inteligencia artificial.","platforms": ["Amazon Prime Video"],"trailer_url": "EoQuVnKhxaM","duration_minutes": 108},
-    {"title": "The Babadook","genres": ["Drama","Horror","Thriller"],"image_url": "images/covers/The_Babadook.webp","description": "Una madre y su hijo enfrentan la presencia de una entidad terrorífica que parece haber surgido de un cuento infantil. Una inquietante película de horror psicológico.","platforms": ["Netflix"],"trailer_url": "k5WQZzDRVtw","duration_minutes": 93},
-    {"title": "The Invisible Man","genres": ["Drama","Horror","Thriller"],"image_url": "images/covers/The_Invisible_Man.webp","description": "Una mujer escapa de una relación abusiva con un hombre rico, pero pronto descubre que él ha encontrado la manera de volverse invisible, acechando su vida de manera aterradora.","platforms": ["Amazon Prime Video","HBO Max"],"trailer_url": "dSBsNeYqh-k","duration_minutes": 124},
-    {"title": "The Killing of a Sacred Deer","genres": ["Drama","Horror","Thriller"],"image_url": "images/covers/The_Killing_of_a_Sacred_Deer.webp","description": "Un cirujano exitoso se ve atrapado en una terrible situación cuando un joven comienza a vengarse de él y su familia de una manera perturbadora y aterradora.","platforms": ["Amazon Prime Video"],"trailer_url": "CQFdGfwChtw","duration_minutes": 121},
-    {"title": "Whisper of the Heart","genres": ["Animation","Adventure","Drama"],"image_url": "images/covers/Whisper_of_the_Heart.webp","description": "Una joven se embarca en una aventura de autodescubrimiento mientras busca al misterioso joven que dejó una serie de pistas sobre un gato y un anillo antiguo.","platforms": ["Netflix"],"trailer_url": "0pVkiod6V0U","duration_minutes": 111},
-    {"title": "Willy Wonka & the Chocolate Factory","genres": ["Adventure","Comedy","Family"],"image_url": "images/covers/Willy_Wonka_&_the_Chocolate_Factory.webp","description": "Un niño humilde gana un boleto dorado para visitar la fábrica de chocolate de Willy Wonka, donde vive una serie de sorprendentes y mágicas aventuras.","platforms": ["HBO Max"],"trailer_url": "2WKPKnggJqk","duration_minutes": 100},
-    {"title": "The Bridge on the River Kwai","genres": ["Adventure","Drama","War"],"image_url": "images/covers/The_Bridge_on_the_River_Kwai.webp","description": "Durante la Segunda Guerra Mundial, prisioneros de guerra británicos son obligados a construir un puente en Birmania, pero uno de ellos comienza a obsesionarse con la obra.","platforms": ["Amazon Prime Video"],"trailer_url": "F5WlzJvBKQs","duration_minutes": 161},
-    {"title": "Moulin Rouge!","genres": ["Drama","Musical","Romance"],"image_url": "images/covers/Moulin_Rouge!.webp","description": "En el París bohemio de finales del siglo XIX, un joven escritor se enamora de una cortesana, mientras lucha por superar las barreras sociales y la opresión del amor prohibido.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "2PpgPxjzbkA","duration_minutes": 127},
-    {"title": "The Artist","genres": ["Comedy","Drama","Romance"],"image_url": "images/covers/The_Artist.webp","description": "Una historia sobre la transición del cine mudo al sonoro, y el impacto que tiene en la vida de un actor de cine mudo que lucha por adaptarse a los nuevos tiempos.","platforms": ["Amazon Prime Video"],"trailer_url": "YB9Oq0hn5KY","duration_minutes": 100},
-    {"title": "The Great Dictator","genres": ["Comedy","Drama"],"image_url": "images/covers/The_Great_Dictator.webp","description": "Charlie Chaplin interpreta a un dictador tiránico y un barbero judío en esta sátira política, utilizando la comedia para hacer una fuerte crítica al fascismo y el totalitarismo.","platforms": ["Amazon Prime Video"],"trailer_url": "i1C6qZVeFtA","duration_minutes": 125},
-    {"title": "A Clockwork Orange","genres": ["Crime","Drama","Sci-Fi"],"image_url": "images/covers/A_Clockwork_Orange.webp","description": "Un joven criminal se somete a un tratamiento experimental que lo convierte en una víctima del control social. Una perturbadora y violenta reflexión sobre la libertad y el comportamiento humano.","platforms": ["HBO Max","Amazon Prime Video"],"trailer_url": "T54uZPI4Z8A","duration_minutes": 136},
-    {"title": "Amélie","genres": ["Comedy","Romance"],"image_url": "images/covers/Amélie.webp","description": "Amélie, una joven mujer que vive en París, decide cambiar las vidas de los que la rodean, mientras busca el amor en su propia vida, en un cuento encantador y visualmente hermoso sobre la conexión humana.","platforms": ["Amazon Prime Video"],"trailer_url": "JMPOXWSL_PY","duration_minutes": 122}
+    {
+        "title": "The Shawshank Redemption",
+        "genres": ["Drama"],
+        "image_url": "images/covers/The_Shawshank_Redemption.webp",
+        "description": "Two imprisoned men form a bond over several years, finding solace and eventual redemption through acts of common decency.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "6hB3S9bIaco",
+        "duration_minutes": 142
+    },
+    {
+        "title": "The Godfather",
+        "genres": ["Crime", "Drama"],
+        "image_url": "images/covers/The_Godfather.webp",
+        "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+        "platforms": ["HBO Max", "Paramount+"],
+        "trailer_url": "UaVTIH8mujA",
+        "duration_minutes": 175
+    },
+    {
+        "title": "The Dark Knight",
+        "genres": ["Action", "Crime", "Drama"],
+        "image_url": "images/covers/The_Dark_Knight.webp",
+        "description": "When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "EXeTwQWrcwY",
+        "duration_minutes": 152
+    },
+    {
+        "title": "Pulp Fiction",
+        "genres": ["Crime", "Drama"],
+        "image_url": "images/covers/Pulp_Fiction.webp",
+        "description": "The lives of two hitmen, a boxer, the wife of a gangster, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        "platforms": ["Amazon Prime Video", "Apple TV"],
+        "trailer_url": "s7EdQ4FqbhY",
+        "duration_minutes": 154
+    },
+    {
+        "title": "Forrest Gump",
+        "genres": ["Drama", "Romance"],
+        "image_url": "images/covers/Forrest_Gump.webp",
+        "description": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an extraordinary life story.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "bLvqoHBptjg",
+        "duration_minutes": 142
+    },
+    {
+        "title": "The Lord of the Rings: The Return of the King",
+        "genres": ["Action", "Adventure", "Drama"],
+        "image_url": "images/covers/The_Lord_of_the_Rings_The_Return_of_the_King.webp",
+        "description": "The fate of Middle-earth is at stake as the final battle against Sauron's forces takes place. The last battle for survival begins.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "r5X-hFf6Bwo",
+        "duration_minutes": 201
+    },
+    {
+        "title": "Inception",
+        "genres": ["Action", "Adventure", "Sci-Fi"],
+        "image_url": "images/covers/Inception.webp",
+        "description": "A thief who specializes in stealing corporate secrets through the use of dream-sharing technology is hired to perform one final job: to plant an idea into the mind of a target.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "YoHD9XEInc0",
+        "duration_minutes": 148
+    },
+    {
+        "title": "Fight Club",
+        "genres": ["Drama"],
+        "image_url": "images/covers/Fight_Club.webp",
+        "description": "An insomniac and frustrated man forms a secret club with a charismatic soap salesman, which grows into something much bigger and more dangerous than he ever imagined.",
+        "platforms": ["HBO Max", "Apple TV"],
+        "trailer_url": "SUXWAEX2jlg",
+        "duration_minutes": 139
+    },
+    {
+        "title": "The Matrix",
+        "genres": ["Action", "Sci-Fi"],
+        "image_url": "images/covers/The_Matrix.webp",
+        "description": "A hacker discovers that the reality he knows is a simulation created by intelligent machines to subjugate humanity, and he joins a group of rebels to fight for freedom.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "vKQi3bBA1y8",
+        "duration_minutes": 136
+    },
+    {
+        "title": "The Empire Strikes Back",
+        "genres": ["Action", "Adventure", "Sci-Fi"],
+        "image_url": "images/covers/The_Empire_Strikes_Back.webp",
+        "description": "The Rebel Alliance faces its greatest challenge when the Galactic Empire launches a full-scale attack on their secret base. Luke Skywalker embarks on a journey to train with Jedi Master Yoda, while Darth Vader hunts the heroes.",
+        "platforms": ["Disney+"],
+        "trailer_url": "JNwNXF9Y6kY",
+        "duration_minutes": 124
+    },
+    {
+        "title": "Interstellar",
+        "genres": ["Adventure", "Drama", "Sci-Fi"],
+        "image_url": "images/covers/Interstellar.webp",
+        "description": "A group of astronauts travels through a wormhole near Saturn in search of a new home for humanity, while time on Earth moves rapidly due to a global catastrophe.",
+        "platforms": ["Netflix", "Paramount+"],
+        "trailer_url": "zSWdZVtXT7E",
+        "duration_minutes": 169
+    },{
+        "title": "The Green Mile",
+        "genres": ["Drama", "Fantasy"],
+        "image_url": "images/covers/The_Green_Mile.webp",
+        "description": "A prison officer discovers that one of the death row inmates has extraordinary healing powers. As the story unfolds, profound lessons about life, death, and redemption emerge.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "ctRK-4Vt7dA",
+        "duration_minutes": 189
+    },
+    {
+        "title": "Gladiator",
+        "genres": ["Action", "Adventure", "Drama"],
+        "image_url": "images/covers/Gladiator.webp",
+        "description": "A Roman general is betrayed and condemned to slavery. Seeking revenge, he becomes a gladiator and fights in the arena, aiming to overthrow the corrupt emperor who destroyed his life.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "P5ieIbInFpg",
+        "duration_minutes": 155
+    },
+    {
+        "title": "The Departed",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "images/covers/The_Departed.webp",
+        "description": "In the city of Boston, the police and the mafia are involved in a dangerous game of espionage and betrayal. Two undercover men must stay one step ahead while their identities are at risk.",
+        "platforms": ["HBO Max", "Netflix"],
+        "trailer_url": "auYbpnEwBBg",
+        "duration_minutes": 151
+    },
+    {
+        "title": "The Prestige",
+        "genres": ["Drama", "Mystery", "Sci-Fi"],
+        "image_url": "images/covers/The_Prestige.webp",
+        "description": "Two rival magicians embark on an obsessive competition to create the perfect magic trick, while their envy and rivalry lead them down a dangerous path involving secrets, deception, and sacrifices.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "o4gHCmTQDVI",
+        "duration_minutes": 130
+    },
+    {
+        "title": "The Lion King",
+        "genres": ["Animation", "Adventure", "Drama"],
+        "image_url": "images/covers/The_Lion_King.webp",
+        "description": "A young lion, destined to be king, flees after his father's death. Years later, he returns to claim his place as the leader of the kingdom, facing his evil uncle Scar in an epic showdown.",
+        "platforms": ["Disney+"],
+        "trailer_url": "4sj1MT05lAA",
+        "duration_minutes": 88
+    },
+    {
+        "title": "The Usual Suspects",
+        "genres": ["Crime", "Drama", "Mystery"],
+        "image_url": "images/covers/The_Usual_Suspects.webp",
+        "description": "Five criminals are interrogated by the police about a failed robbery, but what develops is a story full of deception, unexpected twists, and a mysterious villain known as Keyser Söze.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "oiXdPolca5w",
+        "duration_minutes": 106
+    },
+    {
+        "title": "Schindler's List",
+        "genres": ["Biography", "Drama", "History"],
+        "image_url": "images/covers/Schindler's_List.webp",
+        "description": "The true story of Oskar Schindler, a German businessman who saved over a thousand Jews during the Holocaust by employing them in his factory, despite the extreme conditions and the risks he faced.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "gG22XNhtnoY",
+        "duration_minutes": 195
+    },
+    {
+        "title": "The Silence of the Lambs",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "images/covers/The_Silence_of_the_Lambs.webp",
+        "description": "A young FBI agent seeks the help of an imprisoned serial killer, Hannibal Lecter, to capture another serial killer who is on the loose. A tense mental interaction leads to a deadly psychological game.",
+        "platforms": ["HBO Max", "Netflix"],
+        "trailer_url": "RuX2MQeb8UM",
+        "duration_minutes": 118
+    },
+    {
+        "title": "The Shining",
+        "genres": ["Drama", "Horror"],
+        "image_url": "images/covers/The_Shining.webp",
+        "description": "A writer and his family move to an isolated hotel in the mountains, where he seeks inspiration for his next book. Soon, the solitude and mysterious events at the hotel unleash a supernatural force that threatens their lives.",
+        "platforms": ["HBO Max"],
+        "trailer_url": "S014oGZiSdI",
+        "duration_minutes": 146
+    },
+    {
+        "title": "Se7en",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "images/covers/Se7en.webp",
+        "description": "Two detectives investigate a series of gruesome murders, where each crime represents one of the seven deadly sins. As they close in on the culprit, they uncover a chilling twist.",
+        "platforms": ["Amazon Prime Video", "Netflix"],
+        "trailer_url": "znmZoVkCjpI",
+        "duration_minutes": 127
+    },
+    {
+        "title": "Saving Private Ryan",
+        "genres": ["Drama", "War"],
+        "image_url": "images/covers/Saving_Private_Ryan.webp",
+        "description": "During World War II, a group of soldiers embarks on a dangerous mission to save a paratrooper whose family has lost three sons in combat.",
+        "platforms": ["Paramount+", "Amazon Prime Video"],
+        "trailer_url": "RYExstiQlLc",
+        "duration_minutes": 169
+    },
+    {
+        "title": "The Social Network",
+        "genres": ["Biography", "Drama"],
+        "image_url": "images/covers/The_Social_Network.webp",
+        "description": "The story of the creation of Facebook, from its start as a university network to becoming the tech giant it is today. As Mark Zuckerberg becomes an icon, he faces legal disputes.",
+        "platforms": ["Netflix"],
+        "trailer_url": "lB95KLmpLR4",
+        "duration_minutes": 120
+    },
+    {
+        "title": "A Beautiful Mind",
+        "genres": ["Biography", "Drama"],
+        "image_url": "images/covers/A_Beautiful_Mind.webp",
+        "description": "Based on the life of John Nash, a brilliant mathematician who struggles with schizophrenia while trying to achieve professional success and maintain a family.",
+        "platforms": ["Amazon Prime Video", "Peacock"],
+        "trailer_url": "WFJgUm7iOKw",
+        "duration_minutes": 135
+    },
+    {
+        "title": "The Truman Show",
+        "genres": ["Comedy", "Drama", "Sci-Fi"],
+        "image_url": "images/covers/The_Truman_Show.webp",
+        "description": "Truman Burbank, an ordinary man, discovers that his entire life has been filmed and broadcast live as a television show without his knowledge. As he realizes the truth, he fights to escape his controlled world.",
+        "platforms": ["HBO Max", "Paramount+"],
+        "trailer_url": "dlnmQbPGuls",
+        "duration_minutes": 103
+    },{
+        "title": "Whiplash",
+        "genres": ["Drama", "Music"],
+        "image_url": "images/covers/Whiplash.webp",
+        "description": "A young drummer seeks to impress a ruthless music instructor at an elite music school. Their relationship becomes a psychological battle for artistic perfection.",
+        "platforms": ["Amazon Prime Video", "Netflix"],
+        "trailer_url": "7d_jQycdQGo",
+        "duration_minutes": 107
+    },
+    {
+        "title": "Joker",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "images/covers/Joker.webp",
+        "description": "Arthur Fleck, a marginalized and unhappy man, struggles to find his place in a society that rejects him. His descent into madness transforms him into the infamous villain known as the Joker.",
+        "platforms": ["HBO Max"],
+        "trailer_url": "t433PEQGErc",
+        "duration_minutes": 122
+    },
+    {
+        "title": "Parasite",
+        "genres": ["Comedy", "Drama", "Thriller"],
+        "image_url": "images/covers/Parasite.webp",
+        "description": "A poor family infiltrates the lives of a wealthy family by working in their household. As tensions rise, the situation escalates into an explosive confrontation between social classes.",
+        "platforms": ["Amazon Prime Video", "Hulu"],
+        "trailer_url": "5xH0HfJHsaY",
+        "duration_minutes": 132
+    },
+    {
+        "title": "1917",
+        "genres": ["Drama", "War"],
+        "image_url": "images/covers/1917.webp",
+        "description": "During World War I, two British soldiers must deliver a crucial message to prevent a deadly attack. Throughout their mission, they face numerous dangers while fighting to survive.",
+        "platforms": ["Amazon Prime Video", "Peacock"],
+        "trailer_url": "YqNYrYUiMfg",
+        "duration_minutes": 119
+    },
+    {
+        "title": "Jojo Rabbit",
+        "genres": ["Comedy", "Drama", "War"],
+        "image_url": "images/covers/Jojo_Rabbit.webp",
+        "description": "A young boy in Nazi Germany has Adolf Hitler as his imaginary friend. His life changes when he discovers his mother is hiding a Jewish girl in their home, prompting him to question his beliefs and the world around him.",
+        "platforms": ["Disney+"],
+        "trailer_url": "tL4McUzXfFI",
+        "duration_minutes": 108
+    },
+    {
+        "title": "Once Upon a Time in Hollywood",
+        "genres": ["Comedy", "Drama"],
+        "image_url": "images/covers/Once_Upon_a_Time_in_Hollywood.webp",
+        "description": "In 1969 Los Angeles, a fading actor and his stunt double struggle to stay relevant in the film industry as Hollywood and culture rapidly change around them.",
+        "platforms": ["HBO Max"],
+        "trailer_url": "ELeMaP8EPAA",
+        "duration_minutes": 161
+    },
+    {
+        "title": "Spider-Man: Into the Spider-Verse",
+        "genres": ["Animation", "Action", "Adventure"],
+        "image_url": "images/covers/Spider-Man_Into_the_Spider-Verse.webp",
+        "description": "Miles Morales, a teenager from New York, becomes the Spider-Man of his universe. Alongside other versions of the hero, he fights to stop a threat that endangers the entire multiverse.",
+        "platforms": ["Netflix", "Disney+"],
+        "trailer_url": "g4Hbz2jLxvQ",
+        "duration_minutes": 117
+    },
+    {
+        "title": "Mad Max: Fury Road",
+        "genres": ["Action", "Adventure", "Sci-Fi"],
+        "image_url": "images/covers/Mad_Max_Fury_Road.webp",
+        "description": "In a post-apocalyptic future, Max teams up with Furiosa, a rebellious woman fleeing a tyrannical warlord. Together, they embark on a wild desert chase to escape the oppression of a devastated world.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "hEJnMQG9ev8",
+        "duration_minutes": 120
+    },
+    {
+        "title": "Her",
+        "genres": ["Drama", "Romance", "Sci-Fi"],
+        "image_url": "images/covers/Her.webp",
+        "description": "In the near future, Theodore, a lonely man, develops a relationship with a highly advanced and emotionally intelligent operating system, challenging the conventions of human relationships.",
+        "platforms": ["Amazon Prime Video", "HBO Max"],
+        "trailer_url": "dJTU48_yghs",
+        "duration_minutes": 126
+    },
+    {
+        "title": "La La Land",
+        "genres": ["Comedy", "Drama", "Music"],
+        "image_url": "images/covers/La_La_Land.webp",
+        "description": "Mia, an aspiring actress, and Sebastian, a jazz pianist, struggle to find success and maintain their relationship amidst the challenges of life in Los Angeles. A love story filled with music and dreams.",
+        "platforms": ["Amazon Prime Video", "Netflix"],
+        "trailer_url": "0pdqf4P9MB8",
+        "duration_minutes": 128
+    },
+    {
+        "title": "Moonlight",
+        "genres": ["Drama"],
+        "image_url": "images/covers/Moonlight.webp",
+        "description": "The story of a young man named Chiron as he grows up in a Miami neighborhood. The film explores his identity, sexuality, and struggle to find his place in the world across three stages of his life.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "9NJj12tJzqc",
+        "duration_minutes": 111
+    },
+    {
+        "title": "The Grand Budapest Hotel",
+        "genres": ["Adventure", "Comedy", "Drama"],
+        "image_url": "images/covers/The_Grand_Budapest_Hotel.webp",
+        "description": "In a luxury European hotel, concierge Gustave and his young protégé Zero become embroiled in a mystery involving art theft, inheritance, and a chase. A story full of comedy and eccentric adventures.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "1Fg5iWmQjwk",
+        "duration_minutes": 99
+    },
+    {
+        "title": "Django Unchained",
+        "genres": ["Action", "Drama", "Western"],
+        "image_url": "images/covers/Django_Unchained.webp",
+        "description": "A freed slave, Django, teams up with a German bounty hunter to rescue his wife from a cruel plantation owner in the southern United States. A violent and action-packed story set in the Old West.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "0fUCuvNlOCg",
+        "duration_minutes": 165
+    },
+    {
+        "title": "The Hateful Eight",
+        "genres": ["Crime", "Drama", "Western"],
+        "image_url": "images/covers/The_Hateful_Eight.webp",
+        "description": "A group of outlaws finds themselves trapped in a snowbound cabin during a storm. As tensions and secrets arise, mistrust turns to violence in this Western thriller.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "nIOmotayDMY",
+        "duration_minutes": 168
+    },
+    {
+        "title": "The Big Lebowski",
+        "genres": ["Comedy", "Crime"],
+        "image_url": "images/covers/The_Big_Lebowski.webp",
+        "description": "The 'Dude,' a laid-back man, becomes entangled in a bizarre kidnapping case after being mistaken for a wealthy Los Angeles millionaire. A cult comedy full of eccentric characters.",
+        "platforms": ["Peacock", "Amazon Prime Video"],
+        "trailer_url": "cd-go0oBF4Y",
+        "duration_minutes": 117
+    },
+    {
+        "title": "The Revenant",
+        "genres": ["Action", "Adventure", "Drama"],
+        "image_url": "images/covers/The_Revenant.webp",
+        "description": "After being abandoned following a near-fatal injury, a fur trapper seeks revenge against those who betrayed him while struggling to survive the harsh, frozen wilderness.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "LoebZZ8K5N0",
+        "duration_minutes": 156
+    },
+    {
+        "title": "Knives Out",
+        "genres": ["Crime", "Drama", "Mystery"],
+        "image_url": "images/covers/Knives_Out.webp",
+        "description": "When famed mystery novelist Harlan Thrombey is found dead in his mansion after his 85th birthday, Detective Benoit Blanc is called to investigate. As the mystery deepens, Blanc uncovers family secrets and lies while trying to solve the case.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "qGqiHJTsRkQ",
+        "duration_minutes": 131
+    },{
+        "title": "Titanic",
+        "genres": ["Drama", "Romance"],
+        "image_url": "images/covers/Titanic.webp",
+        "description": "On the fateful maiden voyage of the RMS Titanic, a young, low-class artist falls in love with an aristocrat. Their love story is marked by tragedy as the ship sinks in the Atlantic Ocean.",
+        "platforms": ["Disney+", "Amazon Prime Video"],
+        "trailer_url": "2e-eXJ6HgkQ",
+        "duration_minutes": 195
+      },
+      {
+        "title": "Inglourious Basterds",
+        "genres": ["Action", "Drama", "War"],
+        "image_url": "images/covers/Inglourious_Basterds.webp",
+        "description": "During World War II, a group of Jewish-American soldiers known as the 'Basterds' embark on a mission to assassinate Nazi officers in occupied territory. A tale of vengeance and resistance.",
+        "platforms": ["Netflix", "HBO Max"],
+        "trailer_url": "KnrRy6kSFF0",
+        "duration_minutes": 153
+      },
+      {
+        "title": "The Witch",
+        "genres": ["Drama", "Horror", "Mystery"],
+        "image_url": "images/covers/The_Witch.webp",
+        "description": "In 17th century New England, a Puritan family is harassed by dark forces that threaten their unity. A psychological horror story exploring fear and paranoia.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "iQXmlf3Sefg",
+        "duration_minutes": 92
+      },
+      {
+        "title": "Arrival",
+        "genres": ["Drama", "Sci-Fi", "Thriller"],
+        "image_url": "images/covers/Arrival.webp",
+        "description": "When an alien spacecraft arrives on Earth, a linguist is recruited to decipher their language. As time progresses, she discovers her understanding of reality and time is about to change.",
+        "platforms": ["Amazon Prime Video", "Paramount+"],
+        "trailer_url": "tFMo3UJ4B4g",
+        "duration_minutes": 116
+      },
+      {
+        "title": "Get Out",
+        "genres": ["Horror", "Mystery", "Thriller"],
+        "image_url": "images/covers/Get_Out.webp",
+        "description": "A young African-American visits his white girlfriend's family and begins to uncover disturbing secrets about them. What seemed like an innocent visit turns into a nightmare of psychological terror.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "DzfpyUB60YY",
+        "duration_minutes": 104
+      },
+      {
+        "title": "Hereditary",
+        "genres": ["Drama", "Horror", "Mystery"],
+        "image_url": "images/covers/Hereditary.webp",
+        "description": "After the death of her mother, a family begins to uncover dark secrets that haunt them. As supernatural forces take hold, they must face a terrifying truth.",
+        "platforms": ["Amazon Prime Video", "HBO Max"],
+        "trailer_url": "V6wWKNij_1M",
+        "duration_minutes": 127
+      },
+      {
+        "title": "Blade Runner 2049",
+        "genres": ["Action", "Drama", "Sci-Fi"],
+        "image_url": "images/covers/Blade_Runner_2049.webp",
+        "description": "In a dystopian future, a new Blade Runner, K, uncovers a secret that could plunge the world into chaos. His investigation leads him to Rick Deckard, a former Blade Runner missing for decades.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "gCcx85zbxz4",
+        "duration_minutes": 164
+      },
+      {
+        "title": "A Quiet Place",
+        "genres": ["Drama", "Horror", "Sci-Fi"],
+        "image_url": "images/covers/A_Quiet_Place.webp",
+        "description": "In a post-apocalyptic world, a family must live in complete silence to avoid creatures that hunt by sound. Tension and fear grow as they fight to survive in an unforgiving environment.",
+        "platforms": ["Amazon Prime Video", "Paramount+"],
+        "trailer_url": "WR7cc5t7tv8",
+        "duration_minutes": 90
+      },
+      {
+        "title": "The Irishman",
+        "genres": ["Crime", "Drama", "Thriller"],
+        "image_url": "images/covers/The_Irishman.webp",
+        "description": "A veteran union official reflects on his life and involvement in Jimmy Hoffa's disappearance, while confronting betrayal and mortality in his twilight years. An epic portrait of the mafia and power in America.",
+        "platforms": ["Netflix"],
+        "trailer_url": "WHXxVmeGQUc",
+        "duration_minutes": 209
+      },
+      {
+        "title": "Rocketman",
+        "genres": ["Biography", "Drama", "Music"],
+        "image_url": "images/covers/Rocketman.webp",
+        "description": "The musical biography of Elton John, chronicling his rise to fame, personal struggles, and quest to find his true self. A journey filled with music, emotions, and reinvention.",
+        "platforms": ["Amazon Prime Video", "Paramount+"],
+        "trailer_url": "S3vO8E2e6G0",
+        "duration_minutes": 121
+      },
+      {
+        "title": "Once Upon a Time in America",
+        "genres": ["Crime", "Drama"],
+        "image_url": "images/covers/Once_Upon_a_Time_in_America.webp",
+        "description": "An epic tale about the lives of a group of Jewish immigrants in New York over several decades, from their youth to their adulthood, in the world of organized crime.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "LcpCRyNo8T8",
+        "duration_minutes": 229
+      },
+      {
+        "title": "The Wolf of Wall Street",
+        "genres": ["Biography", "Comedy", "Drama"],
+        "image_url": "images/covers/The_Wolf_of_Wall_Street.webp",
+        "description": "The true story of Jordan Belfort, a young stockbroker who achieves immense wealth through corruption and financial manipulation, but ultimately faces the consequences of his life of excess.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "iszwuX1AK6A",
+        "duration_minutes": 180
+      },
+      {
+        "title": "The Shape of Water",
+        "genres": ["Adventure", "Drama", "Fantasy"],
+        "image_url": "images/covers/The_Shape_of_Water.webp",
+        "description": "A mute woman working at a secret government laboratory forms a bond with a captive aquatic creature, while confronting intolerance and fear in an atypical, magical love story.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "XFYWazblaUA",
+        "duration_minutes": 123
+      },
+      {
+        "title": "The Martian",
+        "genres": ["Adventure", "Drama", "Sci-Fi"],
+        "image_url": "images/covers/The_Martian.webp",
+        "description": "An astronaut is accidentally left behind on Mars and must use all his wits and ingenuity to survive while battling time and adversity to return home.",
+        "platforms": ["Disney+", "Amazon Prime Video"],
+        "trailer_url": "ej3ioOneTy8",
+        "duration_minutes": 144
+      },
+      {
+        "title": "The Imitation Game",
+        "genres": ["Biography", "Drama", "Thriller"],
+        "image_url": "images/covers/The_Imitation_Game.webp",
+        "description": "Based on the life of Alan Turing, a brilliant mathematician who helped crack Nazi secret codes during World War II while facing persecution for his homosexuality.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "j2jRs4EAvWM",
+        "duration_minutes": 114
+      },
+      {
+        "title": "The Favourite",
+        "genres": ["Biography", "Comedy", "Drama"],
+        "image_url": "images/covers/The_Favourite.webp",
+        "description": "At the court of Queen Anne of Great Britain, two cousins vie for her favor, amid personal and political intrigues. A story of power, betrayal, and dark humor.",
+        "platforms": ["HBO Max"],
+        "trailer_url": "SYb-wkehT1g",
+        "duration_minutes": 119
+      },
+      {
+        "title": "Darkest Hour",
+        "genres": ["Biography", "Drama", "War"],
+        "image_url": "images/covers/Darkest_Hour.webp",
+        "description": "During the early days of World War II, Winston Churchill struggles to keep Britain united while facing the threat of a Nazi invasion. A story of resilience in times of crisis.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "LtJ60u7SUSw",
+        "duration_minutes": 125
+      },
+      {
+        "title": "The Big Short",
+        "genres": ["Biography", "Comedy", "Drama"],
+        "image_url": "images/covers/The_Big_Short.webp",
+        "description": "In the lead-up to the 2008 global financial crisis, a group of investors discovers the housing bubble and risks betting against the financial system. A biting critique of greed and corruption.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "vgqG3ITMv1Q",
+        "duration_minutes": 130
+      },
+      {
+        "title": "Moonrise Kingdom",
+        "genres": ["Adventure", "Comedy", "Drama"],
+        "image_url": "images/covers/Moonrise_Kingdom.webp",
+        "description": "Two young runaways on a New England island embark on a summer adventure while adults try to find them. A nostalgic, visually unique fable about first love.",
+        "platforms": ["HBO Max", "Disney+"],
+        "trailer_url": "_eOI3AamSm8",
+        "duration_minutes": 94
+      },
+      {
+        "title": "Spotlight",
+        "genres": ["Biography", "Drama", "Thriller"],
+        "image_url": "images/covers/Spotlight.webp",
+        "description": "A team of investigative journalists uncovers a sexual abuse scandal in the Catholic Church in Boston. The film follows their arduous work to expose the truth and the consequences of institutional cover-ups.",
+        "platforms": ["Amazon Prime Video", "Hulu"],
+        "trailer_url": "EwdCIpbTN5g",
+        "duration_minutes": 128
+      },
+      {
+        "title": "Midsommar",
+        "genres": ["Drama", "Horror", "Mystery"],
+        "image_url": "images/covers/Midsommar.webp",
+        "description": "A group of friends travels to Sweden to attend a rural festival held once every 90 years. As the celebration progresses, they discover dark secrets and macabre rituals within the community.",
+        "platforms": ["Amazon Prime Video", "Netflix"],
+        "trailer_url": "1Vnghdsjmd0",
+        "duration_minutes": 148
+      },
+      {
+        "title": "The Lobster",
+        "genres": ["Comedy", "Drama", "Romance"],
+        "image_url": "images/covers/The_Lobster.webp",
+        "description": "In a dystopian society, single individuals must find a partner within 45 days or be transformed into animals. A surreal comedy about love, social pressure, and imposed norms.",
+        "platforms": ["Hulu", "Netflix"],
+        "trailer_url": "vU29VfayDMw",
+        "duration_minutes": 118
+      },
+      {
+        "title": "Tinker Tailor Soldier Spy",
+        "genres": ["Drama", "Thriller"],
+        "image_url": "images/covers/Tinker_Tailor_Soldier_Spy.webp",
+        "description": "During the Cold War, a retired British spy is called back to uncover a mole within MI6 intelligence. A story filled with deception, suspicion, and unexpected twists.",
+        "platforms": ["Amazon Prime Video", "Netflix"],
+        "trailer_url": "VW-F1H-Nonk",
+        "duration_minutes": 127
+      },
+      {
+        "title": "A Ghost Story",
+        "genres": ["Drama", "Fantasy", "Mystery"],
+        "image_url": "images/covers/A_Ghost_Story.webp",
+        "description": "After his death, a man becomes a spirit returning to his home, where his wife grieves and time passes. A reflection on life, death, and the passage of time.",
+        "platforms": ["Amazon Prime Video", "Hulu"],
+        "trailer_url": "c_3NMtxeyfk",
+        "duration_minutes": 92
+      },
+      {
+        "title": "The Florida Project",
+        "genres": ["Drama"],
+        "image_url": "images/covers/The_Florida_Project.webp",
+        "description": "A six-year-old girl lives with her mother in a motel near Disney World while facing the struggles of life. A heartfelt look at poverty and childhood.",
+        "platforms": ["Disney+", "Netflix"],
+        "trailer_url": "WwQ-NH1rRT4",
+        "duration_minutes": 115
+      }
+      ,{
+        "title": "The Nice Guys",
+        "genres": ["Action", "Comedy", "Crime"],
+        "image_url": "images/covers/The_Nice_Guys.webp",
+        "description": "A private detective and an enforcer team up to investigate the disappearance of a young woman in 1970s Los Angeles. A mix of action, comedy, and crime with plenty of humor.",
+        "platforms": ["Amazon Prime Video", "Netflix"],
+        "trailer_url": "GQR5zsLHbYw",
+        "duration_minutes": 116
+    },
+    {
+        "title": "Annihilation",
+        "genres": ["Drama", "Horror", "Sci-Fi"],
+        "image_url": "images/covers/Annihilation.webp",
+        "description": "A military expedition explores a mysterious area where the laws of nature appear altered. A science fiction thriller that delves into fear and the unknown.",
+        "platforms": ["Netflix"],
+        "trailer_url": "89OP78l9oF0",
+        "duration_minutes": 115
+    },
+    {
+        "title": "The Master",
+        "genres": ["Drama"],
+        "image_url": "images/covers/The_Master.webp",
+        "description": "A man newly returned from World War II joins a sect led by a charismatic leader, exploring themes of power, control, and the search for identity.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "-EGSWpBDbho",
+        "duration_minutes": 144
+    },
+    {
+        "title": "The Handmaiden",
+        "genres": ["Drama", "Romance", "Thriller"],
+        "image_url": "images/covers/The_Handmaiden.webp",
+        "description": "In Japanese-occupied Korea, a young woman is hired as a maid for an heiress, but both have far more complicated intentions than they seem. A thriller full of twists.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "whldChqCsYk",
+        "duration_minutes": 145
+    },
+    {
+        "title": "Blade Runner",
+        "genres": ["Action", "Drama", "Sci-Fi"],
+        "image_url": "images/covers/Blade_Runner.webp",
+        "description": "In a dystopian future, a police officer specializing in 'retiring' replicants, artificial beings, faces ethical and existential dilemmas while pursuing a group of these beings who have started to rebel.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "eogpIG53Cis",
+        "duration_minutes": 117
+    },
+    {
+        "title": "The Hunt",
+        "genres": ["Drama", "Thriller"],
+        "image_url": "images/covers/The_Hunt.webp",
+        "description": "After a tough divorce, Lucas has rebuilt his life and tries to reconnect with his teenage son. However, a comment or a fleeting lie spirals into a relentless witch hunt against him.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "ieLIOBkMgAQ",
+        "duration_minutes": 118
+    },
+    {
+        "title": "The Secret in Their Eyes",
+        "genres": ["Crime", "Drama", "Mystery"],
+        "image_url": "images/covers/The_Secret_in_Their_Eyes.webp",
+        "description": "An Argentinian ex-prosecutor, while writing a book about his experience, revisits an unresolved case of rape and murder that deeply marked him, intertwining the past with the present.",
+        "platforms": ["Netflix"],
+        "trailer_url": "OB1JrYCVJTg",
+        "duration_minutes": 129
+    },
+    {
+        "title": "The Lives of Others",
+        "genres": ["Drama", "Thriller"],
+        "image_url": "images/covers/The_Lives_of_Others.webp",
+        "description": "In East Germany, a Stasi officer is assigned to spy on an artist couple. However, as he delves into their lives, he begins to question his loyalty to the regime.",
+        "platforms": ["Hulu"],
+        "trailer_url": "n3_iLOp6IhM",
+        "duration_minutes": 137
+    },
+    {
+        "title": "City of God",
+        "genres": ["Crime", "Drama"],
+        "image_url": "images/covers/City_of_God.webp",
+        "description": "In the favelas of Rio de Janeiro, two young men take opposite paths: one seeks to escape the violence, while the other delves into the world of organized crime. A story of survival.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "dcUOO4Itgmw",
+        "duration_minutes": 130
+    },
+    {
+        "title": "Pan's Labyrinth",
+        "genres": ["Drama", "Fantasy", "War"],
+        "image_url": "images/covers/Pan's_Labyrinth.webp",
+        "description": "During post-Civil War Spain, a young girl discovers an underground fantasy world where she must complete three tasks to save her soul. A tale about using fantasy to escape the brutality of reality.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "jVZRnnVSQ8k",
+        "duration_minutes": 118
+    },
+    {
+        "title": "Oldboy",
+        "genres": ["Action", "Drama", "Mystery"],
+        "image_url": "images/covers/Oldboy.webp",
+        "description": "A man is kidnapped and held captive for 15 years without knowing why, only to be released and pursue revenge. A thriller with unexpected twists and constant tension.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "tAaBkFChaRg",
+        "duration_minutes": 120
+    },
+    {
+        "title": "A Separation",
+        "genres": ["Drama"],
+        "image_url": "images/covers/A_Separation.webp",
+        "description": "An Iranian couple faces their differences while fighting for custody of their daughter. At the same time, their country and its social environment play a crucial role in their separation.",
+        "platforms": ["Netflix"],
+        "trailer_url": "58Onuy5USTc",
+        "duration_minutes": 123
+    },
+    {
+        "title": "The Intouchables",
+        "genres": ["Biography", "Comedy", "Drama"],
+        "image_url": "images/covers/The_Intouchables.webp",
+        "description": "A wealthy quadriplegic man forms an unexpected friendship with his caregiver, a young man from a lower-class background. Together, they defy social conventions and embark on an emotionally transformative journey.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "34WIbmXkewU",
+        "duration_minutes": 112
+    },
+    {
+        "title": "The Grandmaster",
+        "genres": ["Action", "Biography", "Drama"],
+        "image_url": "images/covers/The_Grandmaster.webp",
+        "description": "Based on the life of Ip Man, the legendary Wing Chun master and mentor to Bruce Lee, this film narrates his story of struggle, love, and honor during a time of war and social change in China.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "uC5amKLgnFU",
+        "duration_minutes": 108
+    },
+    {
+        "title": "The Pianist",
+        "genres": ["Biography", "Drama", "Music"],
+        "image_url": "images/covers/The_Pianist.webp",
+        "description": "The story of a Polish-Jewish pianist who struggles to survive during the Nazi occupation of Warsaw. A harrowing tale of survival, art, and human resilience.",
+        "platforms": ["Netflix", "Amazon Prime Video"],
+        "trailer_url": "BFwGqLa_oAo",
+        "duration_minutes": 150
+    },
+    {
+        "title": "Roma",
+        "genres": ["Drama"],
+        "image_url": "images/covers/Roma.webp",
+        "description": "A visually stunning portrait of the life of a domestic worker in 1970s Mexico City, navigating personal and social challenges amid political upheaval.",
+        "platforms": ["Netflix"],
+        "trailer_url": "6BS27ngZtxg",
+        "duration_minutes": 135
+    },
+    {
+        "title": "The Tale of the Princess Kaguya",
+        "genres": ["Animation", "Adventure", "Drama"],
+        "image_url": "images/covers/The_Tale_of_the_Princess_Kaguya.webp",
+        "description": "Based on an ancient Japanese folktale, the story follows the life of a magical princess who grows rapidly and must face the demands of her royal status while seeking her destiny.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "W71mtorCZDw",
+        "duration_minutes": 137
+    },
+    {
+        "title": "Let the Right One In",
+        "genres": ["Drama", "Horror", "Romance"],
+        "image_url": "images/covers/Let_the_Right_One_In.webp",
+        "description": "A lonely boy befriends his mysterious neighbor, who turns out to be a vampire. Together, they face violence and isolation in a unique story of love and friendship amid terror.",
+        "platforms": ["Amazon Prime Video", "Hulu"],
+        "trailer_url": "ICp4g9p_rgo",
+        "duration_minutes": 115
+    },{
+        "title": "La Haine",
+        "genres": ["Crime", "Drama"],
+        "image_url": "images/covers/La_Haine.webp",
+        "description": "After three days of riots in the Parisian suburbs, three young men confront the consequences of their actions and the social tensions surrounding them, grappling with violence and inequality.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "OfE0o9B3dhI",
+        "duration_minutes": 98
+    },
+    {
+        "title": "Loving Vincent",
+        "genres": ["Animation", "Biography", "Drama"],
+        "image_url": "images/covers/Loving_Vincent.webp",
+        "description": "An animated film depicting the life and mysterious death of Vincent van Gogh, using an innovative oil painting technique inspired by van Gogh's own work.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "Gy0RVDM1sNA",
+        "duration_minutes": 94
+    },
+    {
+        "title": "The Secret Life of Walter Mitty",
+        "genres": ["Adventure", "Comedy", "Drama"],
+        "image_url": "images/covers/The_Secret_Life_of_Walter_Mitty.webp",
+        "description": "Walter Mitty, an ordinary man, embarks on an unexpected adventure to recover a lost photo that will change his life forever. A story of self-discovery and bravery.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "QD6cy4PBQPI",
+        "duration_minutes": 114
+    },
+    {
+        "title": "Children of Men",
+        "genres": ["Action", "Drama", "Sci-Fi"],
+        "image_url": "images/covers/Children_of_Men.webp",
+        "description": "In a dystopian future where humanity is infertile, a man is tasked with protecting a pregnant woman whose existence could save the human race.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "2VT2apoX90o",
+        "duration_minutes": 109
+    },
+    {
+        "title": "Ex Machina",
+        "genres": ["Drama", "Sci-Fi", "Thriller"],
+        "image_url": "images/covers/Ex_Machina.webp",
+        "description": "A young programmer is selected to evaluate an advanced artificial intelligence in a remote laboratory. A psychological thriller exploring the ethics of AI.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "EoQuVnKhxaM",
+        "duration_minutes": 108
+    },
+    {
+        "title": "The Babadook",
+        "genres": ["Drama", "Horror", "Thriller"],
+        "image_url": "images/covers/The_Babadook.webp",
+        "description": "A mother and her son face the presence of a terrifying entity that seems to have emerged from a children's book. A chilling psychological horror film.",
+        "platforms": ["Netflix"],
+        "trailer_url": "k5WQZzDRVtw",
+        "duration_minutes": 93
+    },
+    {
+        "title": "The Invisible Man",
+        "genres": ["Drama", "Horror", "Thriller"],
+        "image_url": "images/covers/The_Invisible_Man.webp",
+        "description": "A woman escapes an abusive relationship with a wealthy man, only to discover he has found a way to become invisible, haunting her life in terrifying ways.",
+        "platforms": ["Amazon Prime Video", "HBO Max"],
+        "trailer_url": "dSBsNeYqh-k",
+        "duration_minutes": 124
+    },
+    {
+        "title": "The Killing of a Sacred Deer",
+        "genres": ["Drama", "Horror", "Thriller"],
+        "image_url": "images/covers/The_Killing_of_a_Sacred_Deer.webp",
+        "description": "A successful surgeon finds himself in a dreadful situation when a young man begins to exact revenge on him and his family in a disturbing and horrifying way.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "CQFdGfwChtw",
+        "duration_minutes": 121
+    },
+    {
+        "title": "Whisper of the Heart",
+        "genres": ["Animation", "Adventure", "Drama"],
+        "image_url": "images/covers/Whisper_of_the_Heart.webp",
+        "description": "A young girl embarks on a journey of self-discovery as she searches for a mysterious boy who left a series of clues about a cat and an antique ring.",
+        "platforms": ["Netflix"],
+        "trailer_url": "0pVkiod6V0U",
+        "duration_minutes": 111
+    },
+    {
+        "title": "Willy Wonka & the Chocolate Factory",
+        "genres": ["Adventure", "Comedy", "Family"],
+        "image_url": "images/covers/Willy_Wonka_&_the_Chocolate_Factory.webp",
+        "description": "A humble boy wins a golden ticket to visit Willy Wonka's chocolate factory, where he experiences a series of surprising and magical adventures.",
+        "platforms": ["HBO Max"],
+        "trailer_url": "2WKPKnggJqk",
+        "duration_minutes": 100
+    },
+    {
+        "title": "The Bridge on the River Kwai",
+        "genres": ["Adventure", "Drama", "War"],
+        "image_url": "images/covers/The_Bridge_on_the_River_Kwai.webp",
+        "description": "During World War II, British prisoners of war are forced to build a bridge in Burma, but one man becomes obsessed with the project.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "F5WlzJvBKQs",
+        "duration_minutes": 161
+    },
+    {
+        "title": "Moulin Rouge!",
+        "genres": ["Drama", "Musical", "Romance"],
+        "image_url": "images/covers/Moulin_Rouge!.webp",
+        "description": "In bohemian Paris at the end of the 19th century, a young writer falls in love with a courtesan while struggling against the social barriers and oppression of forbidden love.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "2PpgPxjzbkA",
+        "duration_minutes": 127
+    },
+    {
+        "title": "The Artist",
+        "genres": ["Comedy", "Drama", "Romance"],
+        "image_url": "images/covers/The_Artist.webp",
+        "description": "A story about the transition from silent to sound cinema and its impact on the life of a silent film actor struggling to adapt to the changing times.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "YB9Oq0hn5KY",
+        "duration_minutes": 100
+    },
+    {
+        "title": "The Great Dictator",
+        "genres": ["Comedy", "Drama"],
+        "image_url": "images/covers/The_Great_Dictator.webp",
+        "description": "Charlie Chaplin plays both a tyrannical dictator and a Jewish barber in this political satire, using comedy to deliver a powerful critique of fascism and totalitarianism.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "i1C6qZVeFtA",
+        "duration_minutes": 125
+    },
+    {
+        "title": "A Clockwork Orange",
+        "genres": ["Crime", "Drama", "Sci-Fi"],
+        "image_url": "images/covers/A_Clockwork_Orange.webp",
+        "description": "A young delinquent undergoes experimental treatment that turns him into a victim of social control. A disturbing and violent exploration of freedom and human behavior.",
+        "platforms": ["HBO Max", "Amazon Prime Video"],
+        "trailer_url": "T54uZPI4Z8A",
+        "duration_minutes": 136
+    },
+    {
+        "title": "Amélie",
+        "genres": ["Comedy", "Romance"],
+        "image_url": "images/covers/Amélie.webp",
+        "description": "Amélie, a young woman living in Paris, decides to change the lives of those around her while seeking love in her own life. A charming and visually stunning tale about human connection.",
+        "platforms": ["Amazon Prime Video"],
+        "trailer_url": "JMPOXWSL_PY",
+        "duration_minutes": 122
+    }
     ]
     

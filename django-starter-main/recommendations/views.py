@@ -85,43 +85,52 @@ def recommendations_view(request):
     sparse_matrix = csr_matrix(user_item_matrix.values)
     similarity_matrix = calculate_similarity(sparse_matrix)
     recommended_movies = get_recommendations(user_index, user_item_matrix, similarity_matrix)
-    recommended_movies_objects = [Movie.objects.get(title=item) for item in recommended_movies]
+
+    # Obtener objetos Movie con datos adicionales
+    recommended_movies_objects = [
+        {'id': item.id, 'title': item.title, 'image_url': item.image_url} 
+        for item in Movie.objects.filter(title__in=recommended_movies)
+    ]
 
     # Obtener datos para recomendaciones basadas en contenido
     user_ratings = Rating.objects.filter(user=user)
     if user_ratings.exists():
         recommended_content_movies = recommend_items_content(user_ratings)
-        # Aquí necesitamos que top_genres devuelva una lista de objetos Genre, no solo nombres.
-        top_genres = get_top_genres(user_ratings)
+        top_genres = get_top_genres(user_ratings)  # Asegúrate de que esto devuelva objetos Genre
     else:
         recommended_content_movies = []
         top_genres = []
 
     # Obtener detalles de las películas recomendadas basadas en contenido
-    recommended_content_movies_objects = [Movie.objects.get(title=item) for item in recommended_content_movies]
+    recommended_content_movies_objects = [
+        {'id': item.id, 'title': item.title, 'image_url': item.image_url} 
+        for item in Movie.objects.filter(title__in=recommended_content_movies)
+    ]
 
+    # Obtener las películas calificadas por el usuario
     rated_movies = []
-    user_ratings = Rating.objects.filter(user=user)
     user_rated_movies = Movie.objects.filter(id__in=user_ratings.values_list('movie_id', flat=True))
 
     for movie in user_rated_movies:
         rating = user_ratings.get(movie_id=movie.id).value
-        # Usar imágenes para las estrellas
         filled_star_image = '/static/images/star-filled.PNG'  # Ruta de la estrella llena
         empty_star_image = '/static/images/star-empty.PNG'    # Ruta de la estrella vacía
         stars_display = [filled_star_image] * rating + [empty_star_image] * (5 - rating)
         
         rated_movies.append({
+            'id': movie.id,  # Asegurar que incluimos el ID de la película
             'title': movie.title,
+            'image_url': movie.image_url,
             'stars': stars_display
         })
 
+    # Contexto para la plantilla
     context = {
         'recommended_movies': recommended_movies_objects,
         'recommended_content_movies': recommended_content_movies_objects,
         'user_rated_movies': user_ratings,
         'rated_movies': rated_movies,
-        'top_genres': top_genres,  # Ahora 'top_genres' es una lista de objetos de tipo Genre
+        'top_genres': top_genres,  # Lista de objetos Genre
     }
 
     return render(request, 'recommendations/recommendations.html', context)
@@ -159,7 +168,7 @@ def movie_detail(request, movie_id):
 
     # Obtener el trailer URL
     trailer_url = movie.trailer_url
-
+    
     # Pasar la película, las estrellas generadas, la duración, plataformas y tráiler al contexto
     context = {
         'movie': movie,

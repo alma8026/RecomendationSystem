@@ -1,5 +1,6 @@
 {% extends 'layouts/blank.html' %}
 {% block styles %}
+{% load static %}
 <style>
     main {
         padding: 3rem 0;
@@ -60,6 +61,7 @@
         padding: 1rem 0;
         transition: background-color 0.3s ease;
         border-radius: 20px;
+        padding-left: 15px;
     }
     
     .li-sections:last-child {
@@ -143,11 +145,11 @@
         letter-spacing: 0.5px;
     }
     
-    .favorite-genres, .recommended-movies {
+    .favorite-genres {
         margin-bottom: 2rem;
     }
     
-    .favorite-genres h3, .recommended-movies h3 {
+    .favorite-genres h3 {
         font-size: 1.75rem;
         font-weight: 600;
         color: #555;
@@ -179,31 +181,7 @@
         transform: scale(1.1);
     }
     
-    .recommended-movies ul {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
     
-    .recommended-movies .movie-item {
-        margin-bottom: 20px;
-        padding: 20px 25px;
-        border: 1px solid #ddd;
-        border-radius: 15px;
-        background-color: #fff;
-        width: 100%;
-        max-width: 700px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .recommended-movies .movie-item:hover {
-        background-color: #f4f4f4;
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    }
 
     /* Sección de Películas Calificadas */
     .user-ratings {
@@ -276,6 +254,22 @@
         box-shadow: 6px 4px 38px -8px rgba(220,38,38,1) !important;
       }
 
+      .movie-image-container {
+        width: 40px; /* Tamaño pequeño */
+        height: 100%; /* Tamaño pequeño y cuadrado */
+        margin-right: 10px; /* Separación entre imagen y texto */
+        overflow: hidden; /* Asegura que nada se salga del contenedor */
+        border-radius: 4px; /* Esquinas ligeramente redondeadas */
+        border: 1px solid #ddd; /* Borde para resaltar la imagen */
+    }
+    
+    /* Imagen de la película, ajustada para no ser recortada */
+    .movie-image {
+        width: 100%; /* Hace que la imagen ocupe todo el espacio disponible */
+        height: 100%; /* Hace que la imagen ocupe todo el espacio disponible */
+        object-fit: contain; /* Ajusta la imagen para que se vea completa sin recorte */
+    }
+
     @media (max-width: 1200px) {
         .movie-title {
             max-width: 600px;
@@ -337,14 +331,22 @@
             <ul class="ul-sections">
                 {% for movie in rated_movies %}
                     <li class="li-sections px-3 mt-1">
-                        <span class="movie-title">{{ movie.title }}</span>
+                        <!-- Contenedor para la imagen de la película -->
+                        <div class="movie-image-container">
+                            <a href="{% url 'movie_detail' movie.id %}">
+                                <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="movie-image">
+                            </a>
+                        </div>
+                        <!-- Título de la película -->
+                        <span class="movie-title"><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a></span>
+                        <!-- Contenedor para las estrellas de calificación -->
                         <div class="stars-container">
-                        {% for star in movie.stars %}
-                            <span class="stars">
-                                <img src="{{ star }}" alt="Star" class="star-icon">
-                            </span>
-                        {% endfor %}
-                        <div>
+                            {% for star in movie.stars %}
+                                <span class="stars">
+                                    <img src="{{ star }}" alt="Star" class="star-icon">
+                                </span>
+                            {% endfor %}
+                        </div>
                     </li>
                     <hr class="mt-1">
                 {% empty %}
@@ -360,6 +362,9 @@
           <ul class="ul-sections">
               {% for movie in recommended_movies %}
                   <li class="li-sections">
+                    <div class="movie-image-container">
+                        <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="movie-image">
+                    </div>
                       <span class="movie-title px-3">{{ movie.title }}</span>
                       <div class="px-3">
                         <a href="{% url 'movie_detail' movie.id %}"><button class="ver-btn">Ver ahora</button></a>
@@ -389,6 +394,9 @@
           <ul class="ul-sections">
               {% for movie in recommended_content_movies %}
                   <li class="li-sections">
+                    <div class="movie-image-container">
+                        <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="movie-image">
+                    </div>
                       <span class="movie-title px-3">{{ movie.title }}</span>
                       <div class="px-3">
                         <a href="{% url 'movie_detail' movie.id %}"><button class="ver-btn">Ver ahora</button></a>

@@ -6,27 +6,40 @@
     /* Contenedor principal de detalles de la película */
     .movie-detail-container {
         max-width: 1200px;
-        margin: 40px auto;  /* Mantener centrado con un margen superior */
+        margin: 40px auto;  
         padding: 30px;
         background-color: #f9f9f9;
         border-radius: 8px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         display: flex;
-        flex-wrap: wrap;
         gap: 30px;
         justify-content: space-between;
-        /* Los márgenes laterales son implícitos por el 'auto' en el margin horizontal */
+        flex-wrap: wrap;
     }
 
     /* Estilo de la imagen de la película */
+    .movie-image-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; /* Espacio entre la imagen y el rating */
+    }
+    
     .movie-image {
-        width: 100%;
-        max-width: 400px;
-        height: auto;
-        border-radius: 8px;
+        width: auto;
+        max-width: 500px;
+        height: 100%;
+        border-radius: 12px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
         object-fit: cover;
+    }
+
+    .movie-rating {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.2rem;
     }
 
     /* Contenedor de la descripción */
@@ -60,7 +73,7 @@
         display: inline-block;
         margin: 5px;
         padding: 8px 12px;
-        background-color: #22d3ee;
+        background: linear-gradient(135deg, #3b82f6, #22d3ee);
         color: white;
         font-size: 1rem;
         border-radius: 20px;
@@ -69,7 +82,6 @@
     }
 
     .genre-badge:hover {
-        background-color: #3b82f6;
         transform: scale(1.05);
     }
 
@@ -94,10 +106,21 @@
 
     @media (max-width: 1200px) {
         .movie-detail-container {
-            flex-direction: column;
+            flex-direction: row;
             padding: 25px;
             margin-left: 30px;  /* Márgenes para evitar que toque el borde */
             margin-right: 30px; /* Márgenes para evitar que toque el borde */
+        }
+    }
+
+    @media (max-width: 1100px) {
+        .movie-detail-container {
+            display: flex;
+            flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+            align-items: center; /* Centra horizontalmente */
+            justify-content: center; /* Centra verticalmente */
+            text-align: center; /* Alinea el texto dentro de los elementos */
+            gap: 20px; /* Espaciado uniforme entre los elementos */
         }
     }
 
@@ -177,18 +200,129 @@
     .rate-stars:hover {
         transform: scale(1.1);  /* Aumenta ligeramente el tamaño de las estrellas al hacer hover */
     }
+
+    .movie-platforms {
+        display: flex;
+        align-items: center;
+        gap: 15px; /* Espacio entre los iconos */
+        margin-top: 20px;
+    }
+
+    .responsive-iframe-container {
+        position: relative;
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+        padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+        height: 0;
+        overflow: hidden;
+        border-radius: 8px; /* Opcional: borde redondeado */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
+    }
+    
+    .responsive-iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none; /* Opcional: sin bordes */
+    }
+
+    .movie-duration {
+        display: inline-flex; /* Alinea el contenido horizontalmente */
+        align-items: center; /* Centra verticalmente los elementos */
+        gap: 10px; /* Espacio entre el título y la duración */
+        font-size: 1.2rem; /* Tamaño del texto */
+        font-weight: bold; /* Resalta el texto */
+        color: #fff; /* Texto blanco */
+        background: linear-gradient(135deg, #3b82f6, #22d3ee); /* Degradado elegante */
+        padding: 10px 18px; /* Espaciado interno */
+        border: 2px solid #3b82f6;
+        border-radius: 25px; /* Bordes suaves */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra ligera */
+        transform: scale(1); /* Escala inicial */
+        transition: all 0.3s ease-in-out; /* Animación suave */
+        max-width: fit-content; /* Ajuste al contenido */
+        margin-bottom: 20px;
+    }
+    
+    .movie-duration .text-xl {
+        font-size: 1.4rem; /* Tamaño ligeramente mayor para destacar */
+        color: #facc15; /* Amarillo vibrante */
+        text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4); /* Sombra sutil en el texto */
+        transition: color 0.3s ease-in-out; /* Animación de color */
+    }
+    
+    .movie-duration p {
+        font-size: 1.3rem; /* Tamaño más grande para el valor */
+        color: #ffffff; /* Blanco puro */
+        margin: 0; /* Sin márgenes adicionales */
+        transition: transform 0.3s ease-in-out; /* Animación suave al pasar el cursor */
+        text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3); /* Efecto de relieve */
+    }
+    
+    .movie-duration:hover .text-xl {
+        color: #f4d03f; /* Color más claro al hacer hover */
+    }
+    
+    .movie-duration:hover p {
+        transform: translateY(-2px); /* Levanta sutilmente el valor al hacer hover */
+    }
+    
+    /* Ícono de reloj antes del texto */
+    .movie-duration::before {
+        content: '\23F1'; /* Unicode del reloj */
+        font-size: 1.8rem; /* Tamaño del ícono */
+        color: #facc15; /* Amarillo vibrante */
+        margin-right: 8px; /* Espacio con el texto */
+        transition: transform 0.6s ease-in-out; /* Rotación suave */
+    }
+    
+    .movie-duration:hover::before {
+        transform: rotate(20deg); /* Gira ligeramente el ícono al hacer hover */
+    }
+    
+    
+    /* Estilo para los iconos de plataformas */
+    .platform-logo {
+        width: 40px;              /* Tamaño estándar para todos los iconos */
+        height: 40px;             /* Mantiene la proporción 1:1 */
+        object-fit: contain;      /* Asegura que la imagen se ajuste sin distorsionar */
+        transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Animación suave para transformación y filtro */
+    }
+
+    /* Efecto hover para agrandar los iconos y aplicar brillo */
+    .platform-logo:hover {
+        transform: scale(1.2);    /* Aumenta el tamaño del icono */
+        filter: brightness(1.2);  /* Aumenta el brillo para resaltar el icono */
+        cursor: pointer;
+    }
+
+    /* Agregar espaciado entre los iconos */
+    .platform-badge {
+        margin-right: 15px; /* Espacio entre los iconos */
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-
 <div class="movie-detail-container">
     <!-- Imagen de la película a la izquierda -->
-    {% if movie.image_url %}
-        <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="movie-image">
-    {% else %}
-        <p>No image available</p>
-    {% endif %}
+    <div class="movie-image-container">
+        {% if movie.image_url %}
+            <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="movie-image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+
+        <!-- Calificación justo debajo de la imagen -->
+        <div class="movie-rating">
+            <strong>Rating: </strong>
+            <div class="stars-display">
+                <!-- Las estrellas generadas por la vista -->
+                {{ stars_display|safe }}
+            </div>
+        </div>
+    </div>
 
     <!-- Descripción y géneros de la película a la derecha -->
     <div class="movie-description-container">
@@ -202,45 +336,75 @@
 
         <!-- Géneros de la película -->
         <div class="movie-genres">
-            <strong>Genres: </strong>
+            <strong class="text-xl">Genres: </strong>
             {% for genre in movie.genres.all %}
             <a href="{% url 'movie_list' %}?search=&genre={{ genre.id }}" class="genre-badge">{{ genre.name }}</a>
             {% endfor %}
         </div>
 
-        <!-- Mostrar las plataformas -->
-        <div class="movie-platforms">
-            <strong>Available on: </strong>
-            {% for platform in platforms %}
-                <span class="platform-badge">{{ platform.name }}</span>
-            {% empty %}
-                <p>No platforms available.</p>
-            {% endfor %}
-        </div>
-
         <!-- Mostrar la duración -->
         <div class="movie-duration">
-            <strong>Duration: </strong>
+            <strong class="text-xl">Duration: </strong>
             <p>{{ duration_str }}</p>
         </div>
 
         <!-- Mostrar el tráiler -->
         {% if trailer_url %}
         <div class="movie-trailer">
-            <strong>Trailer: </strong>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ movie.trailer_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <strong class="text-xl">Trailer: </strong>
+            <div class="responsive-iframe-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ movie.trailer_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
         {% else %}
             <p>No trailer available.</p>
         {% endif %}
 
-        <!-- Mostrar estrellas de calificación -->
-        <div class="movie-rating">
-            <strong>Your Rating: </strong>
-            <div class="stars-display">
-                <!-- Las estrellas generadas por la vista -->
-                {{ stars_display|safe }}
-            </div>
+        <!-- Mostrar las plataformas -->
+        <div class="movie-platforms">
+            <strong>Available on: </strong>
+            {% for platform in platforms %}
+                <span class="platform-badge">
+                    <!-- Verifica la plataforma y muestra el ícono correspondiente dentro de un enlace -->
+                    {% if platform.name == 'Netflix' %}
+                        <a href="https://www.netflix.com" target="_blank">
+                            <img src="{% static 'images/platform-icons/netflix.png' %}" alt="Netflix" class="platform-logo">
+                        </a>
+                    {% elif platform.name == 'Amazon Prime Video' %}
+                        <a href="https://www.primevideo.com/" target="_blank">
+                            <img src="{% static 'images/platform-icons/amazon_prime_video.png' %}" alt="Amazon Prime Video" class="platform-logo">
+                        </a>
+                    {% elif platform.name == 'HBO Max' %}
+                        <a href="https://www.hbomax.com" target="_blank">
+                            <img src="{% static 'images/platform-icons/hbo_max.png' %}" alt="HBO Max" class="platform-logo">
+                        </a>
+                    {% elif platform.name == 'Paramount+' %}
+                        <a href="https://www.paramountplus.com" target="_blank">
+                            <img src="{% static 'images/platform-icons/paramount_plus.png' %}" alt="Paramount+" class="platform-logo">
+                        </a>
+                    {% elif platform.name == 'Apple TV' %}
+                        <a href="https://tv.apple.com" target="_blank">
+                            <img src="{% static 'images/platform-icons/apple_tv.png' %}" alt="Apple TV" class="platform-logo">
+                        </a>
+                    {% elif platform.name == 'Disney+' %}
+                        <a href="https://www.disneyplus.com" target="_blank">
+                            <img src="{% static 'images/platform-icons/disney_plus.png' %}" alt="Disney+" class="platform-logo">
+                        </a>
+                    {% elif platform.name == 'Peacock' %}
+                        <a href="https://www.peacocktv.com" target="_blank">
+                            <img src="{% static 'images/platform-icons/peacock.png' %}" alt="Peacock" class="platform-logo">
+                        </a>
+                    {% elif platform.name == 'Hulu' %}
+                        <a href="https://www.hulu.com" target="_blank">
+                            <img src="{% static 'images/platform-icons/hulu.png' %}" alt="Hulu" class="platform-logo">
+                        </a>
+                    {% else %}
+                        <span>{{ platform.name }}</span>
+                    {% endif %}
+                </span>
+            {% empty %}
+                <p>No platforms available.</p>
+            {% endfor %}
         </div>
     </div>
 </div>
