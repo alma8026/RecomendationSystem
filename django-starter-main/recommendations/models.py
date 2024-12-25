@@ -29,7 +29,7 @@ class Genre(models.Model):
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    value = models.IntegerField()  # Debe permitir valores enteros
+    value = models.DecimalField(max_digits=5, decimal_places=2)  # Permite valores decimales
 
     class Meta:
         unique_together = ('user', 'movie')  # Asegura que un usuario no califique la misma película más de una vez

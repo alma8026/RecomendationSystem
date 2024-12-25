@@ -2,7 +2,7 @@
     <div class="flex items-center gap-4">
         <a class="flex items-center gap-2 hover:text-slate-200 transition-colors duration-300" href="/">
             <img class="h-12 md:h-14 hover:scale-110 transition-transform duration-300" src="/static/images/rawLogoTransparent.PNG" alt="Logo"/>
-            <span class="text-xl md:text-2xl font-bold tracking-wide">EzCinePicker</span>
+            <span class="text-xl md:text-2xl font-bold tracking-wide">CineAdvisor</span>
         </a>
     </div>
 
@@ -25,8 +25,8 @@
             <ul class="space-y-4 text-center text-lg w-full max-w-xs">
                 {% if request.user.is_authenticated %}
                 <li><a href="/" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Home</a></li>
-                <li><a href="{% url 'movie_list' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Películas</a></li>
-                <li><a href="{% url 'recommendations' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Tus Calificaciones</a></li>
+                <li><a href="{% url 'movie_list' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Movies</a></li>
+                <li><a href="{% url 'recommendations' %}" class="block px-4 py-3 text-white hover:bg-gray-700 rounded-lg transition-colors duration-300">Your Califications</a></li>
                 <li x-data="{ dropdownOpen: false }" class="relative">
                     <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none flex items-center justify-center text-white hover:bg-gray-700 rounded-lg px-4 py-3 transition-colors duration-300">
                         <img class="h-10 w-10 rounded-full object-cover border-2 border-gray-600" src="{{ user.profile.avatar }}"/>
@@ -68,13 +68,13 @@
             </li>
             <li class="flex items-center">
                 <a href="{% url 'movie_list' %}" class="relative group hover:text-cyan-400 transition-colors duration-300 px-4 py-2 rounded-lg">
-                    Películas
+                    Movies
                     <span class="absolute inset-x-0 bottom-0 h-0.5 bg-cyan-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                 </a>
             </li>
             <li class="flex items-center">
                 <a href="{% url 'recommendations' %}" class="relative group hover:text-cyan-400 transition-colors duration-300 px-4 py-2 rounded-lg">
-                    Tus Calificaciones
+                    Your Califications
                     <span class="absolute inset-x-0 bottom-0 h-0.5 bg-cyan-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
                 </a>
             </li>

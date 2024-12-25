@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie, Rating, Genre
-from django.db.models import Count
+from math import floor, isclose
+from django.db.models import Count, Avg
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
@@ -112,11 +113,22 @@ def recommendations_view(request):
     user_rated_movies = Movie.objects.filter(id__in=user_ratings.values_list('movie_id', flat=True))
 
     for movie in user_rated_movies:
+        # Obtener la calificación del usuario para esta película
         rating = user_ratings.get(movie_id=movie.id).value
-        filled_star_image = '/static/images/star-filled.PNG'  # Ruta de la estrella llena
-        empty_star_image = '/static/images/star-empty.PNG'    # Ruta de la estrella vacía
-        stars_display = [filled_star_image] * rating + [empty_star_image] * (5 - rating)
-        
+        full_stars = int(floor(rating))  # Parte entera de la calificación
+        has_half_star = rating - full_stars >= 0.5  # Determina si hay media estrella
+
+        # Rutas de las imágenes de las estrellas
+        filled_star_image = '/static/images/star-filled.PNG'
+        empty_star_image = '/static/images/star-empty.PNG'
+        half_star_image = '/static/images/star-half.PNG'
+
+        # Generar las estrellas para la calificación
+        stars_display = [filled_star_image] * full_stars
+        if has_half_star:
+            stars_display.append(half_star_image)
+        stars_display += [empty_star_image] * (5 - len(stars_display))
+
         rated_movies.append({
             'id': movie.id,  # Asegurar que incluimos el ID de la película
             'title': movie.title,
@@ -144,19 +156,50 @@ def movie_detail(request, movie_id):
     rating = Rating.objects.filter(user=request.user, movie=movie).first()
     
     # Si existe una calificación, la tomamos, si no, la ponemos a 0
-    user_rating_value = rating.value if rating else 0
-    if(user_rating_value > 0):
-        # Generamos el HTML para mostrar las estrellas, similar a lo que haces en rate_movie
-        stars_display = ''.join(
-            f'<span class="star-container"><img class="rate-stars" src="/static/images/star-filled.PNG" alt="Star Filled" class="star-img"></span>' for _ in range(user_rating_value)
-        ) + ''.join(
-            f'<span class="star-container"><img class="rate-stars" src="/static/images/star-empty.PNG" alt="Star Empty" class="star-img"></span>' for _ in range(5 - user_rating_value)
-        )
-    else:
-        stars_display = ''.join(
-            f'<span class="star-container">No calificada</span>'
-        )
+    user_rating_value = float(rating.value) if rating else 0.0
 
+    # Función auxiliar para generar las estrellas
+    def generate_stars_display(rating_value):
+        filled_star_image = '/static/images/star-filled.PNG'
+        half_star_image = '/static/images/half-star.PNG'
+        empty_star_image = '/static/images/star-empty.PNG'
+        
+
+        if rating_value > 0:
+            # Determinar estrellas llenas, media estrella y vacías
+            full_stars = int(floor(rating_value))  # Parte entera de la calificación
+            fractional_part = rating_value - full_stars  # Parte decimal de la calificación
+            has_half_star = 0.25 <= fractional_part < 0.75  # Verifica si hay media estrella
+
+            # Crear la representación visual
+            stars_display = ''.join(
+                f'<span class="star-container"><img class="rate-stars w-6 h-6" src="{filled_star_image}" alt="Star Filled"></span>' 
+                for _ in range(full_stars)
+            )
+            if has_half_star:
+                stars_display += f'<span class="star-container"><img class="rate-stars w-6 h-6" src="{half_star_image}" alt="Half Star"></span>'
+            stars_display += ''.join(
+                f'<span class="star-container"><img class="rate-stars w-6 h-6" src="{empty_star_image}" alt="Star Empty"></span>' 
+                for _ in range(5 - full_stars - (1 if has_half_star else 0))
+            )
+        else:
+            stars_display = '<span class="star-container">No calificada</span>'
+        
+        return stars_display
+
+    # Generar estrellas para la calificación del usuario
+    stars_display = generate_stars_display(user_rating_value)
+
+    # Calcular la calificación media de la película
+    avg_rating = Rating.objects.filter(movie=movie).aggregate(Avg('value'))['value__avg'] or 0.0
+
+    # Generar estrellas para la calificación media
+    stars_display_avg = generate_stars_display(avg_rating)
+    
+    # Formatear las calificaciones como números con dos decimales
+    user_rating_value_formatted = f"{user_rating_value:.2f}"
+    avg_rating_formatted = f"{avg_rating:.2f}"
+    
     # Convertir la duración a horas y minutos
     duration_minutes = movie.duration_minutes or 0
     hours = duration_minutes // 60
@@ -173,6 +216,9 @@ def movie_detail(request, movie_id):
     context = {
         'movie': movie,
         'stars_display': stars_display,
+        'stars_display_avg': stars_display_avg,  # Calificación promedio visual
+        'user_rating_value': user_rating_value_formatted,  # Calificación del usuario formateada
+        'avg_rating_value': avg_rating_formatted,  # Calificación promedio formateada
         'duration_str': duration_str,
         'platforms': platforms,
         'trailer_url': trailer_url,

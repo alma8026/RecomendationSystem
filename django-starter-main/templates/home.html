@@ -11,20 +11,20 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex items-end">
                 <div class="p-8 text-center sm:text-left">
                     <!-- Título -->
-                    <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">¡Descubre, Puntúa y Comparte!</h1>
+                    <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">Discover, Rate and Share!</h1>
                     <!-- Descripción -->
                     <p class="text-lg max-w-2xl text-gray-300 mb-6 mx-auto sm:mx-0">
-                        Aquí descubrirás nuevas recomendaciones personalizadas basadas en tus gustos y preferencias. 
-                        <span class="text-yellow-300 font-bold">¡Explora y encuentra tus nuevas películas favoritas con facilidad!</span>
+                        Here you will discover new personalized recommendations based on your tastes and preferences. 
+                        <span class="text-yellow-300 font-bold">Browse and find your new favorite movies with ease!</span>
                     </p>
                     <!-- Botones -->
                     {% if request.user.is_authenticated %}
                     {% else %}
                     <div class="flex flex-col sm:flex-row gap-6">
-                        <a href="" class="bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-yellow-500 transition-transform transform hover:scale-105 text-center w-full sm:w-auto">
+                        <a href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}" class="bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-yellow-500 transition-transform transform hover:scale-105 text-center w-full sm:w-auto">
                             Regístrate Gratis
                         </a>
-                        <a href="" class="bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 text-center w-full sm:w-auto">
+                        <a href="{% url 'account_login' %}" class="bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 text-center w-full sm:w-auto">
                             Inicia Sesión
                         </a>
                     </div>
@@ -34,10 +34,40 @@
         </div>
     </section>
 
+    <!-- Top Rated Movies Section -->
+    <section class="top-rated-movies mb-16" aria-label="Mejor puntuadas por los usuarios">
+        <h2 class="text-3xl font-semibold mb-6 text-violet-100 border-b-2 border-violet-400">Top rated by community</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {% for movie in top_rated_movies %}
+                <div class="flex flex-col bg-gradient-to-t from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-xl hover:scale-105 transition-all duration-300">
+                    <div class="relative w-full h-[500px]">
+                        <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="w-full h-full object-cover rounded-t-lg">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                            <h4 class="text-lg font-bold text-white">{{ movie.title }}</h4>
+                            <div class="flex">
+                                <!-- Mostrar las estrellas generadas -->
+                                <div class="flex space-x-1">
+                                    {{ movie.stars_display|safe }} - {{ movie.star_num }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3">
+                        <a href="{% url 'movie_detail' movie.id %}" class="block mt-auto">
+                            <button class="bg-violet-600 hover:bg-violet-800 px-6 py-2 rounded-full text-white transition-colors w-full">
+                                See More
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
     <!-- Common Movies Section -->
     {% if common_movies %}
     <section class="mb-16" aria-label="Recomendaciones destacadas">
-        <h2 class="text-3xl font-extrabold mb-6 border-b-2 border-yellow-400 text-yellow-100">Muy alta probabilidad de que te guste:</h2>
+        <h2 class="text-3xl font-extrabold mb-6 border-b-2 border-yellow-400 text-yellow-100">Great chance you'll like it:</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {% for movie in common_movies %}
             <div class="group relative flex flex-col rounded-xl overflow-hidden bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 transform hover:scale-105 transition-all duration-600 ease-out card hover:shadow-2xl hover:shadow-yellow-500/70">
@@ -55,7 +85,7 @@
                     <a href="{% url 'movie_detail' movie.id %}" class="relative block mt-auto">
                         <button class="relative px-8 py-3 text-lg font-bold text-yellow-100 bg-transparent border-2 border-yellow-500 rounded-full overflow-hidden group transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-yellow-300 w-full">
                             <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-yellow-500 to-yellow-600 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"></span>
-                            <span class="relative z-10">Ver ahora</span>
+                            <span class="relative z-10">See More</span>
                         </button>
                     </a>  
                 </div>
@@ -67,7 +97,7 @@
 
 {% if recommended_movies_objects %}
     <section class="mb-16" aria-label="Películas recomendadas">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-cyan-300">A usuarios similares también les ha gustado...</h2>
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-cyan-300">Similar users have also liked...</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {% for movie in recommended_movies_objects %}
                 <div class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-gray-800 hover:transform hover:scale-105 transition-transform duration-500 h-[550px] hover:border-2 hover:border-cyan-300 rounded-full">
@@ -76,7 +106,7 @@
                         <h4 class="text-lg font-bold mb-2 text-gray-100">{{ movie.title }}</h4>
                         <a href="{% url 'movie_detail' movie.id %}" class="relative block mt-auto">
                             <button class="bg-cyan-500 hover:bg-cyan-700 px-6 py-2 rounded-full text-white mt-auto transition-colors w-full">
-                                Ver ahora
+                                See More
                             </button>
                         </a>
                     </div>
@@ -88,7 +118,7 @@
 
 {% if top_genres %}
     <section class="mb-16" aria-label="Basado en tus gustos">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-cyan-300">Porque te gusta: 
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-cyan-300">Because you like: 
             {% for genre in top_genres %}
                 {{ genre }}{% if not loop.last %}, {% endif %}
             {% endfor %}
@@ -102,7 +132,7 @@
                         <h4 class="text-lg font-bold mb-2 text-gray-100">{{ movie.title }}</h4>
                         <a href="{% url 'movie_detail' movie.id %}" class="relative block mt-auto">
                             <button class="bg-cyan-500 hover:bg-cyan-700 px-6 py-2 rounded-full text-white mt-auto transition-colors w-full">
-                                Ver ahora
+                                See More
                             </button>
                         </a>
                     </div>
@@ -115,8 +145,8 @@
     <!-- No Recommendations Section -->
     {% if not common_movies and not recommended_movies_objects and not recommended_content_movies_objects %}
         <section class="bg-gray-800 rounded-lg shadow-lg p-6 text-center">
-            <h2 class="text-2xl font-bold text-white mb-4">Sin Recomendaciones Disponibles</h2>
-            <p class="text-lg text-gray-400">No tenemos recomendaciones para ti en este momento. Vuelve más tarde o actualiza tus calificaciones.</p>
+            <h2 class="text-2xl font-bold text-white mb-4">No Recommendations Available</h2>
+            <p class="text-lg text-gray-400">We have no recommendations for you at this time. Check back later or update your qualifications.</p>
         </section>
     {% endif %}
 </main>

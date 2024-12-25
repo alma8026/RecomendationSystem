@@ -31,7 +31,7 @@
         height: 100%;
         border-radius: 12px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         object-fit: cover;
     }
 
@@ -73,7 +73,8 @@
         display: inline-block;
         margin: 5px;
         padding: 8px 12px;
-        background: linear-gradient(135deg, #3b82f6, #22d3ee);
+        border: 2px solid #3b82f6;
+        background: linear-gradient(135deg, #3b82f6, #67e8f9);
         color: white;
         font-size: 1rem;
         border-radius: 20px;
@@ -104,6 +105,28 @@
         background-color: #0056b3;
     }
 
+    .your-rating {
+        background: linear-gradient(146deg, rgba(226,232,240,1) 9%, rgba(243,244,246,1) 37%, rgba(250,250,250,1) 49%, rgba(249,250,251,1) 53%, rgba(244,244,245,1) 82%);
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 6px 8px; /* Reducido el padding */
+        font-size: 14px;  /* Reducido el tamaño de fuente */
+        width: 200px; /* Puedes controlar el ancho según lo necesites */
+        max-width: 100%; /* Se asegura que no se desborde */
+        margin: 0 auto; /* Centrar el contenedor si es necesario */
+    }
+    
+    .average-rating {
+        background: linear-gradient(146deg, rgba(226,232,240,1) 9%, rgba(243,244,246,1) 37%, rgba(250,250,250,1) 49%, rgba(249,250,251,1) 53%, rgba(244,244,245,1) 82%);
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 6px 8px; /* Reducido el padding */
+        font-size: 14px;  /* Reducido el tamaño de fuente */
+        width: 200px; /* Puedes controlar el ancho según lo necesites */
+        max-width: 100%; /* Se asegura que no se desborde */
+        margin: 0 auto; /* Centrar el contenedor si es necesario */
+    }
+
     @media (max-width: 1200px) {
         .movie-detail-container {
             flex-direction: row;
@@ -112,7 +135,11 @@
             margin-right: 30px; /* Márgenes para evitar que toque el borde */
         }
     }
-
+    @media (min-width: 1100px) {
+        .title-1 {
+            display: none;
+        }
+    }
     @media (max-width: 1100px) {
         .movie-detail-container {
             display: flex;
@@ -121,6 +148,14 @@
             justify-content: center; /* Centra verticalmente */
             text-align: center; /* Alinea el texto dentro de los elementos */
             gap: 20px; /* Espaciado uniforme entre los elementos */
+        }
+
+        .title-1 {
+            display: block;
+        }
+
+        .title-2 {
+            display: none;
         }
     }
 
@@ -135,7 +170,7 @@
 
         .movie-image {
             max-width: 100%;  /* Asegurar que la imagen no se salga del contenedor */
-            margin: 0 auto 20px;
+            margin: 0 auto 10px;
             height: 350px;
             width: auto;
         }
@@ -214,7 +249,7 @@
         padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
         height: 0;
         overflow: hidden;
-        border-radius: 8px; /* Opcional: borde redondeado */
+        border-radius: 12px; /* Opcional: borde redondeado */
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
     }
     
@@ -309,25 +344,38 @@
     <!-- Imagen de la película a la izquierda -->
     <div class="movie-image-container">
         {% if movie.image_url %}
-            <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="movie-image">
+            <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="movie-image w-full h-auto rounded-xl">
         {% else %}
             <p>No image available</p>
         {% endif %}
-
+        <h1 class="movie-title title-1">{{ movie.title }}</h1>
         <!-- Calificación justo debajo de la imagen -->
-        <div class="movie-rating">
-            <strong>Rating: </strong>
-            <div class="stars-display">
-                <!-- Las estrellas generadas por la vista -->
-                {{ stars_display|safe }}
+        <div class="movie-rating mt-4 flex flex-col sm:flex-row items-start">
+            <!-- Your rating section -->
+            <div class="your-rating mb-2">
+                <strong>Your rating: </strong>
+                <div class="stars-display">
+                    <!-- Las estrellas generadas por la vista -->
+                    {{ stars_display|safe }}
+                </div>
+                <div><strong>Rating: </strong>{{ user_rating_value }} / 5</div>
+            </div>
+    
+            <!-- Average rating section -->
+            <div class="average-rating">
+                <strong>Average rating: </strong>
+                <div class="stars-display">
+                    <!-- Las estrellas generadas para la calificación promedio -->
+                    {{ stars_display_avg|safe }}
+                </div>
+                <div><strong>Rating: </strong>{{ avg_rating_value }} / 5</div>
             </div>
         </div>
     </div>
 
     <!-- Descripción y géneros de la película a la derecha -->
     <div class="movie-description-container">
-        <h1 class="movie-title">{{ movie.title }}</h1>
-
+        <h1 class="movie-title title-2">{{ movie.title }}</h1>
         <!-- Descripción de la película -->
         <div class="movie-description">
             <strong>Description:</strong>

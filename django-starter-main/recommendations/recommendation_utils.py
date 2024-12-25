@@ -11,10 +11,10 @@ def get_data():
     user_ids = list(User.objects.values_list('id', flat=True))
     user_ratings = Rating.objects.all()
     
-    ratings_matrix = pd.DataFrame(index=user_ids, columns=movie_titles).fillna(0)
+    ratings_matrix = pd.DataFrame(index=user_ids, columns=movie_titles).fillna(0).astype(float)
     
     for rating in user_ratings:
-        ratings_matrix.at[rating.user.id, rating.movie.title] = rating.value
+        ratings_matrix.at[rating.user.id, rating.movie.title] = float(rating.value)
     
     return ratings_matrix, movie_titles, user_ids
 

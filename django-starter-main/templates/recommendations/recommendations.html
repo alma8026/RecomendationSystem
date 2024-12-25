@@ -326,7 +326,7 @@
 {% block content %}
 <main>
     <div class="user-ratings-container">
-        <h2 class="title-sections">Películas Calificadas</h2>
+        <h2 class="title-sections">Rated Movies</h2>
         <section class="user-ratings">
             <ul class="ul-sections">
                 {% for movie in rated_movies %}
@@ -350,7 +350,7 @@
                     </li>
                     <hr class="mt-1">
                 {% empty %}
-                    <li class="li-sections">No has calificado ninguna película.</li>
+                    <li class="li-sections">You have not rated any film.</li>
                 {% endfor %}
             </ul>
         </section>
@@ -358,7 +358,7 @@
 
     <div class="recommendations-container mt-12">
       <section class="recommendations">
-          <h2 class="title-sections">A otros usuarios les ha gustado...</h2>
+          <h2 class="title-sections">Similar users have also liked...</h2>
           <ul class="ul-sections">
               {% for movie in recommended_movies %}
                   <li class="li-sections">
@@ -367,12 +367,12 @@
                     </div>
                       <span class="movie-title px-3">{{ movie.title }}</span>
                       <div class="px-3">
-                        <a href="{% url 'movie_detail' movie.id %}"><button class="ver-btn">Ver ahora</button></a>
+                        <a href="{% url 'movie_detail' movie.id %}"><button class="ver-btn">See More</button></a>
                       </div>
                   </li>
                   <hr class="mt-1">
               {% empty %}
-                  <li class="li-sections">No hay recomendaciones disponibles.</li>
+                  <li class="li-sections">No recommendations available.</li>
               {% endfor %}
           </ul>
       </section>
@@ -380,13 +380,13 @@
       <section class="recommendations-content">
         <section class="favorite-genres">
             {% if top_genres %}
-            <h2 class="title-sections">Porque te gusta:</h2>
+            <h2 class="title-sections">Because you like:</h2>
             <div class="genres-container">
                 {% for genre in top_genres %}
                     <!-- Aquí accedemos al id y nombre del género -->
                     <a href="{% url 'movie_list' %}?search=&genre={{ genre.id }}" class="genre-badge">{{ genre.name }}</a>
                 {% empty %}
-                    <div class="genre-badge">No se han encontrado géneros favoritos.</div>
+                    <div class="genre-badge">No favorite genres found.</div>
                 {% endfor %}
             </div>
             {% endif %}
@@ -399,12 +399,12 @@
                     </div>
                       <span class="movie-title px-3">{{ movie.title }}</span>
                       <div class="px-3">
-                        <a href="{% url 'movie_detail' movie.id %}"><button class="ver-btn">Ver ahora</button></a>
+                        <a href="{% url 'movie_detail' movie.id %}"><button class="ver-btn">See More</button></a>
                       </div>
                   </li>
                   <hr class="mt-1">
               {% empty %}
-                  <li class="li-sections">No hay recomendaciones disponibles.</li>
+                  <li class="li-sections">No recommendations available.</li>
               {% endfor %}
           </ul>
       </section>
