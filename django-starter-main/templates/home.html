@@ -22,10 +22,10 @@
                     {% else %}
                     <div class="flex flex-col sm:flex-row gap-6">
                         <a href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}" class="bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-yellow-500 transition-transform transform hover:scale-105 text-center w-full sm:w-auto">
-                            Regístrate Gratis
+                            Register for Free
                         </a>
                         <a href="{% url 'account_login' %}" class="bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-gray-200 transition-transform transform hover:scale-105 text-center w-full sm:w-auto">
-                            Inicia Sesión
+                            Login
                         </a>
                     </div>
                     {% endif %}
@@ -34,12 +34,13 @@
         </div>
     </section>
 
+    {% if request.user.is_authenticated %}
     <!-- Top Rated Movies Section -->
     <section class="top-rated-movies mb-16" aria-label="Mejor puntuadas por los usuarios">
         <h2 class="text-3xl font-semibold mb-6 text-violet-100 border-b-2 border-violet-400">Top rated by community</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {% for movie in top_rated_movies %}
-                <div class="flex flex-col bg-gradient-to-t from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-xl hover:scale-105 transition-all duration-300">
+                <div class="flex flex-col bg-gradient-to-t from-gray-800 via-gray-700 to-gray-600 rounded-lg overflow-hidden shadow-xl hover:scale-105 hover:shadow-md hover:shadow-violet-400 transition-all duration-300">
                     <div class="relative w-full h-[500px]">
                         <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="w-full h-full object-cover rounded-t-lg">
                         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
@@ -63,6 +64,8 @@
             {% endfor %}
         </div>
     </section>
+    {% else %}
+    {% endif %}
 
     <!-- Common Movies Section -->
     {% if common_movies %}
@@ -100,7 +103,7 @@
         <h2 class="text-3xl font-bold mb-6 border-b-2 border-cyan-300">Similar users have also liked...</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {% for movie in recommended_movies_objects %}
-                <div class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-gray-800 hover:transform hover:scale-105 transition-transform duration-500 h-[550px] hover:border-2 hover:border-cyan-300 rounded-full">
+                <div class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-gray-800 hover:transform hover:scale-105 transition-transform duration-500 h-[550px] hover:shadow-md hover:shadow-cyan-300 rounded-full">
                     <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="w-full h-[400px] object-cover">
                     <div class="flex flex-col p-4 flex-grow">
                         <h4 class="text-lg font-bold mb-2 text-gray-100">{{ movie.title }}</h4>
@@ -126,7 +129,7 @@
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {% for movie in recommended_content_movies_objects %}
-                <div class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-gray-800 hover:transform hover:scale-105 transition-transform duration-500 h-[550px] hover:border-2 hover:border-cyan-300 rounded-full">
+                <div class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-gray-800 hover:transform hover:scale-105 transition-transform duration-500 h-[550px] hover:shadow-md hover:shadow-cyan-300 rounded-full">
                     <img src="{% static movie.image_url %}" alt="{{ movie.title }}" class="w-full h-[400px] object-cover">
                     <div class="flex flex-col p-4 flex-grow">
                         <h4 class="text-lg font-bold mb-2 text-gray-100">{{ movie.title }}</h4>

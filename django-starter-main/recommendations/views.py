@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie, Rating, Genre
+from a_users.models import Profile
 from math import floor, isclose
 from django.db.models import Count, Avg
 from django.contrib.auth.decorators import login_required
@@ -225,3 +226,20 @@ def movie_detail(request, movie_id):
     }
 
     return render(request, 'movies/movie_detail.html', context)
+
+def toggle_favorite(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+    profile = Profile.objects.get(user=request.user)
+
+    if movie in profile.favorites.all():
+        profile.favorites.remove(movie)
+        response = {
+            "favorite_status": "removed",
+        }
+    else:
+        profile.favorites.add(movie)
+        response = {
+            "favorite_status": "added",
+        }
+
+    return JsonResponse(response)

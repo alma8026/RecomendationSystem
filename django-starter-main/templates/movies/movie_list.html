@@ -70,7 +70,6 @@
         overflow: hidden;
         text-align: center;
         height: 3em; /* Ajusta según el número de líneas */
-        margin-bottom: 15px;        
     }
 
     .movie-img {
@@ -400,7 +399,27 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
         margin-bottom: 0.8rem; /* Espacio entre campos */
     }
 
-    
+    /* Asegurarnos de que las imágenes del corazón tengan un tamaño adecuado */
+    .favorite-btn img.heart-icon {
+        width: 85px;  /* Ajusta este valor al tamaño que desees */
+        height: 54px; /* Ajusta este valor también para mantener las proporciones */
+        cursor: pointer; /* Para que se vea como clickeable */
+        border: none; /* Elimina el borde */
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .favorite-btn img.heart-icon:hover {
+        transform: scale(1.2);
+    }
+
+    /* Opcional: Eliminar los estilos del botón (si queda alguno por herencia) */
+    .favorite-btn {
+        display: inline-block;  /* Aseguramos que se vea correctamente */
+        padding: 0;  /* Sin padding extra */
+        border: none; /* Sin borde */
+        background: none; /* Sin fondo */
+    }
+
 
     /* Transiciones de entrada */
     @keyframes fadeInContainer {
@@ -482,7 +501,7 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
 {% block content %}
 <div class="container">
     <h1 class="movie-list-title font-mono">Movie List</h1>
-    <p class="text-white text-center font-mono mb-12 text-lg">Rate your favorite movies to start recommending!</p>
+    <p class="text-white text-center font-mono mb-12 text-lg">Rate your favorite movies to start recommending to you!</p>
     <div class="search-filter-container">
         <form method="get" action="{% url 'movie_list' %}" class="search-filter-form">
             <!-- Input de búsqueda -->
@@ -515,7 +534,17 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
                     <img class="movie-img" src="{% static movie.image_url %}" alt="{{ movie.title }}">
                 </a>
                 <div class="movie-title">{{ movie.title }}</div>
-    
+                <form id="favorite-form-{{ movie.id }}" action="{% url 'toggle_favorite' movie.id %}" method="POST">
+                    {% csrf_token %}
+                    <span class="favorite-btn" data-movie-id="{{ movie.id }}">
+                        {% if movie in request.user.profile.favorites.all %}
+                            <img src="{% static 'images/red-heart.png' %}" alt="Favorito" class="heart-icon">
+                        {% else %}
+                            <img src="{% static 'images/gray-heart.png' %}" alt="No favorito" class="heart-icon">
+                        {% endif %}
+                    </span>
+                </form>
+                
                 {% if movie.stars_display %}
                     <div class="stars-display">
                         <form class="rating-form" method="post" action="{% url 'rate_movie' movie.id %}">
@@ -595,6 +624,8 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
 {% block javascript %}
 <!-- Aquí agregas el script -->
 <script>
+    var jq = $.noConflict();  // Usamos 'jq' en lugar de '$' para jQuery
+
     document.addEventListener("DOMContentLoaded", function () {
         // Función para configurar el evento de edición en los botones
         function setupEditButtons() {
@@ -704,6 +735,34 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
                     rateBtn.style.display = "inline-block"; // Asegurarse de que el botón "Rate" se muestra
                 }
             }
+        });
+
+        // Manejar el clic en el botón de favoritos
+        jq(".favorite-btn").on("click", function(e) {
+            e.preventDefault(); // Prevenir la acción por defecto (evitar recarga)
+
+            var movieId = jq(this).data("movie-id"); // Obtener el ID de la película
+            var button = jq(this); // Obtener el botón clickeado
+            var heartIcon = button.find("img"); // Obtener la imagen del corazón
+
+            jq.ajax({
+                url: "{% url 'toggle_favorite' movie_id=0 %}".replace('0', movieId), // Usar la URL correcta
+                method: "POST",
+                data: {
+                    csrfmiddlewaretoken: jq("input[name='csrfmiddlewaretoken']").val() // Incluir el CSRF token
+                },
+                success: function(response) {
+                    // Cambiar la imagen del corazón según el estado de favorito
+                    if (response.favorite_status == "added") {
+                        heartIcon.attr("src", "{% static 'images/red-heart.png' %}"); // Corazón rojo
+                    } else {
+                        heartIcon.attr("src", "{% static 'images/gray-heart.png' %}"); // Corazón gris
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error al cambiar el estado del favorito:", error);
+                }
+            });
         });
     });
 </script>
