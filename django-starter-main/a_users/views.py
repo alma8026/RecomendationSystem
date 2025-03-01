@@ -4,6 +4,7 @@ from allauth.account.utils import send_email_confirmation
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from recommendations.models import Rating
 from django.contrib import messages
 from .forms import *
 
@@ -15,7 +16,25 @@ def profile_view(request, username=None):
             profile = request.user.profile
         except:
             return redirect('account_login')
-    return render(request, 'a_users/profile.html', {'profile':profile})
+    
+    # Contar el número de calificaciones realizadas por el usuario
+    rating_count = Rating.objects.filter(user=request.user).count()
+
+    # Calcular el número total de horas que ha visto el usuario
+    rated_movies = Rating.objects.filter(user=request.user)  # Obtener las calificaciones del usuario
+    total_minutes = sum(rating.movie.duration_minutes for rating in rated_movies)  # Sumar la duración en minutos de todas las películas calificadas
+    total_hours = total_minutes / 60  # Convertir los minutos a horas
+
+    favorite_movies = profile.favorites.all()  # Obtener las películas favoritas
+    favorite_movies_count = favorite_movies.count()
+
+    return render(request, 'a_users/profile.html', {
+        'profile': profile,
+        'favorite_movies': favorite_movies,
+        'rating_count': rating_count,
+        'favorite_movies_count': favorite_movies_count,
+        'total_hours': total_hours  # Pasar las horas al contexto
+    })
 
 
 @login_required

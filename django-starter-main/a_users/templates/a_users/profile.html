@@ -1,16 +1,116 @@
 {% extends 'layouts/blank.html' %}
 
 {% block content %}
-
-<div class="max-w-lg mx-auto flex flex-col items-center py-24 px-4">
-    <img class="w-36 h-36 rounded-full object-cover mb-4" src="{{ profile.avatar }}" />
-    <div class="text-center">
-        <h1 class="text-stone-200">{{ profile.name }}</h1>
-        <div class="text-stone-200 mb-2 -mt-3">@{{ profile.user.username }}</div>
-        {% if profile.info %}
-        <div class="mt-8 hyphens-auto text-stone-200">{{ profile.info|linebreaksbr }}</div>
-        {% endif %}  
+{% load static %}
+<style>
+    .favourite-container {
+        overflow-y: scroll;
+        --sb-track-color: transparent;
+        --sb-thumb-color: #1e293b;
+        --sb-size: 16px;
+    }
+    
+    .favourite-container::-webkit-scrollbar {
+        width: var(--sb-size);
+    }
+    
+    .favourite-container::-webkit-scrollbar-track {
+        background: var(--sb-track-color);
+        border-radius: 10px;
+    }
+    
+    .favourite-container::-webkit-scrollbar-thumb {
+        background: var(--sb-thumb-color);
+        border-radius: 10px;
+        border: 1px solid #232E33;
+    }
+    
+    @supports not selector(::-webkit-scrollbar) {
+        .favourite-container {
+            scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+        }
+    }
+    
+</style>
+<div class="max-w-2xl mx-auto flex flex-col items-center py-16 px-8 bg-gray-900 w-full">
+    <!-- Imagen de perfil -->
+    <div class="relative w-32 h-32 sm:w-40 sm:h-40 mb-6">
+        <img class="w-full h-full rounded-full object-cover border-4 border-gray-700 shadow-lg" src="{{ profile.avatar }}" alt="icon img" />
     </div>
+    
+    <!-- Nombre de usuario -->
+    <div class="text-center mb-6">
+        <h1 class="text-white font-bold text-3xl sm:text-4xl">{{ profile.name }}</h1>
+        <div class="text-gray-400 text-lg">@{{ profile.user.username }}</div>
+    </div>
+    
+    <!-- Contenedor de información -->
+    <div class="w-full mt-4 border border-gray-700 rounded-xl p-5 bg-gray-800 text-white space-y-8">
+        <div class="flex flex-col gap-8 md:flex-row md:justify-between">
+            <!-- Descripción -->
+            <div class="md:w-[48%] p-4 border border-gray-700 rounded-xl bg-gray-900 shadow-md flex flex-col">
+                <h2 class="font-semibold text-xl text-gray-300 mb-3 text-center">Description</h2>
+                <p class="text-base text-gray-400 flex-grow max-h-40 overflow-y-scroll favourite-container px-4">{{ profile.info|default:'Example of a description for a user profile' }}</p>
+            </div>
+            
+            <!-- Medallas -->
+            <div class="md:w-[48%] p-5 bg-gray-900 rounded-xl shadow-md border border-gray-700">
+                <h2 class="font-semibold text-xl text-gray-300 mb-3 text-center">Medals</h2>
+                <div class="flex justify-center space-x-3 py-4">
+                    <span class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg text-black font-bold">★</span>
+                    <span class="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center shadow-lg text-black font-bold">☆</span>
+                    <span class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center shadow-lg text-black font-bold">✦</span>
+                    <span class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center shadow-lg text-black font-bold">✦☆✦</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center text-gray-400 pt-6">
+                    <div class="bg-gray-800 p-2 rounded-xl shadow-md flex flex-col items-center">
+                        <span class="text-xl font-bold">15</span>
+                        <span class="text-sm">Followers</span>
+                    </div>
+                    <div class="bg-gray-800 p-2 rounded-xl shadow-md flex flex-col items-center">
+                        <span class="text-xl font-bold">18</span>
+                        <span class="text-sm">Following</span>
+                    </div>
+                    <div class="bg-gray-800 p-2 rounded-xl shadow-md flex flex-col items-center">
+                        <span class="text-xl font-bold">{{ rating_count }}</span>
+                        <span class="text-sm">Ratings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Información extra -->
+        <div class="flex flex-col sm:flex-row justify-between text-center text-lg text-gray-400 gap-6">
+            <div class="w-full sm:w-[48%] border border-gray-700 bg-gray-900 p-6 rounded-xl shadow-md">
+                <span class="text-xl font-bold">{{favorite_movies_count}}</span><br>
+                <span class="text-md">Favourite movies</span>
+            </div>
+            <div class="w-full sm:w-[48%] border border-gray-700 bg-gray-900 p-6 rounded-xl shadow-md">
+                <span class="text-xl font-bold"> {{total_hours}} hours </span><br>
+                <span class="text-md">Watched</span><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección de Películas Favoritas -->
+<div class="w-auto px-2 py-8">
+    <h2 class="text-2xl font-bold text-stone-200 mb-4 text-center">💗 Favorite Movies 💗</h2>
+
+    {% if favorite_movies %}
+        <div class="max-w-2xl mx-auto favourite-container grid grid-cols-2 md:grid-cols-3 gap-6 bg-stone-200 p-4 md:p-6 rounded-xl h-[600px] shadow-md shadow-stone-200">
+            {% for movie in favorite_movies %}
+                <div class="bg-gray-700 p-4 rounded-lg shadow-md shadow-black text-center hover:scale-110 transition duration-[0.4s]">
+                    <a href="{% url 'movie_detail' movie.id %}">
+                        <img class="w-full h-48 object-cover rounded-lg" src="{% static movie.image_url %}" alt="{{ movie.title }}">
+                        <h3 class="text-stone-200 mt-2">{{ movie.title }}</h3>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-stone-400 text-center">No favorite movies yet.</p>
+    {% endif %}
 </div>
 
 {% endblock %}
