@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie, Rating, Genre
 from a_users.models import Profile
@@ -13,35 +14,37 @@ from .content_based_utils import recommend_items_content, get_top_genres
 def movie_list(request):
     user = request.user
     movies = Movie.objects.all()
-    genres = Genre.objects.all()  # Obtenemos todos los géneros disponibles
-    
+    genres = Genre.objects.all()
+
     # Obtener parámetros de búsqueda y filtro
     search_query = request.GET.get('search', '').strip()
     genre_id = request.GET.get('genre', '').strip()
-    
+
     # Filtrar películas
     if search_query:
-        movies = movies.filter(title__icontains=search_query)  # Filtrar por título que contenga el término
+        movies = movies.filter(title__icontains=search_query)
     if genre_id:
-        movies = movies.filter(genres__id=genre_id)  # Usa 'genres__id' porque el campo es 'genres'
-    
+        movies = movies.filter(genres__id=genre_id)
+
     # Obtener puntuaciones del usuario para las películas
     user_ratings = Rating.objects.filter(user=user).values_list('movie_id', 'value')
     user_rated_movies = {movie_id: rating for movie_id, rating in user_ratings}
-    
-    # Preparar las estrellas llenas y vacías
+
+    # Agregar información de calificación a las películas
     for movie in movies:
-        movie_id = movie.id
-        if movie_id in user_rated_movies:
-            rating = user_rated_movies[movie_id]
-            movie.stars_display = rating  # Solo necesitamos el número de estrellas llenas
-        else:
-            movie.stars_display = 0  # No ha sido calificada
+        movie.stars_display = user_rated_movies.get(movie.id, 0)  # Valor de estrellas o 0 si no está calificada
+
+    # **Configurar Paginación**
+    paginator = Paginator(movies, 10)  # 10 películas por página
+    page_number = request.GET.get('page')  # Obtener el número de página desde la URL
+    page_obj = paginator.get_page(page_number)  # Obtener la página actual
 
     context = {
-        'movies': movies,
+        'page_obj': page_obj,  # Enviar el objeto paginado
         'user_rated_movies': user_rated_movies,
-        'genres': genres,  # Para el filtro por género
+        'genres': genres,
+        'search_query': search_query,
+        'genre_id': genre_id,
     }
     return render(request, 'movies/movie_list.html', context)
 

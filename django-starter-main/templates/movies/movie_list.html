@@ -401,8 +401,8 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
 
     /* Asegurarnos de que las imágenes del corazón tengan un tamaño adecuado */
     .favorite-btn img.heart-icon {
-        width: 85px;  /* Ajusta este valor al tamaño que desees */
-        height: 54px; /* Ajusta este valor también para mantener las proporciones */
+        width: 50px;  /* Ajusta este valor al tamaño que desees */
+        height: auto; /* Ajusta este valor también para mantener las proporciones */
         cursor: pointer; /* Para que se vea como clickeable */
         border: none; /* Elimina el borde */
         transition: transform 0.3s ease-in-out;
@@ -528,7 +528,7 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
         </form>
     </div>
     <div class="movie-list">
-        {% for movie in movies %}
+        {% for movie in page_obj %}
             <div id="movie-card-{{ movie.id }}" class="movie-card">
                 <a href="{% url 'movie_detail' movie.id %}">
                     <img class="movie-img" src="{% static movie.image_url %}" alt="{{ movie.title }}">
@@ -538,9 +538,9 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
                     {% csrf_token %}
                     <span class="favorite-btn" data-movie-id="{{ movie.id }}">
                         {% if movie in request.user.profile.favorites.all %}
-                            <img src="{% static 'images/red-heart.png' %}" alt="Favorito" class="heart-icon">
+                            <img src="{% static 'svgs/red-heart.svg' %}" alt="Favorito" class="heart-icon">
                         {% else %}
-                            <img src="{% static 'images/gray-heart.png' %}" alt="No favorito" class="heart-icon">
+                            <img src="{% static 'svgs/gray-heart.svg' %}" alt="No favorito" class="heart-icon" style="border: 6px groove #4F5255;">
                         {% endif %}
                     </span>
                 </form>
@@ -595,6 +595,20 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
             </div>
         {% endfor %}
     </div>
+    <!-- Controles de paginación -->
+<div class="pagination text-center py-12 text-white">
+    {% if page_obj.has_previous %}
+        <a class=" px-3 py-1 rounded-md bg-cyan-700 text-white transition duration-300 ease-in-out hover:bg-cyan-600" href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}{% if genre_id %}&genre={{ genre_id }}{% endif %}">First</a>
+        <a class=" px-3 py-1 rounded-md bg-gray-800 text-white transition duration-300 ease-in-out hover:bg-gray-700" href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if genre_id %}&genre={{ genre_id }}{% endif %}">Previous</a>
+    {% endif %}
+
+    <span class="text-stone-200 text-sm">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a class=" px-3 py-1 rounded-md bg-gray-800 text-white transition duration-300 ease-in-out hover:bg-gray-700" href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if genre_id %}&genre={{ genre_id }}{% endif %}">Next</a>
+        <a class=" px-3 py-1 rounded-md bg-sky-800 text-white transition duration-300 ease-in-out hover:bg-sky-700" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+</div>
     <!-- Botón de Volver al Inicio -->
     <div class="fixed-bottom">
         <button class="btn-go-home relative bg-white text-center w-48 rounded-2xl h-14 text-white text-xl font-semibold overflow-hidden group flex items-center justify-start px-4" type="button">
@@ -754,11 +768,13 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
                 success: function(response) {
                     // Cambiar la imagen del corazón según el estado de favorito
                     if (response.favorite_status == "added") {
-                        heartIcon.attr("src", "{% static 'images/red-heart.png' %}"); // Corazón rojo
+                        heartIcon.attr("src", "{% static 'svgs/red-heart.svg' %}"); // Corazón rojo
+                        heartIcon.css("border", "none"); // Eliminar el borde cuando es rojo
                     } else {
-                        heartIcon.attr("src", "{% static 'images/gray-heart.png' %}"); // Corazón gris
+                        heartIcon.attr("src", "{% static 'svgs/gray-heart.svg' %}"); // Corazón gris
+                        heartIcon.css("border", "6px groove #4F5255"); // Agregar borde cuando es gris
                     }
-                },
+                },                
                 error: function(xhr, status, error) {
                     console.log("Error al cambiar el estado del favorito:", error);
                 }
