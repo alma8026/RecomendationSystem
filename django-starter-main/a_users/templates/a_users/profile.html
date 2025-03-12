@@ -30,6 +30,14 @@
             scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
         }
     }
+
+    .truncate-multi-line {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Limita el texto a 2 líneas */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     
 </style>
 <div class="max-w-2xl mx-auto flex flex-col items-center py-16 px-8 bg-gray-900 w-full">
@@ -98,19 +106,23 @@
     <h2 class="text-2xl font-bold text-stone-200 mb-4 text-center">💗 Favourite Movies 💗</h2>
 
     {% if favorite_movies %}
-        <div class="max-w-2xl mx-auto favourite-container grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 bg-stone-200 p-4 md:p-6 rounded-xl h-[600px] shadow-md shadow-stone-200">
-            {% for movie in favorite_movies %}
-                <div class="bg-gray-700 p-4 rounded-lg shadow-md shadow-black text-center hover:scale-110 transition duration-[0.4s]">
-                    <a href="{% url 'movie_detail' movie.id %}">
-                        <img class="w-full h-48 object-cover rounded-lg" src="{% static movie.image_url %}" alt="{{ movie.title }}">
-                        <h3 class="text-stone-200 mt-2">{{ movie.title }}</h3>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p class="text-stone-400 text-center">No favorite movies yet.</p>
-    {% endif %}
+    <div class="max-w-2xl mx-auto favourite-container grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 bg-stone-200 p-4 md:p-6 rounded-xl h-[600px] shadow-md shadow-stone-200">
+        {% for movie in favorite_movies %}
+            <div class="bg-gray-700 p-4 rounded-lg shadow-md shadow-black text-center hover:scale-110 transition duration-[0.4s] max-h-[280px]">
+                <a href="{% url 'movie_detail' movie.id %}">
+                    <img class="w-full h-48 object-cover rounded-lg" src="{% static movie.image_url %}" alt="{{ movie.title }}">
+                    <h3 class="text-stone-200 mt-2 truncate-multi-line">
+                        {{ movie.title }}
+                    </h3>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-stone-400 text-center">No favorite movies yet.</p>
+{% endif %}
+
+
 </div>
 
 {% endblock %}

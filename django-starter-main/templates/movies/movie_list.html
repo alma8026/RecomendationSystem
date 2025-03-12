@@ -606,7 +606,11 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
 
     {% if page_obj.has_next %}
         <a class=" px-3 py-1 rounded-md bg-gray-800 text-white transition duration-300 ease-in-out hover:bg-gray-700" href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if genre_id %}&genre={{ genre_id }}{% endif %}">Next</a>
-        <a class=" px-3 py-1 rounded-md bg-sky-800 text-white transition duration-300 ease-in-out hover:bg-sky-700" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        <a class="px-3 py-1 rounded-md bg-sky-800 text-white transition duration-300 ease-in-out hover:bg-sky-700" 
+   href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}{% if genre_id %}&genre={{ genre_id }}{% endif %}">
+   Last
+</a>
+
         {% endif %}
 </div>
     <!-- Botón de Volver al Inicio -->

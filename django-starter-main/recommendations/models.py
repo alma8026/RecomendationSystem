@@ -16,6 +16,7 @@ class Movie(models.Model):
     platforms = models.ManyToManyField(Platform, blank=True)  # Relación con el modelo 'Platform'
     trailer_url = models.URLField(max_length=200, blank=True, null=True)  # URL del tráiler
     duration_minutes = models.PositiveIntegerField(blank=True, null=True)  # Duración de la película en minutos
+    number_ratings = models.PositiveIntegerField(blank=True, null=True) # Número de ratings
 
     def __str__(self):
         return self.title
@@ -36,14 +37,9 @@ class Rating(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.movie.title} - {self.value}'
-
-class UserRating(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    rating = models.PositiveIntegerField()  # Ajusta el campo de rating según tu necesidad
-
-    class Meta:
-        unique_together = ('user', 'movie')  # Asegura que no se repitan calificaciones para la misma película por el mismo usuario
-
-    def __str__(self):
-        return f'{self.user.username} - {self.movie.title} - {self.rating}'
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        # Actualizar el número de ratings de la película
+        self.movie.number_ratings = Rating.objects.filter(movie=self.movie).count()
+        self.movie.save()
