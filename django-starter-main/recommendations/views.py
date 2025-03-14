@@ -13,7 +13,7 @@ from .content_based_utils import recommend_items_content, get_top_genres
 @login_required
 def movie_list(request):
     user = request.user
-    movies = Movie.objects.all()
+    movies = Movie.objects.all().order_by('id')
     genres = Genre.objects.all()
 
     # Obtener parámetros de búsqueda y filtro
@@ -246,3 +246,26 @@ def toggle_favorite(request, movie_id):
         }
 
     return JsonResponse(response)
+
+@login_required
+def remove_rating(request, movie_id):
+    # Obtener la película por el ID
+    movie = get_object_or_404(Movie, id=movie_id)
+    
+    try:
+        # Obtener la calificación de la película para el usuario actual
+        rating = Rating.objects.get(user=request.user, movie=movie)
+        
+        # Eliminar la calificación
+        rating.delete()
+
+        # Actualizar el número de ratings de la película
+        movie.number_ratings = Rating.objects.filter(movie=movie).count()
+        movie.save()
+
+    except Rating.DoesNotExist:
+        # Si no existe la calificación, no hacer nada
+        pass
+
+    # Redirigir a la misma página que el usuario estaba visitando
+    return redirect(request.META.get('HTTP_REFERER', '/'))  # Si no hay referencia, redirige a la raíz

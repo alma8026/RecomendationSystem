@@ -4,6 +4,10 @@
 {% load static %}
 <style>
     /* General Styles */
+    .btn-reset {
+        all: unset; /* Elimina todos los estilos heredados */
+      }
+
     .container {
         width: 90%;
         max-width: 1200px; /* Limita el ancho máximo */
@@ -130,6 +134,7 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
     .rate-btn {
         margin-top: 20px;
         background-color: #22d3ee !important;
+        padding: 10px 20px !important;
     }
 
     .rate-btn:hover {
@@ -420,6 +425,30 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
         background: none; /* Sin fondo */
     }
 
+    .del-rating-container button {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font-size: inherit;
+        font-family: inherit;
+        /* Eliminamos los estilos innecesarios sin usar 'all: unset' */
+    }
+    
+    .del-rating-container .btn-del-rating {
+        background-color: #b91c1c; /* bg-red-700 */
+        padding: 0.25rem; /* p-1 */
+        border-radius: 0.375rem; /* rounded-md */
+        cursor: pointer; /* hover:cursor-pointer */
+        transition: background-color 0.6s ease, transform 0.6s ease; /* transition duration-600 */
+    }
+    
+    .del-rating-container .btn-del-rating:hover {
+        background-color: #9b1d20; /* hover:bg-red-800 */
+        transform: scale(1.1); /* hover:scale-110 */
+    }
+    
+      
 
     /* Transiciones de entrada */
     @keyframes fadeInContainer {
@@ -569,8 +598,18 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
                     
                     <!-- Botones: Rated y Editar -->
                     <div class="button-container">
+                        <!-- Formulario para eliminar el rating -->
+                        <form class="del-rating-container" method="POST" action="{% url 'remove_rating' movie.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-del-rating" title="Delete rating">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="white" d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </form>
+
                         <button class="rated-button" disabled>Rated</button>
-                        <button class="edit-rating-btn" data-movie-id="{{ movie.id }}">
+                        <button title="Edit rating" class="edit-rating-btn" data-movie-id="{{ movie.id }}">
                             <!-- SVG del icono de editar -->
                             <svg class="feather feather-edit" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
@@ -655,6 +694,7 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
                     const movieCard = document.getElementById(`movie-card-${movieId}`);
                     const form = movieCard.querySelector(".rating-form");
                     const ratedButton = movieCard.querySelector(".rated-button");
+                    const delButton = movieCard.querySelector(".btn-del-rating");
 
                     // Habilitar modo edición
                     if (form) {
@@ -666,6 +706,9 @@ box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.75);
                         // Cambiar visibilidad de los botones
                         if (ratedButton) {
                             ratedButton.style.display = "none"; // Oculta el botón Rated
+                        }
+                        if (delButton) {
+                            delButton.style.display = "none"; // Oculta el botón Delete rating
                         }
                         this.style.display = "none"; // Oculta el botón Edit
                     }
