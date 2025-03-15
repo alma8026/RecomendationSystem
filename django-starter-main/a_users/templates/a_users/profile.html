@@ -181,51 +181,62 @@
         <!-- Mostrar las listas personalizadas -->
         <ul class="mt-6 space-y-5">
             {% for list in custom_lists %}
-                <li class="bg-gray-700 p-4 rounded-lg text-lg text-stone-200 hover:cursor-pointer transition duration-300">
-                    <div class="flex justify-between items-center">
-                        <span>{{ list.title }}</span>
-                        <button class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700" onclick="toggleMoviesList('{{ list.id }}')">Show Movies</button>
-                    </div>
-                    <div id="movies-list-{{ list.id }}" class="mt-4 hidden">
-                        <!-- Mostrar las películas dentro de la lista como tarjetas -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {% for movie in list.movies.all %}
-                                <div class="bg-gray-700 p-4 rounded-lg shadow-md shadow-black text-center hover:scale-110 transition duration-[0.4s] max-h-[280px]">
-                                    <a href="{% url 'movie_detail' movie.id %}">
-                                        <img class="w-full h-48 object-cover rounded-lg" src="{% static movie.image_url %}" alt="{{ movie.title }}">
-                                        <h3 class="text-stone-200 mt-2 truncate-multi-line">
-                                            {{ movie.title }}
-                                        </h3>
-                                    </a>
-                                    <!-- Botón para eliminar la película de la lista -->
-                                    <form method="POST" action="{% url 'remove_movie_from_list' list.id movie.id %}" class="mt-2">
-                                        {% csrf_token %}
-                                        <button type="submit" class="text-red-600 text-xl">X</button>
-                                    </form>
-                                </div>
-                            {% empty %}
-                                <div class="text-stone-200">No movies added yet!</div>
-                            {% endfor %}
-                        </div>
-    
-                        <!-- Formulario para agregar películas a la lista -->
-                        <form method="POST" action="{% url 'add_movie_to_list' list.id %}" class="mt-4">
+    <li class="bg-gray-700 p-4 rounded-lg text-lg text-stone-200 hover:cursor-pointer transition duration-300">
+        <div class="flex justify-between items-center">
+            <span>{{ list.title }}</span>
+            <div class="flex items-center space-x-2">
+                <!-- Botón para mostrar películas -->
+                <button class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700" onclick="toggleMoviesList('{{ list.id }}')">Show Movies</button>
+                
+                <!-- Botón para eliminar la lista -->
+                <form method="POST" action="{% url 'remove_list' list.id %}" class="inline-block">
+                    {% csrf_token %}
+                    <button type="submit" class="text-red-600 text-xl">X</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="movies-list-{{ list.id }}" class="mt-4 hidden">
+            <!-- Mostrar las películas dentro de la lista como tarjetas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for movie in list.movies.all %}
+                    <div class="bg-gray-700 p-4 rounded-lg shadow-md shadow-black text-center hover:scale-110 transition duration-[0.4s] max-h-[280px]">
+                        <a href="{% url 'movie_detail' movie.id %}">
+                            <img class="w-full h-48 object-cover rounded-lg" src="{% static movie.image_url %}" alt="{{ movie.title }}">
+                            <h3 class="text-stone-200 mt-2 truncate-multi-line">
+                                {{ movie.title }}
+                            </h3>
+                        </a>
+                        <!-- Botón para eliminar la película de la lista -->
+                        <form method="POST" action="{% url 'remove_movie_from_list' list.id movie.id %}" class="mt-2">
                             {% csrf_token %}
-                            <label for="movie">Select a movie:</label>
-                            <select name="movie" id="movie" class="p-3 rounded-lg text-lg">
-                                {% for movie in profile.favorites.all %}
-                                    <option value="{{ movie.id }}">{{ movie.title }}</option>
-                                {% empty %}
-                                    <option value="">No favorite movies yet!</option>
-                                {% endfor %}
-                            </select>
-                            <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg text-lg hover:bg-green-700 mt-2">Add Movie</button>
+                            <button type="submit" class="text-red-600 text-xl">X</button>
                         </form>
                     </div>
-                </li>
-            {% empty %}
-                <li>No custom lists yet!</li>
-            {% endfor %}
+                {% empty %}
+                    <div class="text-stone-200">No movies added yet!</div>
+                {% endfor %}
+            </div>
+
+            <!-- Formulario para agregar películas a la lista -->
+            <form method="POST" action="{% url 'add_movie_to_list' list.id %}" class="mt-4">
+                {% csrf_token %}
+                <label for="movie">Select a movie:</label>
+                <select name="movie" id="movie" class="p-3 rounded-lg text-lg">
+                    {% for movie in profile.favorites.all %}
+                        <option value="{{ movie.id }}">{{ movie.title }}</option>
+                    {% empty %}
+                        <option value="">No favorite movies yet!</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg text-lg hover:bg-green-700 mt-2">Add Movie</button>
+            </form>
+        </div>
+    </li>
+{% empty %}
+    <li>No custom lists yet!</li>
+{% endfor %}
+
         </ul>
     </div>
     
