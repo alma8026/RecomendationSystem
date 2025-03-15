@@ -38,6 +38,30 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .genres-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .genre-badge {
+        color: rgb(156 163 175);
+        border-radius: 25px;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .genre-badge:hover {
+        background-color:rgb(36, 51, 92);
+        color: #fff;
+        transform: scale(1.1);
+    }
     
 </style>
 <div class="max-w-2xl mx-auto flex flex-col items-center py-16 px-8 bg-gray-900 w-full">
@@ -90,14 +114,24 @@
         <!-- Información extra -->
         <div class="flex flex-col sm:flex-row justify-between text-center text-lg text-gray-400 gap-6">
             <div class="w-full sm:w-[48%] border border-gray-700 bg-gray-900 p-6 rounded-xl shadow-md">
-                <span class="text-xl font-bold">{{favorite_movies_count}}</span><br>
+                <span class="text-2xl font-bold">{{favorite_movies_count}}</span><br>
                 <span class="text-md">Favourite movies</span>
             </div>
             <div class="w-full sm:w-[48%] border border-gray-700 bg-gray-900 p-6 rounded-xl shadow-md">
-                <span class="text-xl font-bold"> {{total_hours}} hours </span><br>
+                <span class="text-2xl font-bold"> {{total_hours}} </span><br>
                 <span class="text-md">Watched</span><br>
             </div>
         </div>
+        {% if top_genres %}
+            <div class="genres-container">
+                {% for genre in top_genres %}
+                    <!-- Aquí accedemos al id y nombre del género -->
+                    <a title="Click to view {{genre.name}} movies!" href="{% url 'movie_list' %}?search=&genre={{ genre.id }}" class="genre-badge bg-gray-900">{{ genre.name }}</a>
+                {% empty %}
+                    <div class="genre-badge">No favorite genres found.</div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 </div>
 
@@ -124,5 +158,142 @@
 
 
 </div>
+
+<div class="container mx-auto px-4">
+    <!-- Navigation Buttons -->
+    <div class="flex justify-center gap-6 mb-8 flex-wrap">
+        <button class="tab-button bg-blue-500 text-white py-3 px-6 rounded-xl text-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 max-w-xs w-auto sm:px-5 sm:py-2" onclick="showTab('custom-lists')">Custom Lists</button>
+        <button class="tab-button bg-gray-300 py-3 px-6 rounded-xl text-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 max-w-xs w-auto sm:px-5 sm:py-2" onclick="showTab('reviews')">Reviews</button>
+        <button class="tab-button bg-gray-300 py-3 px-6 rounded-xl text-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 max-w-xs w-auto sm:px-5 sm:py-2" onclick="showTab('favorites')">Directors & Actors</button>
+    </div>
+
+    <!-- Sections -->
+    <div id="custom-lists" class="tab-content bg-stone-200 p-6 rounded-lg shadow-md max-w-3xl mx-auto">
+        <h2 class="text-3xl font-semibold mb-6 text-center">Custom Lists</h2>
+    
+        <!-- Formulario para crear una lista -->
+        <form method="POST" action="{% url 'custom_lists' %}" class="flex justify-center mb-6">
+            {% csrf_token %}
+            <input type="text" name="title" class="p-3 rounded-lg text-lg" placeholder="Enter list title" required>
+            <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded-xl text-lg hover:bg-blue-700 transition duration-300">+ Add List</button>
+        </form>
+    
+        <!-- Mostrar las listas personalizadas -->
+        <ul class="mt-6 space-y-5">
+            {% for list in custom_lists %}
+                <li class="bg-gray-700 p-4 rounded-lg text-lg text-stone-200 hover:cursor-pointer transition duration-300">
+                    <div class="flex justify-between items-center">
+                        <span>{{ list.title }}</span>
+                        <button class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700" onclick="toggleMoviesList('{{ list.id }}')">Show Movies</button>
+                    </div>
+                    <div id="movies-list-{{ list.id }}" class="mt-4 hidden">
+                        <!-- Mostrar las películas dentro de la lista como tarjetas -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {% for movie in list.movies.all %}
+                                <div class="bg-gray-700 p-4 rounded-lg shadow-md shadow-black text-center hover:scale-110 transition duration-[0.4s] max-h-[280px]">
+                                    <a href="{% url 'movie_detail' movie.id %}">
+                                        <img class="w-full h-48 object-cover rounded-lg" src="{% static movie.image_url %}" alt="{{ movie.title }}">
+                                        <h3 class="text-stone-200 mt-2 truncate-multi-line">
+                                            {{ movie.title }}
+                                        </h3>
+                                    </a>
+                                    <!-- Botón para eliminar la película de la lista -->
+                                    <form method="POST" action="{% url 'remove_movie_from_list' list.id movie.id %}" class="mt-2">
+                                        {% csrf_token %}
+                                        <button type="submit" class="text-red-600 text-xl">X</button>
+                                    </form>
+                                </div>
+                            {% empty %}
+                                <div class="text-stone-200">No movies added yet!</div>
+                            {% endfor %}
+                        </div>
+    
+                        <!-- Formulario para agregar películas a la lista -->
+                        <form method="POST" action="{% url 'add_movie_to_list' list.id %}" class="mt-4">
+                            {% csrf_token %}
+                            <label for="movie">Select a movie:</label>
+                            <select name="movie" id="movie" class="p-3 rounded-lg text-lg">
+                                {% for movie in profile.favorites.all %}
+                                    <option value="{{ movie.id }}">{{ movie.title }}</option>
+                                {% empty %}
+                                    <option value="">No favorite movies yet!</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg text-lg hover:bg-green-700 mt-2">Add Movie</button>
+                        </form>
+                    </div>
+                </li>
+            {% empty %}
+                <li>No custom lists yet!</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <script>
+        // Función para alternar la visibilidad de las películas dentro de cada lista
+        function toggleMoviesList(listId) {
+            const moviesList = document.getElementById(`movies-list-${listId}`);
+            if (moviesList.classList.contains('hidden')) {
+                moviesList.classList.remove('hidden');
+            } else {
+                moviesList.classList.add('hidden');
+            }
+        }
+    </script>
+         
+    
+    
+    <div id="reviews" class="tab-content bg-white p-6 rounded-lg shadow-md hidden max-w-3xl mx-auto">
+        <h2 class="text-2xl font-semibold mb-6">Reviews</h2>
+        <div class="space-y-6">
+            <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
+                <p class="font-semibold">★★★★☆</p>
+                <p class="text-sm">Awesome! 4/5</p>
+            </div>
+            <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
+                <p class="font-semibold">★★★☆☆</p>
+                <p class="text-sm">It was okay.</p>
+            </div>
+            <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
+                <p class="font-semibold">★★★★★</p>
+                <p class="text-sm">Really good!</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="favorites" class="tab-content bg-white p-6 rounded-lg shadow-md hidden max-w-3xl mx-auto">
+        <h2 class="text-2xl font-semibold mb-6">Favorite Directors & Actors</h2>
+        <h3 class="font-semibold text-xl text-gray-800 mb-4">Directors</h3>
+        <ul class="mb-6 space-y-5">
+            <li class="bg-gray-200 p-4 rounded-lg text-lg text-gray-800 hover:bg-blue-100 transition duration-300">Manolito</li>
+            <li class="bg-gray-200 p-4 rounded-lg text-lg text-gray-800 hover:bg-blue-100 transition duration-300">Josefa</li>
+            <li class="bg-gray-200 p-4 rounded-lg text-lg text-gray-800 hover:bg-blue-100 transition duration-300">Pepe</li>
+        </ul>
+        <h3 class="font-semibold text-xl text-gray-800 mb-4">Actors</h3>
+        <ul class="space-y-5">
+            <li class="bg-gray-200 p-4 rounded-lg text-lg text-gray-800 hover:bg-blue-100 transition duration-300">Scarlett Johansson</li>
+            <li class="bg-gray-200 p-4 rounded-lg text-lg text-gray-800 hover:bg-blue-100 transition duration-300">Ester Expósito</li>
+            <li class="bg-gray-200 p-4 rounded-lg text-lg text-gray-800 hover:bg-blue-100 transition duration-300">Robert Downey Jr.</li>
+        </ul>
+    </div>
+</div>
+
+
+
+<script>
+    function showTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.add('hidden');
+        });
+        document.getElementById(tabId).classList.remove('hidden');
+        
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.classList.remove('bg-blue-500', 'text-white');
+            button.classList.add('bg-gray-300');
+        });
+        event.target.classList.add('bg-blue-500', 'text-white');
+        event.target.classList.remove('bg-gray-300');
+    }
+</script>
 
 {% endblock %}
