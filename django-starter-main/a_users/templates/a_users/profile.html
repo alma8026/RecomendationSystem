@@ -62,6 +62,76 @@
         color: #fff;
         transform: scale(1.1);
     }
+
+    .btn-x {
+        height: 24px;
+        width: 24px;
+        background-color: rgb(114, 44, 44);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    
+    .btn-x:hover {
+        background-color: rgb(150, 50, 50);
+    }
+
+    .btn-add {
+        background-color: #3182ce; /* Azul oscuro */
+        color: white;
+        padding: 0.5rem 1.5rem; /* Ajuste de tamaño, un poco más de espacio horizontal */
+        border-radius: 1rem; /* Bordes redondeados */
+        font-size: 1rem; /* Tamaño de fuente adecuado */
+        font-weight: 600; /* Texto más negrita */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        white-space: nowrap; /* Evitar que el texto se divida */
+        display: inline-block; /* Asegura que el botón ocupe solo el espacio necesario */
+    }
+    
+    .btn-add:hover {
+        background-color: #2b6cb0; /* Azul más oscuro */
+        transform: translateY(-2px); /* Suaviza el efecto de hover */
+    }
+    
+    .btn-add:focus {
+        outline: none;
+        ring: 2px solid #63b3ed; /* Efecto de enfoque */
+    }
+
+    /* Estilos para el overlay (fondo oscuro) */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+        display: none; /* Asegura que el popup esté oculto inicialmente */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Asegura que el popup esté por encima de todo */
+    }
+
+    /* Contenido del popup */
+    .popup-content {
+        background-color: rgb(255, 242, 251);
+        color: black;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    /* Habilita el popup cuando la clase 'visible' es aplicada */
+    .popup-overlay.visible {
+        display: flex; /* Muestra el popup cuando la clase 'visible' está presente */
+    }
     
 </style>
 <div class="max-w-2xl mx-auto flex flex-col items-center py-16 px-8 bg-gray-900 w-full">
@@ -159,7 +229,7 @@
 
 </div>
 
-<div class="container mx-auto px-4">
+<div id="custom-lists-container" class="container mx-auto px-4">
     <!-- Navigation Buttons -->
     <div class="flex justify-center gap-6 mb-8 flex-wrap">
         <button class="tab-button bg-blue-500 text-white py-3 px-6 rounded-xl text-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 max-w-xs w-auto sm:px-5 sm:py-2" onclick="showTab('custom-lists')">Custom Lists</button>
@@ -175,7 +245,7 @@
         <form method="POST" action="{% url 'custom_lists' %}" class="flex justify-center mb-6">
             {% csrf_token %}
             <input type="text" name="title" class="p-3 rounded-lg text-lg" placeholder="Enter list title" required>
-            <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded-xl text-lg hover:bg-blue-700 transition duration-300">+ Add List</button>
+            <button type="submit" class="btn-add mx-2">+ Add List</button>
         </form>
     
         <!-- Mostrar las listas personalizadas -->
@@ -186,31 +256,40 @@
             <span>{{ list.title }}</span>
             <div class="flex items-center space-x-2">
                 <!-- Botón para mostrar películas -->
-                <button class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700" onclick="toggleMoviesList('{{ list.id }}')">Show Movies</button>
+                <button id="toggle-button-{{ list.id }}" class="bg-blue-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700" onclick="toggleMoviesList('{{ list.id }}')">Show List</button>
                 
                 <!-- Botón para eliminar la lista -->
                 <form method="POST" action="{% url 'remove_list' list.id %}" class="inline-block">
                     {% csrf_token %}
-                    <button type="submit" class="text-red-600 text-xl">X</button>
+                    <button title="Delete List" type="button" onclick="openConfirmationPopup(event)" class="btn-x">X</button>
                 </form>
+
+                <!-- Popup de confirmación -->
+                <div id="confirmation-popup" class="popup-overlay hidden">
+                    <div class="popup-content">
+                        <p>Are you sure you want to delete this list?</p>
+                        <button id="confirm-delete" onclick="confirmDelete()" class="bg-red-600 text-stone-100 px-4 py-2 rounded-lg hover:bg-red-800 shadow-xl">Yes, delete</button>
+                        <button onclick="closeConfirmationPopup()" class="bg-gray-500 text-stone-100 px-4 py-2 rounded-lg hover:bg-gray-600 shadow-xl">Cancel</button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="movies-list-{{ list.id }}" class="mt-4 hidden">
             <!-- Mostrar las películas dentro de la lista como tarjetas -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="favourite-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-scroll h-[315px] p-4 bg-stone-200 rounded-xl">
                 {% for movie in list.movies.all %}
-                    <div class="bg-gray-700 p-4 rounded-lg shadow-md shadow-black text-center hover:scale-110 transition duration-[0.4s] max-h-[280px]">
+                    <div class="bg-gray-700 p-4 rounded-lg shadow-md shadow-black text-center hover:scale-105 transition duration-[0.4s] max-h-[280px]">
                         <a href="{% url 'movie_detail' movie.id %}">
                             <img class="w-full h-48 object-cover rounded-lg" src="{% static movie.image_url %}" alt="{{ movie.title }}">
-                            <h3 class="text-stone-200 mt-2 truncate-multi-line">
+                            <h3 class="text-stone-200 py-3 truncate">
                                 {{ movie.title }}
                             </h3>
                         </a>
                         <!-- Botón para eliminar la película de la lista -->
-                        <form method="POST" action="{% url 'remove_movie_from_list' list.id movie.id %}" class="mt-2">
+                        <form method="POST" action="{% url 'remove_movie_from_list' list.id movie.id %}" class="flex justify-center">
                             {% csrf_token %}
-                            <button type="submit" class="text-red-600 text-xl">X</button>
+                            <button title="Delete Movie" type="submit" class="btn-x">X</button>
                         </form>
                     </div>
                 {% empty %}
@@ -218,18 +297,39 @@
                 {% endfor %}
             </div>
 
-            <!-- Formulario para agregar películas a la lista -->
-            <form method="POST" action="{% url 'add_movie_to_list' list.id %}" class="mt-4">
+            <!-- Formulario compacto para agregar películas con ícono de lupa -->
+            <form method="POST" action="{% url 'add_movie_to_list' list.id %}" class="mt-4 pt-4 flex items-center gap-2">
                 {% csrf_token %}
-                <label for="movie">Select a movie:</label>
-                <select name="movie" id="movie" class="p-3 rounded-lg text-lg">
-                    {% for movie in profile.favorites.all %}
-                        <option value="{{ movie.id }}">{{ movie.title }}</option>
-                    {% empty %}
-                        <option value="">No favorite movies yet!</option>
-                    {% endfor %}
-                </select>
-                <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg text-lg hover:bg-green-700 mt-2">Add Movie</button>
+                
+                <!-- Input con buscador pequeño y icono de lupa -->
+                <div class="relative w-full">
+                    <input type="text" id="movie-search-{{ list.id }}" placeholder="Search movie..." 
+                        class="p-2 w-full pl-8 rounded-md text-sm border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        onkeyup="filterMovies('{{ list.id }}')">
+                    
+                    <!-- Icono de lupa dentro del input -->
+                    <svg class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 16a6 6 0 100-12 6 6 0 000 12zM21 21l-4.35-4.35"></path>
+                    </svg>
+
+                    <ul id="movie-options-{{ list.id }}" 
+                        class="absolute z-10 w-full bg-white text-black border border-gray-300 rounded-md mt-1 max-h-32 overflow-y-auto hidden">
+                        {% for movie in profile.favorites.all %}
+                            <li class="p-2 hover:bg-gray-100 cursor-pointer text-sm" 
+                                onclick="selectMovie('{{ movie.id }}', '{{ movie.title }}', '{{ list.id }}')">
+                                {{ movie.title }}
+                            </li>
+                        {% empty %}
+                            <li class="p-2 text-gray-500 text-sm">No favorite movies yet!</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Hidden para enviar la ID -->
+                <input type="hidden" name="movie" id="selected-movie-{{ list.id }}">
+
+                <!-- Botón pequeño -->
+                <button type="submit" class="btn-add">+ Add</button>
             </form>
         </div>
     </li>
@@ -239,20 +339,6 @@
 
         </ul>
     </div>
-    
-    <script>
-        // Función para alternar la visibilidad de las películas dentro de cada lista
-        function toggleMoviesList(listId) {
-            const moviesList = document.getElementById(`movies-list-${listId}`);
-            if (moviesList.classList.contains('hidden')) {
-                moviesList.classList.remove('hidden');
-            } else {
-                moviesList.classList.add('hidden');
-            }
-        }
-    </script>
-         
-    
     
     <div id="reviews" class="tab-content bg-white p-6 rounded-lg shadow-md hidden max-w-3xl mx-auto">
         <h2 class="text-2xl font-semibold mb-6">Reviews</h2>
@@ -292,6 +378,83 @@
 
 
 <script>
+    let deleteForm = null; // Variable para guardar el formulario de eliminación
+
+    // Abre el popup de confirmación
+    function openConfirmationPopup(event) {
+        event.preventDefault(); // Evita que el formulario se envíe inmediatamente al hacer clic
+        document.getElementById('confirmation-popup').classList.add('visible'); // Muestra el popup añadiendo la clase 'visible'
+        
+        // Guardamos el formulario para eliminar la lista
+        deleteForm = event.target.closest('form');
+    }
+
+    // Cierra el popup sin hacer nada
+    function closeConfirmationPopup() {
+        document.getElementById('confirmation-popup').classList.remove('visible'); // Oculta el popup al quitar la clase 'visible'
+    }
+
+    // Confirma la eliminación de la lista
+    function confirmDelete() {
+        if (deleteForm) {
+            deleteForm.submit(); // Enviar el formulario de eliminación
+        }
+    }
+
+    function filterMovies(listId) {
+        const input = document.getElementById(`movie-search-${listId}`);
+        const filter = input.value.toLowerCase();
+        const ul = document.getElementById(`movie-options-${listId}`);
+        const li = ul.getElementsByTagName('li');
+        let anyVisible = false;
+
+        for (let i = 0; i < li.length; i++) {
+            const txtValue = li[i].textContent || li[i].innerText;
+            const show = txtValue.toLowerCase().includes(filter);
+            li[i].style.display = show ? '' : 'none';
+            if (show) anyVisible = true;
+        }
+
+        ul.classList.toggle('hidden', !anyVisible || filter === '');
+    }
+
+    function selectMovie(movieId, movieTitle, listId) {
+        document.getElementById(`movie-search-${listId}`).value = movieTitle;
+        document.getElementById(`selected-movie-${listId}`).value = movieId;
+        document.getElementById(`movie-options-${listId}`).classList.add('hidden');
+    }
+
+    function toggleMoviesList(listId) {
+        const moviesList = document.getElementById(`movies-list-${listId}`);
+        const button = document.getElementById(`toggle-button-${listId}`);
+        
+        if (moviesList.classList.contains('hidden')) {
+            moviesList.classList.remove('hidden');
+            button.textContent = 'Hide List';
+        } else {
+            moviesList.classList.add('hidden');
+            button.textContent = 'Show List';
+        }
+    }
+
+    // Detectar el parámetro en la URL y abrir la lista al cargar la página
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const openListId = urlParams.get('open_list');
+        
+        if (openListId) {
+            const moviesList = document.getElementById(`movies-list-${openListId}`);
+            const button = document.getElementById(`toggle-button-${openListId}`);
+            if (moviesList && moviesList.classList.contains('hidden')) {
+                moviesList.classList.remove('hidden');
+                if (button) {
+                    button.textContent = 'Hide List';
+                }
+            }
+        }
+    });
+
+    // Tab system (por si lo usas en otras partes)
     function showTab(tabId) {
         document.querySelectorAll('.tab-content').forEach(tab => {
             tab.classList.add('hidden');

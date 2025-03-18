@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.utils.http import urlencode
 from recommendations.content_based_utils import recommend_items_content, get_top_genres
 from allauth.account.utils import send_email_confirmation
 from django.contrib.auth.decorators import login_required
@@ -59,55 +60,43 @@ def profile_view(request, username=None):
 
 @login_required
 def custom_lists(request):
-    user_profile = request.user.profile  # Obtiene el perfil del usuario
+    user_profile = request.user.profile
     if request.method == 'POST':
-        title = request.POST.get('title')  # Obtiene el título de la lista desde el formulario
+        title = request.POST.get('title')
         if title:
-            # Crear una nueva lista personalizada y asociarla al usuario
             new_list = CustomList.objects.create(user=request.user, title=title)
-            user_profile.custom_lists.add(new_list)  # Agregar la lista al perfil del usuario
-            return redirect('profile')  # Redirige al perfil del usuario
-    
-    # Si no es un POST, simplemente mostrar las listas del usuario
+            user_profile.custom_lists.add(new_list)
+            query_string = urlencode({'open_list': new_list.id})
+            return redirect(f"{reverse('profile')}?{query_string}#custom-lists-container")
     return render(request, 'a_users/profile.html', {'user_profile': user_profile})
+
 
 @login_required
 def add_movie_to_list(request, list_id):
-    # Obtener la lista personalizada seleccionada
     custom_list = get_object_or_404(CustomList, id=list_id, user=request.user)
-
     if request.method == 'POST':
         movie_id = request.POST.get('movie')
         if movie_id:
-            # Obtener la película seleccionada
             movie = get_object_or_404(Movie, id=movie_id)
-            # Agregar la película a la lista
             custom_list.add_movie(movie)
-    
-    return redirect('profile')  # Redirigir al perfil después de agregar la película
+    query_string = urlencode({'open_list': list_id})
+    return redirect(f"{reverse('profile')}?{query_string}#custom-lists-container")
+
 
 @login_required
 def remove_movie_from_list(request, list_id, movie_id):
-    # Obtén la lista personalizada y la película
     custom_list = get_object_or_404(CustomList, id=list_id, user=request.user)
     movie = get_object_or_404(Movie, id=movie_id)
-
-    # Elimina la película de la lista
     custom_list.movies.remove(movie)
+    query_string = urlencode({'open_list': list_id})
+    return redirect(f"{reverse('profile')}?{query_string}#custom-lists-container")
 
-    # Redirige de vuelta al perfil del usuario
-    return redirect('profile')  # Asegúrate de que esta URL esté definida en tus urls.py
 
 @login_required
 def remove_list(request, list_id):
-    # Obtener la lista personalizada
     custom_list = get_object_or_404(CustomList, id=list_id, user=request.user)
-
-    # Eliminar la lista
     custom_list.delete()
-
-    # Redirigir al perfil después de eliminar la lista
-    return redirect('profile')  # Asegúrate de que esta URL esté definida en tus urls.py
+    return redirect(f"{reverse('profile')}#custom-lists-container")
 
 
 @login_required
