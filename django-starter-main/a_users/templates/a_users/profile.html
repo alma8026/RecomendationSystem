@@ -63,6 +63,29 @@
         transform: scale(1.1);
     }
 
+    .tab-button {
+        color: rgb(156 163 175);
+        border-radius: 25px;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        background-color: rgb(17, 24, 39); /* bg-gray-900 */
+    }
+    
+    .tab-button:hover {
+        background-color: rgb(36, 51, 92);
+        color: #fff;
+        transform: scale(1.1);
+    }
+    
+    .tab-button.active {
+        background-color: rgb(36, 51, 92);
+        color: #fff;
+    }
+
     .btn-x {
         height: 24px;
         width: 24px;
@@ -154,7 +177,7 @@
     }
     
 </style>
-<div class="max-w-2xl mx-auto flex flex-col items-center py-16 px-8 bg-gray-900 w-full">
+<div class="max-w-2xl mx-auto flex flex-col items-center py-16 px-4 bg-gray-900 w-full">
     <!-- Imagen de perfil -->
     <div class="relative w-32 h-32 sm:w-40 sm:h-40 mb-6">
         <img class="w-full h-full rounded-full object-cover border-4 border-gray-700 shadow-lg" src="{{ profile.avatar }}" alt="icon img" />
@@ -226,7 +249,7 @@
 </div>
 
 <!-- Sección de Películas Favoritas -->
-<div class="w-auto px-2 py-8">
+<div class="w-auto px-3 py-8">
     <h2 class="text-2xl font-bold text-stone-200 mb-4 text-center">💗 Favourite Movies 💗</h2>
 
     {% if favorite_movies %}
@@ -249,17 +272,18 @@
 
 </div>
 
-<div id="custom-lists-container" class="container mx-auto px-4">
+<div id="custom-lists-container" class="container mx-auto px-4 mt-12">
     <!-- Navigation Buttons -->
-    <div class="flex justify-center gap-6 mb-8 flex-wrap">
-        <button class="tab-button bg-blue-500 text-white py-3 px-6 rounded-xl text-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 max-w-xs w-auto sm:px-5 sm:py-2" onclick="showTab('custom-lists')">Custom Lists</button>
-        <button class="tab-button bg-gray-300 py-3 px-6 rounded-xl text-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 max-w-xs w-auto sm:px-5 sm:py-2" onclick="showTab('reviews')">Reviews</button>
-        <button class="tab-button bg-gray-300 py-3 px-6 rounded-xl text-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 max-w-xs w-auto sm:px-5 sm:py-2" onclick="showTab('favorites')">Directors & Actors</button>
+    <div class="flex justify-center gap-6 mb-6 flex-wrap bg-gray-800 py-4 rounded-xl w-auto max-w-2xl mx-auto px-4 border-2 border-gray-700">
+        <button class="tab-button genre-badge" onclick="showTab('custom-lists', this)" id="tab-custom-lists">Custom Lists</button>
+        <button class="tab-button genre-badge" onclick="showTab('reviews', this)">Reviews</button>
+        <button class="tab-button genre-badge" onclick="showTab('favorites', this)">Directors & Actors</button>
     </div>
+    
 
     <!-- Sections -->
-    <div id="custom-lists" class="tab-content bg-stone-200 p-6 rounded-lg shadow-md max-w-3xl mx-auto">
-        <h2 class="text-3xl font-semibold mb-6 text-center">Custom Lists</h2>
+    <div id="custom-lists" class="tab-content bg-stone-200 p-6 rounded-lg shadow-md shadow-stone-200 max-w-3xl mx-auto my-6">
+        <h2 class="text-3xl font-semibold mb-6 text-center text-gray-900">Custom Lists</h2>
     
         <!-- Formulario para crear una lista -->
         <form method="POST" action="{% url 'custom_lists' %}" class="flex justify-center mb-6">
@@ -275,8 +299,8 @@
         <div class="flex justify-between items-center">
             <span>{{ list.title }}</span>
             <div class="flex items-center space-x-2">
-                <!-- Botón para mostrar películas -->
-                <button id="toggle-button-{{ list.id }}" class="bg-sky-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-sky-700" onclick="toggleMoviesList('{{ list.id }}')">Show List</button>
+                <!-- Botón para mostrar películas --> 
+                <button id="toggle-button-{{ list.id }}" class="bg-sky-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-sky-700 whitespace-nowrap" onclick="toggleMoviesList('{{ list.id }}')">Show List</button>
                 
                 <!-- Botón para eliminar la lista -->
                 <form method="POST" action="{% url 'remove_list' list.id %}" class="inline-block">
@@ -363,18 +387,22 @@
     <div id="reviews" class="tab-content bg-white p-6 rounded-lg shadow-md hidden max-w-3xl mx-auto">
         <h2 class="text-2xl font-semibold mb-6">Reviews</h2>
         <div class="space-y-6">
-            <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
-                <p class="font-semibold">★★★★☆</p>
-                <p class="text-sm">Awesome! 4/5</p>
-            </div>
-            <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
-                <p class="font-semibold">★★★☆☆</p>
-                <p class="text-sm">It was okay.</p>
-            </div>
-            <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
-                <p class="font-semibold">★★★★★</p>
-                <p class="text-sm">Really good!</p>
-            </div>
+            {% for review in reviews %}
+                <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
+                    <!-- Mostrar las estrellas generadas por la vista -->
+                    <div class="font-semibold">
+                        {{ review.stars_html|safe }}
+                    </div>
+    
+                    <!-- Mostrar el título y el contenido del review -->
+                    <p class="text-sm font-bold">{{ review.title }}</p>
+                    <p class="text-sm">{{ review.content }}</p>
+                </div>
+            {% empty %}
+                <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
+                    <p class="text-sm">You haven't written any reviews yet!</p>
+                </div>
+            {% endfor %}
         </div>
     </div>
     
@@ -475,18 +503,21 @@
     });
 
     // Tab system (por si lo usas en otras partes)
-    function showTab(tabId) {
+    function showTab(tabId, button) {
         document.querySelectorAll('.tab-content').forEach(tab => {
             tab.classList.add('hidden');
         });
         document.getElementById(tabId).classList.remove('hidden');
-        
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.classList.remove('bg-blue-500', 'text-white');
-            button.classList.add('bg-gray-300');
+    
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.classList.remove('active');
         });
-        event.target.classList.add('bg-blue-500', 'text-white');
-        event.target.classList.remove('bg-gray-300');
+    
+        button.classList.add('active');
+    }
+    
+    window.onload = function() {
+        document.getElementById('tab-custom-lists').click();
     }
 </script>
 

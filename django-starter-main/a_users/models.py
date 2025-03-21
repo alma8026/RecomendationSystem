@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from recommendations.models import Movie
+from recommendations.models import Movie, Rating
 from django.templatetags.static import static
 
 # No es necesario importar CustomList al principio del archivo
@@ -42,3 +42,13 @@ class CustomList(models.Model):
     def remove_movie(self, movie):
         self.movies.remove(movie)
         self.save()
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)  # Título del review
+    content = models.TextField()  # Contenido del review
+    rating = models.ForeignKey(Rating, on_delete=models.CASCADE)  # Relación con Rating
+
+    def __str__(self):
+        return f'Review for {self.movie.title} by {self.user.username}'

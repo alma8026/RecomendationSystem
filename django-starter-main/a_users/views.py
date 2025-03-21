@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.http import urlencode
+from a_home.views import generate_star_display
 from recommendations.content_based_utils import recommend_items_content, get_top_genres
 from allauth.account.utils import send_email_confirmation
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from recommendations.models import Rating, Movie
-from a_users.models import CustomList
+from a_users.models import CustomList, Review
 from django.contrib import messages
 from .forms import *
 
@@ -47,6 +48,13 @@ def profile_view(request, username=None):
     # Obtener las listas personalizadas del usuario
     custom_lists = profile.custom_lists.all()  # Obtener todas las listas personalizadas asociadas al perfil
     all_movies = Movie.objects.all()  # Obtener todas las películas
+    reviews = Review.objects.filter(user=request.user)
+
+    # Generar las estrellas para cada review
+    reviews_with_stars = []
+    for review in reviews:
+        review.stars_html = generate_star_display(review.rating.value)  # Agregar HTML con estrellas
+        reviews_with_stars.append(review)
 
     return render(request, 'a_users/profile.html', {
         'profile': profile,
@@ -57,7 +65,8 @@ def profile_view(request, username=None):
         'recommended_content_movies': recommended_content_movies,  # Pasar recomendaciones
         'top_genres': top_genres,  # Pasar géneros principales
         'custom_lists': custom_lists,  # Pasar las listas personalizadas
-        'all_movies': all_movies
+        'all_movies': all_movies, 
+        'reviews': reviews,
     })
 
 @login_required
