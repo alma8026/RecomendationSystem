@@ -46,6 +46,7 @@ def profile_view(request, username=None):
 
     # Obtener las listas personalizadas del usuario
     custom_lists = profile.custom_lists.all()  # Obtener todas las listas personalizadas asociadas al perfil
+    all_movies = Movie.objects.all()  # Obtener todas las películas
 
     return render(request, 'a_users/profile.html', {
         'profile': profile,
@@ -55,7 +56,8 @@ def profile_view(request, username=None):
         'total_hours': total_hours,  # Pasar las horas al contexto
         'recommended_content_movies': recommended_content_movies,  # Pasar recomendaciones
         'top_genres': top_genres,  # Pasar géneros principales
-        'custom_lists': custom_lists  # Pasar las listas personalizadas
+        'custom_lists': custom_lists,  # Pasar las listas personalizadas
+        'all_movies': all_movies
     })
 
 @login_required
