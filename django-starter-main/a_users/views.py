@@ -50,10 +50,11 @@ def profile_view(request, username=None):
     all_movies = Movie.objects.all()  # Obtener todas las películas
     reviews = Review.objects.filter(user=request.user)
 
-    # Generar las estrellas para cada review
+    # Generar las estrellas para cada review y agregar la imagen de la película
     reviews_with_stars = []
     for review in reviews:
         review.stars_html = generate_star_display(review.rating.value)  # Agregar HTML con estrellas
+        review.movie_image_url = review.movie.image_url  # Agregar la URL de la imagen de la película
         reviews_with_stars.append(review)
 
     return render(request, 'a_users/profile.html', {
@@ -66,7 +67,7 @@ def profile_view(request, username=None):
         'top_genres': top_genres,  # Pasar géneros principales
         'custom_lists': custom_lists,  # Pasar las listas personalizadas
         'all_movies': all_movies, 
-        'reviews': reviews,
+        'reviews': reviews_with_stars,  # Cambié reviews por reviews_with_stars
     })
 
 @login_required

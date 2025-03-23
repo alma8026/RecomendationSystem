@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie, Rating, Genre
-from a_users.models import Profile
+from a_users.models import Profile, Review
 from math import floor, isclose
 from django.db.models import Count, Avg
 from django.contrib.auth.decorators import login_required
@@ -269,3 +269,28 @@ def remove_rating(request, movie_id):
 
     # Redirigir a la misma página que el usuario estaba visitando
     return redirect(request.META.get('HTTP_REFERER', '/'))  # Si no hay referencia, redirige a la raíz
+
+@login_required
+def add_review(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+    
+    if request.method == "POST":
+        title = request.POST.get('title')
+        text = request.POST.get('text')
+        rating_value = float(request.POST.get('rating'))
+
+        # Guardar o actualizar rating
+        rating, created = Rating.objects.get_or_create(user=request.user, movie=movie)
+        rating.value = rating_value
+        rating.save()
+
+        # Crear la review asociada al rating
+        Review.objects.create(
+            user=request.user,
+            movie=movie,
+            title=title,
+            content=text,  # corregido aquí
+            rating=rating
+        )
+
+        return redirect('movie_detail', movie_id=movie.id)

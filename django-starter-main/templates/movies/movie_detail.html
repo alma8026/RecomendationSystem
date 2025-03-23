@@ -455,6 +455,34 @@
             {% endfor %}
         </div>
     </div>
+
+    <!-- Botón para abrir el popup -->
+    <button onclick="openReviewPopup()" class="bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700">
+        Añadir Review
+    </button>
+
+    <!-- Popup de review -->
+    <div id="review-popup" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+        <div class="bg-white p-6 rounded-lg max-w-md w-full relative">
+            <!-- Botón de cerrar -->
+            <button onclick="closeReviewPopup()" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+            
+            <!-- Formulario de la review -->
+            <h3 class="text-xl font-semibold mb-4">Deja tu Review</h3>
+            <form method="POST" action="{% url 'add_review' movie.id %}">
+                {% csrf_token %}
+                <input type="text" name="title" placeholder="Título de la review" required class="w-full p-2 mb-3 border rounded-lg">
+
+                <textarea name="text" placeholder="Escribe tu review aquí..." rows="4" required class="w-full p-2 mb-3 border rounded-lg"></textarea>
+                
+                <!-- Rating simple (puedes luego hacerlo de estrellas si quieres) -->
+                <label class="block mb-2 font-medium">Tu puntuación (0 a 5)</label>
+                <input type="number" name="rating" min="0" max="5" step="0.5" required class="w-full p-2 mb-4 border rounded-lg">
+
+                <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 w-full">Enviar Review</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <!-- Botón de Volver al Inicio (Fixed bottom) -->
@@ -480,4 +508,13 @@
         </a>
     </button>
 </div>
+
+<script>
+    function openReviewPopup() {
+        document.getElementById('review-popup').classList.remove('hidden');
+    }
+    function closeReviewPopup() {
+        document.getElementById('review-popup').classList.add('hidden');
+    }
+</script>
 {% endblock %}

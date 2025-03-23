@@ -388,15 +388,23 @@
         <h2 class="text-2xl font-semibold mb-6">Reviews</h2>
         <div class="space-y-6">
             {% for review in reviews %}
-                <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
-                    <!-- Mostrar las estrellas generadas por la vista -->
-                    <div class="font-semibold">
-                        {{ review.stars_html|safe }}
-                    </div>
+                <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800 flex items-start gap-4">
+                    <!-- Mostrar la imagen de la película a la izquierda -->
+                    <img src="{% static review.movie_image_url %}" alt="{{ review.movie.title }}" class="w-20 h-28 object-cover rounded-lg">
+        
+                    <!-- Contenedor del texto del review -->
+                    <div>
+                        <!-- Mostrar el título del review -->
+                        <p class="text-lg font-bold">{{ review.title }}</p>
     
-                    <!-- Mostrar el título y el contenido del review -->
-                    <p class="text-sm font-bold">{{ review.title }}</p>
-                    <p class="text-sm">{{ review.content }}</p>
+                        <!-- Contenedor de estrellas debajo del título -->
+                        <div class="font-semibold flex items-center gap-1 mt-1">
+                            {{ review.stars_html|safe }}
+                        </div>
+    
+                        <!-- Mostrar el contenido del review -->
+                        <p class="text-sm mt-2">{{ review.content }}</p>
+                    </div>
                 </div>
             {% empty %}
                 <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
@@ -405,6 +413,7 @@
             {% endfor %}
         </div>
     </div>
+    
     
     <div id="favorites" class="tab-content bg-white p-6 rounded-lg shadow-md hidden max-w-3xl mx-auto">
         <h2 class="text-2xl font-semibold mb-6">Favorite Directors & Actors</h2>
