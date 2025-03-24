@@ -175,6 +175,39 @@
             margin: 0 0.5rem;
         }
     }
+
+    .trash-btn {
+        background:rgb(148, 52, 52) !important;
+        border: none !important;
+        padding: 8px;
+        margin: 0;
+        cursor: pointer;
+        transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 8px;
+        color:rgb(255, 255, 255); 
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); 
+    }
+    
+    .trash-btn:hover {
+        color: rgb(243, 243, 243);
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+    }
+    
+    .trash-btn:focus {
+        outline: none; /* Remueve el borde al hacer foco */
+    }
+    
+    .trash-btn svg {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
+    }
+    
+    /* Añadir animación de rotación al SVG */
+    .trash-btn:hover svg {
+        transform: rotate(15deg);
+    }
     
 </style>
 <div class="max-w-2xl mx-auto flex flex-col items-center py-16 px-4 bg-gray-900 w-full">
@@ -190,7 +223,7 @@
     </div>
     
     <!-- Contenedor de información -->
-    <div class="w-full mt-4 border border-gray-700 rounded-xl p-4 bg-gray-800 text-white space-y-8">
+    <div class="w-full mt-4 border-2 border-gray-700 rounded-xl p-4 bg-gray-800 text-white space-y-8">
         <div class="flex flex-col gap-6 md:flex-row md:justify-between">
             <!-- Descripción -->
             <div class="md:w-[48%] p-4 border border-gray-700 rounded-xl bg-gray-900 shadow-md flex flex-col">
@@ -233,6 +266,11 @@
             <div class="w-full sm:w-[48%] border border-gray-700 bg-gray-900 p-6 rounded-xl shadow-md">
                 <span class="text-2xl font-bold"> {{total_hours}} </span><br>
                 <span class="text-md">Watched</span><br>
+            </div>
+            <!-- Nuevo campo de reviews -->
+            <div class="w-full sm:w-[48%] border border-gray-700 bg-gray-900 p-6 rounded-xl shadow-md">
+                <span class="text-2xl font-bold">{{review_count}}</span><br>
+                <span class="text-md">Reviews made</span><br>
             </div>
         </div>
         {% if top_genres %}
@@ -282,13 +320,13 @@
     
 
     <!-- Sections -->
-    <div id="custom-lists" class="tab-content bg-stone-200 p-6 rounded-lg shadow-md shadow-stone-200 max-w-3xl mx-auto my-6">
+    <div id="custom-lists" class="tab-content bg-stone-100 p-6 rounded-lg shadow-md shadow-stone-200 max-w-3xl mx-auto my-6">
         <h2 class="text-3xl font-semibold mb-6 text-center text-gray-900">Custom Lists</h2>
     
         <!-- Formulario para crear una lista -->
         <form method="POST" action="{% url 'custom_lists' %}" class="flex justify-center mb-6">
             {% csrf_token %}
-            <input type="text" name="title" class="p-3 rounded-lg text-lg" placeholder="Enter list title" required>
+            <input type="text" name="title" class="p-3 rounded-lg text-lg bg-white" placeholder="Enter list title" required>
             <button type="submit" class="btn-add mx-2">+ Add List</button>
         </form>
     
@@ -312,7 +350,7 @@
                 <div id="confirmation-popup" class="popup-overlay hidden">
                     <div class="popup-content">
                         <p>Are you sure you want to delete this list?</p>
-                        <button id="confirm-delete" onclick="confirmDelete()" class="bg-red-600 text-stone-100 px-4 py-2 rounded-lg hover:bg-red-800 shadow-xl">Yes, delete</button>
+                        <button id="confirm-delete" onclick="confirmDelete()" class="bg-red-700 text-stone-100 px-4 py-2 rounded-lg hover:bg-red-800 shadow-xl">Yes, delete</button>
                         <button onclick="closeConfirmationPopup()" class="bg-gray-500 text-stone-100 px-4 py-2 rounded-lg hover:bg-gray-600 shadow-xl">Cancel</button>
                     </div>
                 </div>
@@ -321,12 +359,12 @@
 
         <div id="movies-list-{{ list.id }}" class="mt-4 hidden">
             <!-- Mostrar las películas dentro de la lista como tarjetas -->
-            <div class="favourite-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-scroll h-[315px] p-4 bg-stone-200 rounded-xl">
+            <div class="favourite-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-scroll h-[325px] p-4 bg-stone-200 rounded-xl">
                 {% for movie in list.movies.all %}
                     <div class="bg-gray-700 p-4 rounded-lg shadow-md shadow-black text-center hover:scale-105 transition duration-[0.4s] max-h-[280px]">
                         <a href="{% url 'movie_detail' movie.id %}">
                             <img class="w-full h-48 object-cover rounded-lg" src="{% static movie.image_url %}" alt="{{ movie.title }}">
-                            <h3 class="text-stone-200 py-3 truncate">
+                            <h3 class="text-stone-100 py-3 truncate">
                                 {{ movie.title }}
                             </h3>
                         </a>
@@ -337,7 +375,7 @@
                         </form>
                     </div>
                 {% empty %}
-                    <div class="text-stone-200">No movies added yet!</div>
+                    <div class="text-stone-700 text-bold text-xl">No movies added yet!</div>
                 {% endfor %}
             </div>
 
@@ -384,27 +422,35 @@
         </ul>
     </div>
     
-    <div id="reviews" class="tab-content bg-white p-6 rounded-lg shadow-md hidden max-w-3xl mx-auto">
-        <h2 class="text-2xl font-semibold mb-6">Reviews</h2>
-        <div class="space-y-6">
+    <div id="reviews" class="tab-content bg-stone-100 p-6 rounded-lg shadow-md shadow-stone-200 hidden max-w-3xl mx-auto my-6">
+        <h2 class="text-3xl text-center font-semibold">Your Reviews</h2>
+        <div class="favourite-container space-y-6 overflow-auto h-[480px] py-6">
             {% for review in reviews %}
-                <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800 flex items-start gap-4">
-                    <!-- Mostrar la imagen de la película a la izquierda -->
+                <div class="bg-gray-300 p-5 rounded-lg text-lg text-gray-800 flex items-start gap-4 shadow-sm shadow-gray-600 mx-2 relative">
+                    <!-- Imagen de la película -->
                     <img src="{% static review.movie_image_url %}" alt="{{ review.movie.title }}" class="w-20 h-28 object-cover rounded-lg">
-        
+    
                     <!-- Contenedor del texto del review -->
-                    <div>
-                        <!-- Mostrar el título del review -->
+                    <div class="flex-1">
                         <p class="text-lg font-bold">{{ review.title }}</p>
     
-                        <!-- Contenedor de estrellas debajo del título -->
+                        <!-- Estrellas -->
                         <div class="font-semibold flex items-center gap-1 mt-1">
                             {{ review.stars_html|safe }}
                         </div>
     
-                        <!-- Mostrar el contenido del review -->
-                        <p class="text-sm mt-2">{{ review.content }}</p>
+                        <p class="text-sm mt-2 text-black">{{ review.content }}</p>
                     </div>
+    
+                    <!-- Ícono de papelera -->
+                    <form method="POST" action="{% url 'delete_review' review.id %}" class="ml-auto">
+                        {% csrf_token %}
+                        <button type="submit" class="trash-btn" title="Delete Review">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256">
+                                <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8,8)"><path d="M13.59375,4l-0.3125,0.28125l-0.71875,0.71875h-6.5625v2h1v18c0,1.64453 1.35547,3 3,3h12c1.64453,0 3,-1.35547 3,-3v-18h1v-2h-6.5625l-0.71875,-0.71875l-0.3125,-0.28125zM14.4375,6h3.125l0.71875,0.71875l0.3125,0.28125h4.40625v18c0,0.55469 -0.44531,1 -1,1h-12c-0.55469,0 -1,-0.44531 -1,-1v-18h4.40625l0.3125,-0.28125zM11,11v11h2v-11zM15,11v11h2v-11zM19,11v11h2v-11z"></path></g></g>
+                            </svg>
+                        </button>
+                    </form>
                 </div>
             {% empty %}
                 <div class="bg-gray-200 p-5 rounded-lg text-lg text-gray-800">
@@ -412,7 +458,7 @@
                 </div>
             {% endfor %}
         </div>
-    </div>
+    </div>    
     
     
     <div id="favorites" class="tab-content bg-white p-6 rounded-lg shadow-md hidden max-w-3xl mx-auto">

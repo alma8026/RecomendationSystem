@@ -13,4 +13,5 @@ urlpatterns = [
     path('add_movie_to_list/<int:list_id>/', add_movie_to_list, name='add_movie_to_list'),
     path('remove_movie_from_list/<int:list_id>/<int:movie_id>/', remove_movie_from_list, name='remove_movie_from_list'),
     path('remove_list/<int:list_id>/', remove_list, name='remove_list'),
+    path('reviews/<int:review_id>/delete/', delete_review, name='delete_review'),
 ]

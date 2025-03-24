@@ -86,6 +86,25 @@
         transform: scale(1.05);
     }
 
+    .review-btn {
+        color: rgb(248, 248, 248);
+        background-color: rgb(44, 72, 145);
+        border-radius: 25px;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .review-btn:hover {
+        background-color:rgb(30, 47, 95);
+        color: #fff;
+        transform: scale(1.1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
     /* Botón de retroceso */
     .back-btn {
         display: inline-block;
@@ -336,6 +355,27 @@
     .platform-badge {
         margin-right: 15px; /* Espacio entre los iconos */
     }
+
+    .btn-x {
+        height: 32px;
+        width: 32px;
+        background-color: rgb(239, 68, 68);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25%;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .btn-x:hover {
+        background-color: rgb(185, 28, 28);
+    }
+    
+    .review-container {
+        background: linear-gradient(145deg, rgba(255,255,255,1) 40%, rgba(240,240,240,1) 80%);
+    }
 </style>
 {% endblock %}
 
@@ -455,35 +495,58 @@
             {% endfor %}
         </div>
     </div>
+</div>
 
-    <!-- Botón para abrir el popup -->
-    <button onclick="openReviewPopup()" class="bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700">
-        Añadir Review
-    </button>
-
-    <!-- Popup de review -->
-    <div id="review-popup" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
-        <div class="bg-white p-6 rounded-lg max-w-md w-full relative">
-            <!-- Botón de cerrar -->
-            <button onclick="closeReviewPopup()" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-xl">&times;</button>
-            
-            <!-- Formulario de la review -->
-            <h3 class="text-xl font-semibold mb-4">Deja tu Review</h3>
-            <form method="POST" action="{% url 'add_review' movie.id %}">
-                {% csrf_token %}
-                <input type="text" name="title" placeholder="Título de la review" required class="w-full p-2 mb-3 border rounded-lg">
-
-                <textarea name="text" placeholder="Escribe tu review aquí..." rows="4" required class="w-full p-2 mb-3 border rounded-lg"></textarea>
-                
-                <!-- Rating simple (puedes luego hacerlo de estrellas si quieres) -->
-                <label class="block mb-2 font-medium">Tu puntuación (0 a 5)</label>
-                <input type="number" name="rating" min="0" max="5" step="0.5" required class="w-full p-2 mb-4 border rounded-lg">
-
-                <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 w-full">Enviar Review</button>
-            </form>
+<!-- Contenedor mejorado -->
+<div class="flex justify-center items-center py-4 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-64">
+    <div class="bg-gray-800 border-2 border-gray-700 rounded-3xl shadow-xl p-6 w-full max-w-2xl relative overflow-hidden">
+        
+        <!-- Botón centrado -->
+        <div class="relative z-10 flex justify-center">
+            <button onclick="openReviewPopup()" class="review-btn flex items-center gap-2">
+                <!-- Nuevo SVG: Icono de "review" tipo mensaje con un lápiz -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3C6.48 3 2 6.81 2 11c0 1.73.78 3.31 2.09 4.56L3 21l5.53-1.71C9.5 19.76 10.74 20 12 20c5.52 0 10-3.81 10-9s-4.48-8-10-8zm-1 10H8v-2h3v2zm5 0h-3v-2h3v2z"/>
+                </svg>
+                Add Review
+            </button>
         </div>
     </div>
 </div>
+
+<!-- Popup de review -->
+<div id="review-popup" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="review-container p-8 rounded-3xl max-w-lg w-full relative shadow-2xl transform transition-all scale-95 hover:scale-100 duration-300">
+        <!-- Botón de cerrar -->
+        <button onclick="closeReviewPopup()" class="btn-x absolute top-4 right-4 text-xl font-bold">X</button>
+        
+        <!-- Formulario de la review -->
+        <h3 class="text-3xl font-bold mb-6 text-center text-gray-800">Write your Review</h3>
+        <form method="POST" action="{% url 'add_review' movie.id %}" class="space-y-5">
+            {% csrf_token %}
+            <div class="flex flex-col gap-2">
+                <label class="text-gray-700 font-medium">Title</label>
+                <input type="text" name="title" placeholder="Title of the review" required class="bg-white w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 placeholder-gray-400">
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label class="text-gray-700 font-medium">Comments</label>
+                <textarea name="text" placeholder="Write your review here..." rows="4" required class="bg-white w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 placeholder-gray-400"></textarea>
+            </div>
+            
+            <!-- Rating -->
+            <div class="flex flex-col gap-2">
+                <label class="text-gray-700 font-medium">Rating (0 to 5)</label>
+                <input type="number" name="rating" min="0" max="5" step="0.5" required class="bg-white w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 placeholder-gray-400">
+            </div>
+
+            <button type="submit" class="bg-gradient-to-r from-sky-600 to-sky-800 text-white px-4 py-3 rounded-xl hover:from-sky-700 hover:to-sky-900 transition-all duration-300 w-full shadow-lg font-semibold tracking-wide">
+                Send Review
+            </button>
+        </form>
+    </div>
+</div>
+
 
 <!-- Botón de Volver al Inicio (Fixed bottom) -->
 <div class="fixed-bottom scale-75">

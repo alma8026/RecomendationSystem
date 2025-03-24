@@ -277,20 +277,31 @@ def add_review(request, movie_id):
     if request.method == "POST":
         title = request.POST.get('title')
         text = request.POST.get('text')
-        rating_value = float(request.POST.get('rating'))
 
-        # Guardar o actualizar rating
-        rating, created = Rating.objects.get_or_create(user=request.user, movie=movie)
-        rating.value = rating_value
-        rating.save()
+        # Convertir la coma en punto
+        rating_str = request.POST.get('rating', '').replace(',', '.')
+        try:
+            rating_value = float(rating_str)
+        except ValueError:
+            rating_value = 0
 
-        # Crear la review asociada al rating
+        # Evitar el NOT NULL constraint failure al crear
+        rating, created = Rating.objects.get_or_create(
+            user=request.user, 
+            movie=movie,
+            defaults={'value': rating_value}
+        )
+        if not created:
+            rating.value = rating_value
+            rating.save()
+
+        # Ahora sí crear la review
         Review.objects.create(
             user=request.user,
             movie=movie,
             title=title,
-            content=text,  # corregido aquí
-            rating=rating
+            content=text,
+            rating=rating,
         )
 
         return redirect('movie_detail', movie_id=movie.id)

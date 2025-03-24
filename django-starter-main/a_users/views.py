@@ -36,6 +36,9 @@ def profile_view(request, username=None):
     favorite_movies = profile.favorites.all()  # Obtener las películas favoritas
     favorite_movies_count = favorite_movies.count()
 
+    # Obtener el número de reviews hechas por el usuario
+    review_count = Review.objects.filter(user=request.user).count()
+
     # Obtener recomendaciones basadas en contenido y los géneros principales del usuario
     user_ratings = Rating.objects.filter(user=request.user)
     if user_ratings.exists():
@@ -63,12 +66,14 @@ def profile_view(request, username=None):
         'rating_count': rating_count,
         'favorite_movies_count': favorite_movies_count,
         'total_hours': total_hours,  # Pasar las horas al contexto
+        'review_count': review_count,  # Pasar el número de reviews al contexto
         'recommended_content_movies': recommended_content_movies,  # Pasar recomendaciones
         'top_genres': top_genres,  # Pasar géneros principales
         'custom_lists': custom_lists,  # Pasar las listas personalizadas
         'all_movies': all_movies, 
         'reviews': reviews_with_stars,  # Cambié reviews por reviews_with_stars
     })
+
 
 @login_required
 def custom_lists(request):
@@ -110,6 +115,15 @@ def remove_list(request, list_id):
     custom_list.delete()
     return redirect(f"{reverse('profile')}#custom-lists-container")
 
+@login_required
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id, user=request.user)
+    
+    if request.method == 'POST':
+        review.delete()
+        messages.success(request, 'Review eliminada correctamente.')
+    
+    return redirect('profile')
 
 @login_required
 def profile_edit_view(request):
